@@ -103,10 +103,6 @@
       background: var(--card1);
       position: relative;
       transition: transform 0.3s, border 0.3s;
-      opacity: 0.2;
-    }
-
-    .card.visible {
       opacity: 1;
     }
 
@@ -127,18 +123,17 @@
 
     .card-section {
       margin-top: 0.5rem;
-      display: none;
     }
 
-    .card.visible .card-section.td-visible {
-      display: block;
+    .card-section.hidden {
+      display: none;
     }
 
     .card-section.key {
       display: none;
     }
 
-    .card.visible .card-section.key.show {
+    .card-section.key.show {
       display: block;
     }
 
@@ -153,6 +148,20 @@
       font-size: 0.9rem;
       line-height: 1.4;
       color: #333;
+    }
+
+    .choice-buttons {
+      margin-top: 10px;
+    }
+
+    .choice-buttons button {
+      margin-right: 8px;
+      background: var(--accent);
+      color: white;
+      border: none;
+      border-radius: 6px;
+      padding: 5px 10px;
+      cursor: pointer;
     }
 
     @media (max-width: 600px) {
@@ -182,8 +191,6 @@
 
   <div class="controls">
     <button onclick="highlightRandomCard()">Pick Random Card</button>
-    <button onclick="rollTD()">T/D</button>
-    <div id="tdResult"></div>
   </div>
 
   <div class="history" id="historyLog">Card history: </div>
@@ -218,29 +225,18 @@
     const grid = document.getElementById("cardGrid");
     const historyLog = document.getElementById("historyLog");
     let history = [];
-    let tdChoice = "Truth";
 
     function toggleMode() {
       document.body.classList.toggle("dark-mode");
     }
 
-    function rollTD() {
-      tdChoice = Math.random() > 0.5 ? "Truth" : "Dare";
-      document.getElementById("tdResult").textContent = "You got: " + tdChoice;
-    }
-
     function highlightRandomCard() {
       const index = Math.floor(Math.random() * data.length);
       document.querySelectorAll('.card').forEach((card, i) => {
-        card.classList.remove('highlight', 'visible');
-        card.querySelectorAll('.card-section').forEach(section => section.classList.remove('td-visible'));
-        card.querySelector('.card-section.key').classList.remove('show');
-        if (i === index) {
-          card.classList.add('highlight', 'visible');
-          const tdSection = card.querySelector(`.card-section:nth-child(${tdChoice === "Truth" ? 2 : 3})`);
-          tdSection.classList.add('td-visible');
-        }
+        card.classList.remove('highlight');
       });
+      const card = document.querySelectorAll('.card')[index];
+      card.classList.add('highlight');
       history.unshift(index + 1);
       historyLog.textContent = "Card history: " + history.slice(0, 10).join(", ");
     }
@@ -250,8 +246,12 @@
       card.className = "card";
       card.innerHTML = `
         <div class="card-title">Card ${i + 1}</div>
-        <div class="card-section"><strong>Truth</strong><span>${set[0]}</span></div>
-        <div class="card-section"><strong>Dare</strong><span>${set[1]}</span></div>
+        <div class="choice-buttons">
+          <button onclick="this.parentElement.parentElement.querySelector('.truth').classList.toggle('hidden')">Truth</button>
+          <button onclick="this.parentElement.parentElement.querySelector('.dare').classList.toggle('hidden')">Dare</button>
+        </div>
+        <div class="card-section truth hidden"><strong>Truth</strong><span>${set[0]}</span></div>
+        <div class="card-section dare hidden"><strong>Dare</strong><span>${set[1]}</span></div>
         <div class="card-section key"><strong>Key</strong><span>${set[2]}</span></div>
       `;
       card.addEventListener('dblclick', () => {
