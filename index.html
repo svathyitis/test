@@ -7,15 +7,15 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --bg-light: #fdfaf6;
+      --bg-light: #fffaf4;
       --text-light: #1c1c1e;
-      --bg-dark: #181018;
+      --bg-dark: #0e0b0a;
       --text-dark: #fdfaf6;
       --muted: #888;
-      --accent: #6a5799;
-      --accent-light: #b69ad4;
-      --highlight: #ff9900;
-      --card-bg: #fff5e6;
+      --accent: #542e71;
+      --accent-light: #c0a1d0;
+      --highlight: #e63946;
+      --card-bg: #fff0e5;
     }
 
     body {
@@ -25,6 +25,7 @@
       margin: 0;
       padding: 22px 14px;
       transition: background 0.4s, color 0.4s;
+      cursor: url('https://raw.githubusercontent.com/tholman/cursor-effects/master/css/cursor.css'), auto;
     }
 
     body.dark-mode {
@@ -45,7 +46,7 @@
     }
 
     .instructions {
-      background: #f1e8ff;
+      background: #f3eaff;
       border-radius: 16px;
       max-width: 880px;
       margin: 70px auto 30px;
@@ -96,17 +97,18 @@
       box-shadow: 0 6px 18px rgba(0,0,0,0.08);
       padding: 20px;
       background: var(--card-bg);
-      height: 320px;
+      height: 340px;
       overflow: hidden;
       position: relative;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      transition: transform 0.3s ease;
     }
 
     .card.highlight {
       border: 2px solid var(--highlight);
-      box-shadow: 0 0 0 4px rgba(255, 153, 0, 0.3);
+      box-shadow: 0 0 0 4px rgba(230, 57, 70, 0.3);
     }
 
     .card-title {
@@ -193,15 +195,13 @@
   </div>
 
   <div class="history" id="historyLog">Card history: </div>
-
   <div class="card-grid" id="cardGrid"></div>
 
   <script>
     const data = [
       ["Why do we feel sorrow even when we have everything?", "Do one thing today that doesn’t involve a screen.", "Outer joy can't fill inner emptiness. Real peace is within."],
       ["What is real and what is pretend?", "Spend 5 minutes in silence.", "Kindness and awareness are real. Distractions fade."],
-      ["Why does life have ups and downs?", "Draw your current mood as a doodle.", "Like waves, emotions rise and fall. Be the ocean."],
-      // ... continue same format for all cards up to 21
+      ["Why does life have ups and downs?", "Draw your current mood as a doodle.", "Like waves, emotions rise and fall. Be the ocean."]
     ];
 
     const grid = document.getElementById("cardGrid");
@@ -213,13 +213,14 @@
     }
 
     function highlightRandomCard() {
+      const cards = document.querySelectorAll('.card');
       const index = Math.floor(Math.random() * data.length);
-      document.querySelectorAll('.card').forEach((card, i) => {
+      cards.forEach((card, i) => {
         card.classList.remove('highlight');
         card.querySelector('.truth').classList.add('hidden');
         card.querySelector('.dare').classList.add('hidden');
       });
-      const card = document.querySelectorAll('.card')[index];
+      const card = cards[index];
       card.classList.add('highlight');
       history.unshift(index + 1);
       historyLog.textContent = "Card history: " + history.slice(0, 10).join(", ");
