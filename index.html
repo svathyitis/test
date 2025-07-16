@@ -7,8 +7,10 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --bg: #f9f6fc;
-      --text: #1c1c1e;
+      --bg-light: #f9f6fc;
+      --text-light: #1c1c1e;
+      --bg-dark: #1c1c1e;
+      --text-dark: #f9f6fc;
       --muted: #777;
       --accent: #6a5799;
       --accent-light: #b69ad4;
@@ -22,11 +24,17 @@
 
     body {
       font-family: 'Inter', sans-serif;
-      background: var(--bg);
-      color: var(--text);
+      background: var(--bg-light);
+      color: var(--text-light);
       margin: 0;
       padding: 22px 14px;
       overflow-x: hidden;
+      transition: background 0.4s, color 0.4s;
+    }
+
+    body.dark-mode {
+      background: var(--bg-dark);
+      color: var(--text-dark);
     }
 
     .moon-toggle {
@@ -41,90 +49,12 @@
       color: var(--accent);
     }
 
-    .instructions {
-      max-width: 800px;
-      margin: 80px auto 30px;
-      background: var(--card2);
-      border-radius: 14px;
-      padding: 20px;
-      box-shadow: 0 4px 14px rgba(0,0,0,0.05);
-    }
-    .instructions h2 {
-      margin-top: 0;
-      font-size: 1.4rem;
-      color: var(--accent);
-    }
-    .instructions ul {
-      padding-left: 20px;
-      line-height: 1.6;
-      font-size: 0.95rem;
-    }
-
-    .controls {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 14px;
-      justify-content: center;
-      margin-top: 20px;
-      align-items: center;
-    }
-
-    .controls button {
-      padding: 10px 18px;
-      background-color: var(--accent);
-      color: white;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-      font-size: 1rem;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-      transition: background 0.2s;
-    }
-
-    .controls button:hover {
-      background-color: var(--accent-light);
-    }
-
-    .dice-container {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
-
-    .dice-img {
-      width: 80px;
-      height: 80px;
-      background: var(--accent);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 2rem;
-      font-weight: bold;
-      color: white;
-      border-radius: 12px;
-      cursor: pointer;
-      user-select: none;
-    }
-
-    #tdResult {
-      font-size: 1.4rem;
-      font-weight: 700;
-      color: var(--accent);
-    }
-
-    #historyList {
-      margin-top: 20px;
-      text-align: center;
-      font-size: 0.9rem;
-      color: var(--muted);
-    }
-
     .card-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
       gap: 20px;
       max-width: 1200px;
-      margin: 40px auto;
+      margin: 100px auto 40px;
       padding: 0 16px;
     }
 
@@ -135,12 +65,14 @@
       background: var(--card1);
       position: relative;
       transition: transform 0.3s, border 0.3s;
-      cursor: pointer;
-      display: none;
+      opacity: 0.2;
+    }
+
+    .card.visible {
+      opacity: 1;
     }
 
     .card.highlight {
-      display: block !important;
       border: 2px solid var(--highlight);
       box-shadow: 0 0 0 4px rgba(255, 153, 0, 0.3);
     }
@@ -149,27 +81,19 @@
       transform: translateY(-4px);
     }
 
-    .label {
-      writing-mode: vertical-rl;
-      text-orientation: mixed;
-      font-size: 0.7rem;
-      font-weight: 600;
-      color: var(--accent);
-      position: absolute;
-      left: 10px;
-      top: 14px;
-    }
-
     .card-title {
       font-size: 1.1rem;
       font-weight: 600;
       margin-bottom: 0.6rem;
-      padding-left: 20px;
     }
 
     .card-section {
       margin-top: 0.5rem;
-      padding-left: 20px;
+      display: none;
+    }
+
+    .card.visible .card-section {
+      display: block;
     }
 
     .card-section strong {
@@ -190,23 +114,6 @@
         grid-template-columns: 1fr;
       }
     }
-
-    .cursor-dot {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: #ff0055;
-      pointer-events: none;
-      z-index: 9999;
-      mix-blend-mode: multiply;
-    }
-
-    .key-hidden {
-      display: none;
-    }
   </style>
 </head>
 <body>
@@ -215,152 +122,50 @@
       <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
     </svg>
   </button>
-  <div class="cursor-dot"></div>
 
-  <div class="instructions">
-    <h2>How to Play</h2>
-    <ul>
-      <li>Click the dice to choose between <strong>Truth</strong> or <strong>Dare</strong>.</li>
-      <li>Click "Pick Random Card" to highlight one card from the deck.</li>
-      <li>Only the selected section (Truth/Dare) will show based on your roll.</li>
-      <li>Double click any card to reveal its <strong>Key</strong> insight.</li>
-      <li>Play solo, in a group, or in teams. Take turns or mix it up!</li>
-    </ul>
-  </div>
-
-  <div class="controls">
-    <button onclick="highlightRandomCard()">Pick Random Card</button>
-    <div class="dice-container">
-      <div id="diceTD" class="dice-img" onclick="rollTD()">T/D</div>
-      <div id="tdResult"></div>
-    </div>
-  </div>
-  <div id="historyList">Card History: </div>
   <div class="card-grid" id="cardGrid"></div>
 
   <script>
-    const cardGrid = document.getElementById("cardGrid");
-    const historyList = document.getElementById("historyList");
-    let currentMode = null;
-    let history = [];
-
-    const truths = [
-      "Why do we feel sorrow even when we have everything?",
-      "What is real and what is pretend?",
-      "Why does life have ups and downs?",
-      "How can we play our role in life and stay peaceful?",
-      "What moment is the most important?",
-      "How does wisdom grow inside us?",
-      "Who creates our experience?",
-      "What are stories for?",
-      "Where is the greatest treasure?",
-      "What gives life meaning?",
-      "What makes a great student?",
-      "What helps us reach our dreams?",
-      "What grows in the heart?",
-      "How can we see life more clearly?",
-      "Where did everything begin?",
-      "How can we care for our home (Earth)?",
-      "What can water teach us?",
-      "What is the sacred fire within?",
-      "What connects us all?",
-      "What can we learn from plants?",
-      "Who are we really?"
+    const data = [
+      ["Why do we feel sorrow even when we have everything?", "Do one thing today that doesn’t involve a screen.", "Outer joy can't fill inner emptiness. Real peace is within."],
+      ["What is real and what is pretend?", "Spend 5 minutes in silence.", "Kindness and awareness are real. Distractions fade."],
+      ["Why does life have ups and downs?", "Draw your current mood as a doodle.", "Like waves, emotions rise and fall. Be the ocean."],
+      ["How can we play our role in life and stay peaceful?", "Act a scene from your favorite cartoon.", "Be involved, not entangled. Stay centered."],
+      ["What moment is the most important?", "Say something nice to someone right now.", "Now is where joy and peace live."],
+      ["How does wisdom grow inside us?", "Tell a story you made up.", "Reflection, questions, and kindness grow wisdom."],
+      ["Who creates our experience?", "Walk backwards for 10 steps and smile.", "Your thoughts shape your world."],
+      ["What are stories for?", "Make up a silly poem.", "They reflect truth and unlock wisdom."],
+      ["Where is the greatest treasure?", "Hug someone in your family.", "It’s in your peaceful heart."],
+      ["What gives life meaning?", "Dance to your favorite song.", "Balance joy, peace, and kindness."],
+      ["What makes a great student?", "Teach someone something new.", "Curiosity and openness make a great learner."],
+      ["What helps us reach our dreams?", "Write one dream on a sticky note.", "Inner fire and perseverance help you fly."],
+      ["What grows in the heart?", "Give a genuine compliment.", "Kindness and courage bloom inside."],
+      ["How can we see life more clearly?", "Look at the sky for one full minute.", "Step back and gain perspective."],
+      ["Where did everything begin?", "List three beautiful things around you.", "Everything arose from light and love."],
+      ["How can we care for our home (Earth)?", "Pick up one thing to recycle.", "Gratitude and protection honor Earth."],
+      ["What can water teach us?", "Splash water on your face mindfully.", "Flow with challenges and stay soft."],
+      ["What is the sacred fire within?", "Stare at a flame or light for 20 seconds.", "Your truth is always glowing."],
+      ["What connects us all?", "Take 3 deep shared breaths with someone.", "Breath unites all beings."],
+      ["What can we learn from plants?", "Water a plant or imagine you are one.", "Grow slow, be rooted, reach light."],
+      ["Who are we really?", "Say 'I am peaceful' with eyes closed.", "You are awareness, peace, and love."]
     ];
-
-    const dares = [
-      "Do one thing today that doesn’t involve a screen.",
-      "Spend 5 minutes in silence.",
-      "Draw your current mood as a doodle.",
-      "Act a scene from your favorite cartoon.",
-      "Say something nice to someone right now.",
-      "Tell a story you made up.",
-      "Walk backwards for 10 steps and smile.",
-      "Make up a silly poem.",
-      "Hug someone in your family.",
-      "Dance to your favorite song.",
-      "Teach someone something new.",
-      "Write one dream on a sticky note.",
-      "Give a genuine compliment.",
-      "Look at the sky for one full minute.",
-      "List three beautiful things around you.",
-      "Pick up one thing to recycle.",
-      "Splash water on your face mindfully.",
-      "Stare at a flame or light for 20 seconds.",
-      "Take 3 deep shared breaths with someone.",
-      "Water a plant or imagine you are one.",
-      "Say 'I am peaceful' with eyes closed."
-    ];
-
-    const keys = [
-      "Outer joy can't fill inner emptiness. Real peace is within.",
-      "Kindness and awareness are real. Distractions fade.",
-      "Like waves, emotions rise and fall. Be the ocean.",
-      "Be involved, not entangled. Stay centered.",
-      "Now is where joy and peace live.",
-      "Reflection, questions, and kindness grow wisdom.",
-      "Your thoughts shape your world.",
-      "They reflect truth and unlock wisdom.",
-      "It’s in your peaceful heart.",
-      "Balance joy, peace, and kindness.",
-      "Curiosity and openness make a great learner.",
-      "Inner fire and perseverance help you fly.",
-      "Kindness and courage bloom inside.",
-      "Step back and gain perspective.",
-      "Everything arose from light and love.",
-      "Gratitude and protection honor Earth.",
-      "Flow with challenges and stay soft.",
-      "Your truth is always glowing.",
-      "Breath unites all beings.",
-      "Grow slow, be rooted, reach light.",
-      "You are awareness, peace, and love."
-    ];
-
-    for (let i = 0; i < 21; i++) {
-      const card = document.createElement("div");
-      card.className = "card";
-      card.innerHTML = `
-        <div class="label">Card ${i + 1}</div>
-        <div class="card-title">Card ${i + 1}</div>
-        <div class="card-section truth"><strong>Truth</strong><span>${truths[i]}</span></div>
-        <div class="card-section dare"><strong>Dare</strong><span>${dares[i]}</span></div>
-        <div class="card-section key-hidden"><strong>Key</strong><span>${keys[i]}</span></div>
-      `;
-      card.addEventListener("dblclick", () => {
-        card.querySelector(".key-hidden").classList.toggle("key-hidden");
-      });
-      cardGrid.appendChild(card);
-    }
 
     function toggleMode() {
       document.body.classList.toggle("dark-mode");
     }
 
-    document.addEventListener('mousemove', e => {
-      const dot = document.querySelector('.cursor-dot');
-      dot.style.left = `${e.clientX}px`;
-      dot.style.top = `${e.clientY}px`;
+    const grid = document.getElementById("cardGrid");
+    data.forEach((set, i) => {
+      const card = document.createElement("div");
+      card.className = "card";
+      card.innerHTML = `
+        <div class="card-title">Card ${i + 1}</div>
+        <div class="card-section"><strong>Truth</strong><span>${set[0]}</span></div>
+        <div class="card-section"><strong>Dare</strong><span>${set[1]}</span></div>
+        <div class="card-section"><strong>Key</strong><span>${set[2]}</span></div>
+      `;
+      grid.appendChild(card);
     });
-
-    function rollTD() {
-      const result = Math.random() > 0.5 ? "truth" : "dare";
-      currentMode = result;
-      document.getElementById("tdResult").textContent = result.charAt(0).toUpperCase() + result.slice(1);
-      document.querySelectorAll(".truth").forEach(el => el.style.display = result === 'truth' ? 'block' : 'none');
-      document.querySelectorAll(".dare").forEach(el => el.style.display = result === 'dare' ? 'block' : 'none');
-    }
-
-    function highlightRandomCard() {
-      const cards = document.querySelectorAll(".card");
-      const index = Math.floor(Math.random() * cards.length);
-      cards.forEach((card, i) => {
-        card.style.display = i === index ? "block" : "none";
-        card.classList.toggle("highlight", i === index);
-      });
-      history.unshift(index + 1);
-      if (history.length > 10) history.pop();
-      historyList.textContent = `Card History: ${history.join(", ")}`;
-    }
   </script>
 </body>
 </html>
