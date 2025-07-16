@@ -238,6 +238,8 @@
       const index = Math.floor(Math.random() * data.length);
       document.querySelectorAll('.card').forEach((card, i) => {
         card.classList.remove('highlight');
+        card.querySelector('.truth').classList.add('hidden');
+        card.querySelector('.dare').classList.add('hidden');
       });
       const card = document.querySelectorAll('.card')[index];
       card.classList.add('highlight');
@@ -251,8 +253,8 @@
       card.innerHTML = `
         <div class="card-title">Card ${i + 1}</div>
         <div class="choice-buttons">
-          <button onclick="this.closest('.card').querySelector('.truth').classList.toggle('hidden'); this.closest('.card').querySelector('.dare').classList.add('hidden')">Truth</button>
-          <button onclick="this.closest('.card').querySelector('.dare').classList.toggle('hidden'); this.closest('.card').querySelector('.truth').classList.add('hidden')">Dare</button>
+          <button onclick="selectT(this)">Truth</button>
+          <button onclick="selectD(this)">Dare</button>
         </div>
         <div class="card-section truth hidden"><strong>Truth</strong><span>${set[0]}</span></div>
         <div class="card-section dare hidden"><strong>Dare</strong><span>${set[1]}</span></div>
@@ -263,6 +265,22 @@
       });
       grid.appendChild(card);
     });
+
+    function selectT(btn) {
+      const card = btn.closest('.card');
+      const truth = card.querySelector('.truth');
+      const dare = card.querySelector('.dare');
+      dare.classList.add('hidden');
+      truth.classList.toggle('hidden');
+    }
+
+    function selectD(btn) {
+      const card = btn.closest('.card');
+      const truth = card.querySelector('.truth');
+      const dare = card.querySelector('.dare');
+      truth.classList.add('hidden');
+      dare.classList.toggle('hidden');
+    }
   </script>
 </body>
 </html>
