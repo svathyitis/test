@@ -180,6 +180,10 @@
     .key-hidden {
       display: none;
     }
+
+    .hidden-truth, .hidden-dare {
+      display: none;
+    }
   </style>
 </head>
 <body>
@@ -203,22 +207,27 @@
   <script>
     const cardData = [...Array(21)].map((_, i) => [`Truth question ${i+1}`, `Dare activity ${i+1}`, `Key message ${i+1}`]);
 
+    let currentMode = "";
+
     const grid = document.getElementById("cardGrid");
-    cardData.forEach((set, i) => {
-      const card = document.createElement("div");
-      card.className = "card";
-      card.innerHTML = `
-        <div class="label">CARD</div>
-        <div class="card-title">Card ${i + 1}</div>
-        <div class="card-section"><strong>Truth</strong><span>${set[0]}</span></div>
-        <div class="card-section"><strong>Dare</strong><span>${set[1]}</span></div>
-        <div class="card-section key-hidden"><strong>Key</strong><span>${set[2]}</span></div>
-      `;
-      card.addEventListener('dblclick', () => {
-        card.querySelector('.key-hidden').classList.toggle('key-hidden');
+    function renderCards() {
+      grid.innerHTML = "";
+      cardData.forEach((set, i) => {
+        const card = document.createElement("div");
+        card.className = "card";
+        card.innerHTML = `
+          <div class="label">CARD</div>
+          <div class="card-title">Card ${i + 1}</div>
+          <div class="card-section truth-section ${currentMode === 'Dare' ? 'hidden-truth' : ''}"><strong>Truth</strong><span>${set[0]}</span></div>
+          <div class="card-section dare-section ${currentMode === 'Truth' ? 'hidden-dare' : ''}"><strong>Dare</strong><span>${set[1]}</span></div>
+          <div class="card-section key-hidden"><strong>Key</strong><span>${set[2]}</span></div>
+        `;
+        card.addEventListener('dblclick', () => {
+          card.querySelector('.key-hidden').classList.toggle('key-hidden');
+        });
+        grid.appendChild(card);
       });
-      grid.appendChild(card);
-    });
+    }
 
     function toggleMode() {
       document.body.classList.toggle("dark-mode");
@@ -232,21 +241,20 @@
 
     function highlightRandomCard() {
       const index = Math.floor(Math.random() * 21);
-      highlightCard(index);
-    }
-
-    function highlightCard(index) {
       document.querySelectorAll('.card').forEach((card, i) => {
         card.classList.toggle('highlight', i === index);
       });
     }
 
     function rollTD() {
-      const result = Math.random() > 0.5 ? "Truth" : "Dare";
-      document.getElementById("tdResult").textContent = result;
+      currentMode = Math.random() > 0.5 ? "Truth" : "Dare";
+      document.getElementById("tdResult").textContent = currentMode;
       const dice = document.getElementById("diceTD");
       dice.style.transform = `rotate(${360 + Math.floor(Math.random() * 360)}deg)`;
+      renderCards();
     }
+
+    renderCards();
   </script>
 </body>
 </html>
