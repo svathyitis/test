@@ -50,10 +50,18 @@
     }
 
     .instructions {
-      text-align: center;
-      margin-top: 80px;
-      font-size: 0.95rem;
-      color: var(--muted);
+      background: #f2eaff;
+      border-radius: 20px;
+      max-width: 960px;
+      margin: 70px auto 20px;
+      padding: 20px;
+      box-shadow: 0 0 30px rgba(0,0,0,0.05);
+      font-size: 1rem;
+    }
+    .instructions h2 {
+      font-size: 1.4rem;
+      margin-bottom: 12px;
+      color: var(--accent);
     }
 
     .controls {
@@ -63,12 +71,12 @@
 
     .controls button {
       margin: 6px;
-      padding: 8px 14px;
-      font-size: 0.85rem;
+      padding: 10px 18px;
+      font-size: 0.9rem;
       background: var(--accent);
       color: white;
       border: none;
-      border-radius: 8px;
+      border-radius: 12px;
       cursor: pointer;
     }
 
@@ -84,7 +92,7 @@
       grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
       gap: 20px;
       max-width: 1200px;
-      margin: 40px auto;
+      margin: 30px auto;
       padding: 0 16px;
     }
 
@@ -122,7 +130,15 @@
       display: none;
     }
 
-    .card.visible .card-section {
+    .card.visible .card-section.td-visible {
+      display: block;
+    }
+
+    .card-section.key {
+      display: none;
+    }
+
+    .card.visible .card-section.key.show {
       display: block;
     }
 
@@ -154,14 +170,22 @@
   </button>
 
   <div class="instructions">
-    🎲 Double-click a card to reveal its Key. Use the dice to pick Truth or Dare. Click Random to select a surprise card! Great for solo, group or team fun.
+    <h2>How to Play</h2>
+    <ul>
+      <li>Click the dice to choose between <strong>Truth</strong> or <strong>Dare</strong>.</li>
+      <li>Click "Pick Random Card" to highlight one card from the deck.</li>
+      <li>Only the selected section (Truth/Dare) will show based on your roll.</li>
+      <li>Double click any card to reveal its <strong>Key</strong> insight.</li>
+      <li>Play solo, in a group, or in teams. Take turns or mix it up!</li>
+    </ul>
   </div>
 
   <div class="controls">
-    <button onclick="highlightRandomCard()">🎲 Pick Random Card</button>
-    <button onclick="rollTD()">🎯 Roll Truth or Dare</button>
+    <button onclick="highlightRandomCard()">Pick Random Card</button>
+    <button onclick="rollTD()">T/D</button>
     <div id="tdResult"></div>
   </div>
+
   <div class="history" id="historyLog">Card history: </div>
 
   <div class="card-grid" id="cardGrid"></div>
@@ -194,24 +218,27 @@
     const grid = document.getElementById("cardGrid");
     const historyLog = document.getElementById("historyLog");
     let history = [];
+    let tdChoice = "Truth";
 
     function toggleMode() {
       document.body.classList.toggle("dark-mode");
     }
 
     function rollTD() {
-      const result = Math.random() > 0.5 ? "Truth" : "Dare";
-      document.getElementById("tdResult").textContent = "You got: " + result;
+      tdChoice = Math.random() > 0.5 ? "Truth" : "Dare";
+      document.getElementById("tdResult").textContent = "You got: " + tdChoice;
     }
 
     function highlightRandomCard() {
       const index = Math.floor(Math.random() * data.length);
       document.querySelectorAll('.card').forEach((card, i) => {
-        card.classList.remove('highlight');
-        card.classList.remove('visible');
+        card.classList.remove('highlight', 'visible');
+        card.querySelectorAll('.card-section').forEach(section => section.classList.remove('td-visible'));
+        card.querySelector('.card-section.key').classList.remove('show');
         if (i === index) {
-          card.classList.add('highlight');
-          card.classList.add('visible');
+          card.classList.add('highlight', 'visible');
+          const tdSection = card.querySelector(`.card-section:nth-child(${tdChoice === "Truth" ? 2 : 3})`);
+          tdSection.classList.add('td-visible');
         }
       });
       history.unshift(index + 1);
@@ -225,10 +252,10 @@
         <div class="card-title">Card ${i + 1}</div>
         <div class="card-section"><strong>Truth</strong><span>${set[0]}</span></div>
         <div class="card-section"><strong>Dare</strong><span>${set[1]}</span></div>
-        <div class="card-section"><strong>Key</strong><span>${set[2]}</span></div>
+        <div class="card-section key"><strong>Key</strong><span>${set[2]}</span></div>
       `;
       card.addEventListener('dblclick', () => {
-        card.classList.add('visible');
+        card.querySelector('.card-section.key').classList.toggle('show');
       });
       grid.appendChild(card);
     });
