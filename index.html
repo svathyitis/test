@@ -9,7 +9,7 @@
     :root {
       --bg-light: #f9f6fc;
       --text-light: #1c1c1e;
-      --bg-dark: #1c1c1e;
+      --bg-dark: #1a1325;
       --text-dark: #f9f6fc;
       --muted: #777;
       --accent: #6a5799;
@@ -104,6 +104,8 @@
       position: relative;
       transition: transform 0.3s, border 0.3s;
       opacity: 1;
+      height: 270px;
+      overflow-y: auto;
     }
 
     .card.highlight {
@@ -131,6 +133,8 @@
 
     .card-section.key {
       display: none;
+      font-style: italic;
+      font-size: 0.8rem;
     }
 
     .card-section.key.show {
@@ -247,12 +251,12 @@
       card.innerHTML = `
         <div class="card-title">Card ${i + 1}</div>
         <div class="choice-buttons">
-          <button onclick="this.parentElement.parentElement.querySelector('.truth').classList.toggle('hidden')">Truth</button>
-          <button onclick="this.parentElement.parentElement.querySelector('.dare').classList.toggle('hidden')">Dare</button>
+          <button onclick="this.closest('.card').querySelector('.truth').classList.toggle('hidden'); this.closest('.card').querySelector('.dare').classList.add('hidden')">Truth</button>
+          <button onclick="this.closest('.card').querySelector('.dare').classList.toggle('hidden'); this.closest('.card').querySelector('.truth').classList.add('hidden')">Dare</button>
         </div>
         <div class="card-section truth hidden"><strong>Truth</strong><span>${set[0]}</span></div>
         <div class="card-section dare hidden"><strong>Dare</strong><span>${set[1]}</span></div>
-        <div class="card-section key"><strong>Key</strong><span>${set[2]}</span></div>
+        <div class="card-section key"><strong>Key</strong><span>${set[2]}</span><br/><em style="font-size: 0.75rem; color: var(--muted);">(double tap to reveal)</em></div>
       `;
       card.addEventListener('dblclick', () => {
         card.querySelector('.card-section.key').classList.toggle('show');
