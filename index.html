@@ -49,12 +49,42 @@
       color: var(--accent);
     }
 
+    .instructions {
+      text-align: center;
+      margin-top: 80px;
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+
+    .controls {
+      text-align: center;
+      margin: 20px auto;
+    }
+
+    .controls button {
+      margin: 6px;
+      padding: 8px 14px;
+      font-size: 0.85rem;
+      background: var(--accent);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .history {
+      text-align: center;
+      margin-top: 12px;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
     .card-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
       gap: 20px;
       max-width: 1200px;
-      margin: 100px auto 40px;
+      margin: 40px auto;
       padding: 0 16px;
     }
 
@@ -123,6 +153,17 @@
     </svg>
   </button>
 
+  <div class="instructions">
+    🎲 Double-click a card to reveal its Key. Use the dice to pick Truth or Dare. Click Random to select a surprise card! Great for solo, group or team fun.
+  </div>
+
+  <div class="controls">
+    <button onclick="highlightRandomCard()">🎲 Pick Random Card</button>
+    <button onclick="rollTD()">🎯 Roll Truth or Dare</button>
+    <div id="tdResult"></div>
+  </div>
+  <div class="history" id="historyLog">Card history: </div>
+
   <div class="card-grid" id="cardGrid"></div>
 
   <script>
@@ -150,11 +191,33 @@
       ["Who are we really?", "Say 'I am peaceful' with eyes closed.", "You are awareness, peace, and love."]
     ];
 
+    const grid = document.getElementById("cardGrid");
+    const historyLog = document.getElementById("historyLog");
+    let history = [];
+
     function toggleMode() {
       document.body.classList.toggle("dark-mode");
     }
 
-    const grid = document.getElementById("cardGrid");
+    function rollTD() {
+      const result = Math.random() > 0.5 ? "Truth" : "Dare";
+      document.getElementById("tdResult").textContent = "You got: " + result;
+    }
+
+    function highlightRandomCard() {
+      const index = Math.floor(Math.random() * data.length);
+      document.querySelectorAll('.card').forEach((card, i) => {
+        card.classList.remove('highlight');
+        card.classList.remove('visible');
+        if (i === index) {
+          card.classList.add('highlight');
+          card.classList.add('visible');
+        }
+      });
+      history.unshift(index + 1);
+      historyLog.textContent = "Card history: " + history.slice(0, 10).join(", ");
+    }
+
     data.forEach((set, i) => {
       const card = document.createElement("div");
       card.className = "card";
@@ -164,6 +227,9 @@
         <div class="card-section"><strong>Dare</strong><span>${set[1]}</span></div>
         <div class="card-section"><strong>Key</strong><span>${set[2]}</span></div>
       `;
+      card.addEventListener('dblclick', () => {
+        card.classList.add('visible');
+      });
       grid.appendChild(card);
     });
   </script>
