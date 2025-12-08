@@ -7,12 +7,12 @@
 <title>Vishal Merani </title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
 <style>
-/* --- 1. MINIMALIST COLOR PALETTE (LIGHTER SHADES) --- */
+/* --- 1. MINIMALIST COLOR PALETTE (Subtle Red Border) --- */
 :root {
     --bg: #ffffff;
     --text: #1f1f1f; /* Standard Dark Text */
     --muted: #777;
-    --border: #d32f2f; /* Lighter Red for Border */
+    --border: #f0aaaa; /* Very Subtle Red Border */
     --accent: #2e7d32; /* Lighter Green for buttons/icons */
     --accent-hover: #388e3c;
     --box-bg: #ffffff;
@@ -24,24 +24,26 @@
     box-sizing: border-box;
 }
 
+/* --- 2. GLOBAL FONT DECREASE (Approx -10%) --- */
 body {
     font-family: 'Inter', sans-serif;
+    /* Base font size decreased globally for all elements */
+    font-size: 0.95em; 
     background: var(--bg);
     color: var(--text);
     padding: 22px 14px;
 }
 
-/* --- 2. SLEEK STRUCTURE AND UNIFORM STYLES --- */
+/* --- 3. SLEEK STRUCTURE AND UNIFORM STYLES --- */
 .iphone-frame {
     background: var(--box-bg);
-    border-radius: 20px;
+    border-radius: 18px; /* Slightly reduced border radius */
     max-width: 390px;
     width: 100%;
-    margin: 0 auto 20px auto;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-    padding: 26px 20px;
-    /* Red boundary strictly limited to the border */
-    border: 2px solid var(--border);
+    margin: 0 auto 18px auto; /* Reduced margin */
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.04); /* Reduced shadow subtlety */
+    padding: 24px 18px; /* Reduced padding */
+    border: 1px solid var(--border); /* Subtly reduced border thickness */
     position: relative;
     z-index: 1;
 }
@@ -54,14 +56,14 @@ body {
 
 /* Tighter general spacing */
 header, section, footer {
-    margin-bottom: 0.7rem;
+    margin-bottom: 0.6rem; /* Reduced margin */
 }
 
 header {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    margin-bottom: 0.4rem;
+    margin-bottom: 0.3rem;
 }
 
 .card-title-group {
@@ -69,48 +71,48 @@ header {
 }
 
 h1 {
-    font-size: 1.5rem;
+    font-size: 1.35rem; /* ~10% decrease */
     font-weight: 600;
     margin-bottom: 0.1rem;
     color: var(--text);
 }
 
 h2 {
-    font-size: 1.2rem;
+    font-size: 1.1rem; /* ~10% decrease */
     font-weight: 500;
-    margin-bottom: 0.4rem;
+    margin-bottom: 0.3rem;
     color: var(--text);
 }
 
 h3 {
-    font-size: 1.0rem;
+    font-size: 0.9rem; /* ~10% decrease */
     font-weight: 600;
-    margin: 0.7rem 0 0.2rem;
+    margin: 0.6rem 0 0.2rem;
     color: var(--text);
 }
 
 h4 {
-    font-size: 0.9rem;
+    font-size: 0.8rem; /* ~10% decrease */
     font-weight: 500;
-    margin: 0.4rem 0 0.2rem;
+    margin: 0.3rem 0 0.1rem;
     color: var(--text);
 }
 
 .subtitle {
-    font-size: 0.875rem;
+    font-size: 0.78rem; /* ~10% decrease */
     color: var(--muted);
     margin-bottom: 0;
 }
 
 .button {
     display: inline-block;
-    background-color: var(--accent); /* Green */
+    background-color: var(--accent);
     color: white;
-    padding: 0.55rem 1.0rem;
-    border-radius: 8px;
-    font-size: 0.8rem;
+    padding: 0.5rem 0.9rem; /* Reduced padding */
+    border-radius: 7px;
+    font-size: 0.75rem; /* ~10% decrease */
     font-weight: 600;
-    margin: 0.4rem 0.2rem 0.6rem 0;
+    margin: 0.4rem 0.2rem 0.5rem 0;
     transition: background 0.2s ease;
     text-decoration: none;
 }
@@ -122,22 +124,21 @@ h4 {
 ul.timeline, ul.features {
     list-style: none;
     padding-left: 0;
-    margin: 0.3rem 0 0.7rem;
+    margin: 0.3rem 0 0.6rem;
 }
 
 .timeline li, .features li {
-    /* Keep at standard size as requested for uniformity */
-    font-size: 0.875rem; 
+    font-size: 0.78rem; /* ~10% decrease */
     padding: 1px 0;
 }
 
-/* --- 3. MINIMALIST LOCATION/QUERIES TEXT (Small, Not Bold) --- */
+/* --- 4. MINIMALIST LOCATION/QUERIES TEXT (Approx -20% decrease from last) --- */
 .location-text, .queries-text {
     color: var(--text);
-    font-weight: 400; /* Not bold */
-    margin-top: 0.4rem;
+    font-weight: 400;
+    margin-top: 0.3rem; /* Reduced margin */
     display: block;
-    font-size: 0.8rem; /* Reduced font size */
+    font-size: 0.65rem; /* Significantly reduced font size */
     line-height: 1.3;
 }
 .location-text strong {
@@ -146,25 +147,25 @@ ul.timeline, ul.features {
 }
 
 .queries-text {
-    margin-top: 0.6rem;
+    margin-top: 0.5rem;
 }
 
 .footer {
-    font-size: 0.65rem;
+    font-size: 0.55rem; /* ~10% decrease */
     color: var(--muted);
     text-align: center;
-    margin-top: 0.8rem;
+    margin-top: 0.7rem;
     margin-bottom: 0;
     line-height: 1.2;
-    padding-top: 0.5rem;
-    border-top: 1px dashed rgba(0, 0, 0, 0.1);
+    padding-top: 0.4rem;
+    border-top: 1px dashed rgba(0, 0, 0, 0.08);
 }
 
 /* --- XMAS TREE STYLING --- */
 .xmas-tree-container {
-    width: 30px; 
-    height: 30px;
-    margin-left: 10px;
+    width: 28px; 
+    height: 28px;
+    margin-left: 8px;
     flex-shrink: 0;
     position: relative;
     top: 0px;
@@ -177,22 +178,22 @@ ul.timeline, ul.features {
     transition: fill 0.3s ease;
 }
 
-/* --- 4. SOCIAL ICONS MINIMAL REDESIGN --- */
+/* --- 5. SOCIAL ICONS (Slightly reduced size) --- */
 .social-icons-frame {
-    padding: 18px 0 10px;
+    padding: 16px 0 8px;
     text-align: center;
 }
 
 .social-icons-list {
     display: flex;
     justify-content: center;
-    gap: 18px;
+    gap: 16px;
     margin: 0 auto;
 }
 
 .icon {
-    width: 28px;
-    height: 28px;
+    width: 25px; /* Reduced size */
+    height: 25px;
     fill: var(--accent);
     transition: fill 0.3s ease;
 }
@@ -201,37 +202,32 @@ ul.timeline, ul.features {
     fill: var(--accent-hover);
 }
 
-/* --- DARK MODE STYLES --- */
-body.dark {
-    /* Defined via script, but styles here are useful for complex transitions */
-}
-
 /* Copy box styles */
 .copy-box {
     display: flex;
-    margin-top: 10px;
+    margin-top: 8px;
     border: 1px solid #ddd;
-    border-radius: 8px;
+    border-radius: 6px;
     overflow: hidden;
 }
 
 .copy-input {
     flex-grow: 1;
     border: none;
-    padding: 0.5rem 0.8rem;
-    font-size: 0.8rem;
+    padding: 0.4rem 0.7rem;
+    font-size: 0.7rem;
     background-color: #f9fafc;
     color: var(--text);
     outline: none;
-    pointer-events: none; /* Make text unselectable by pointer */
+    pointer-events: none;
 }
 
 .copy-btn {
     background-color: var(--accent);
     color: white;
     border: none;
-    padding: 0 1rem;
-    font-size: 0.8rem;
+    padding: 0 0.8rem;
+    font-size: 0.7rem;
     cursor: pointer;
     transition: background-color 0.2s;
     flex-shrink: 0;
@@ -262,9 +258,9 @@ body.dark {
     margin: 0 auto;
     display: flex;
     justify-content: flex-end;
-    padding: 16px 22px 0;
+    padding: 14px 20px 0;
 ">
-    <svg id="snowflake-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#d32f2f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="cursor: pointer; transition: transform 0.3s ease, stroke 0.3s ease;">
+    <svg id="snowflake-icon" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#f0aaaa" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="cursor: pointer; transition: transform 0.3s ease, stroke 0.3s ease;">
         <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41M15.46 12l-3.46 3.46L8.54 12l3.46-3.46z"/>
     </svg>
 </div>
@@ -643,7 +639,7 @@ body.dark {
 </div>
 
 <div class="iphone-frame subtle-card-with-text no-padding">
-    <img src="SecretsoftheSubtle.png" alt="Secrets of the Subtle" style="width: 100%; border-radius: 20px;" />
+    <img src="SecretsoftheSubtle.png" alt="Secrets of the Subtle" style="width: 100%; border-radius: 18px;" />
     <div class="overlay-text"> 𓆩𓆪 Screening over </div>
 </div>
 
@@ -668,7 +664,7 @@ body.dark {
 </div>
 
 <div class="iphone-frame subtle-card-with-text no-padding">
-    <img src="UandUniverse.png" alt="U and Universe" style="width: 100%; border-radius: 20px;" />
+    <img src="UandUniverse.png" alt="U and Universe" style="width: 100%; border-radius: 18px;" />
     <div class="overlay-text"> 𓆩𓆪 Screened in VM, 2025 </div>
 </div>
 
@@ -683,7 +679,7 @@ body.dark {
 
     <section class="waitlist-details">
         <a href="https://waitlist.vishalmerani.com//" class="button" target="_blank"> Waitlist Entry</a>
-        <ul class="features" style="margin-top: 0.8rem;">
+        <ul class="features" style="margin-top: 0.7rem;">
             <li>Sahaj Meditation Batches</li>
             <li>Deep Sleep & Anxiety Relief sessions</li>
             <li>offline Ashram Happiness Courses</li>
@@ -705,7 +701,7 @@ body.dark {
 
 
 <div class="iphone-frame subtle-card-with-text no-padding">
-    <img src="vmvol.png" alt="Volunteer" style="width: 100%; border-radius: 20px;" />
+    <img src="vmvol.png" alt="Volunteer" style="width: 100%; border-radius: 18px;" />
     <a href="https://vol.vishalmerani.com/" class="overlay-text" style="text-decoration: none; color: inherit;" target="_blank" rel="noopener noreferrer">
         𓆩Join in𓆪
     </a>
@@ -728,7 +724,7 @@ body.dark {
 
 
 <div class="iphone-frame no-padding">
-    <img src="zenvm.png" alt="Meditation Image" style="width: 100%; border-radius: 20px;"/>
+    <img src="zenvm.png" alt="Meditation Image" style="width: 100%; border-radius: 18px;"/>
 </div>
 
 
@@ -814,8 +810,8 @@ body.dark {
         const darkBg = '#1a1a1a';
         const darkText = '#f5f5dc';
         const darkMuted = '#aaa';
-        const darkBorder = '#a52a2a'; // Darker subtle red
-        const darkAccent = '#5cb85c'; // Dark mode accent green
+        const darkBorder = '#333'; // Subtle border in dark mode
+        const darkAccent = '#5cb85c'; 
         const darkAccentHover = '#4cae4c';
         const darkBoxBg = '#2d2d2d';
 
@@ -823,7 +819,7 @@ body.dark {
         const lightBg = '#ffffff';
         const lightText = '#1f1f1f';
         const lightMuted = '#777';
-        const lightBorder = '#d32f2f';
+        const lightBorder = '#f0aaaa'; // Very subtle red
         const lightAccent = '#2e7d32';
         const lightAccentHover = '#388e3c';
         const lightBoxBg = '#ffffff';
@@ -843,7 +839,7 @@ body.dark {
         // Update input backgrounds
         document.querySelectorAll('.copy-input').forEach(input => {
             input.style.backgroundColor = darkMode ? '#3e3e3e' : '#f9fafc';
-            input.style.color = darkMode ? 'var(--text)' : 'var(--text)';
+            input.style.color = 'var(--text)';
             input.style.borderColor = darkMode ? '#555' : 'var(--border)';
         });
 
