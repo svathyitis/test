@@ -125,6 +125,13 @@ h4 {
 .button:hover {
     background-color: var(--accent-hover);
 }
+/* Style for the button content to ensure emoji and text are together */
+.button-content {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
 
 ul.timeline, ul.features {
     list-style: none;
@@ -206,9 +213,6 @@ ul.timeline, ul.features {
 .icon:hover {
     fill: var(--accent-hover);
 }
-
-/* --- COPY BOX STYLES (Removed from main flow, keeping in case needed) --- */
-/* .copy-box, .copy-input, .copy-btn are removed from HTML structure */
 </style>
 
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-QL72FZ9YZ2"></script>
@@ -271,7 +275,9 @@ ul.timeline, ul.features {
         <ul class="features">
             <li> 12 Dec - 14 Dec </li>
         </ul>
-        <a href="https://www.artofliving.org/in-en/program/928247" class="button" target="_blank"> 7:00 AM – 9:00 AM </a>
+        <a href="https://www.artofliving.org/in-en/program/928247" class="button" target="_blank">
+            <span class="button-content">🎅🏻 7:00 AM – 9:00 AM</span>
+        </a>
     </section>
 
     <section class="logistics-contact">
@@ -306,13 +312,17 @@ ul.timeline, ul.features {
 
     <section class="schedule-booking">
         <h4>Morning Batch:</h4>
-        <a href="https://www.artofliving.org/in-en/program/926625" class="button" target="_blank">11 Dec - 13 Dec (Morning)</a>
+        <a href="https://www.artofliving.org/in-en/program/926625" class="button" target="_blank">
+            <span class="button-content">🎅🏻 11 Dec - 13 Dec (Morning)</span>
+        </a>
         <ul class="features">
             <li> Weekday: 6:30a-9:30a </li>
             <li> Weekend: 8a-12p </li>
         </ul>
         <h4>Evening Batch:</h4>
-        <a href="https://www.artofliving.org/in-en/program/926629" class="button" target="_blank">11 Dec - 13 Dec (Evening)</a>
+        <a href="https://www.artofliving.org/in-en/program/926629" class="button" target="_blank">
+            <span class="button-content">🎅🏻 11 Dec - 13 Dec (Evening)</span>
+        </a>
         <ul class="features">
             <li> Weekday: 6:30p-9:30p </li>
             <li> Weekend: 8a-12p </li>
@@ -350,7 +360,9 @@ ul.timeline, ul.features {
     </section>
 
     <section class="schedule-booking">
-        <a href="https://www.artofliving.org/in-en/program/932187" class="button" target="_blank">22 Dec - 24 Dec</a>
+        <a href="https://www.artofliving.org/in-en/program/932187" class="button" target="_blank">
+            <span class="button-content">🎅🏻 22 Dec - 24 Dec</span>
+        </a>
         <ul class="timeline">
             <li> Timings: 6:00p-9:00p </li>
         </ul>
@@ -387,7 +399,9 @@ ul.timeline, ul.features {
     </section>
 
     <section class="schedule-booking">
-        <a href="https://programs.vvmvp.org/events/783/" class="button" target="_blank">Booked for this season</a>
+        <a href="https://programs.vvmvp.org/events/783/" class="button" target="_blank">
+            <span class="button-content">🎅🏻 Booked for this season</span>
+        </a>
         <ul class="timeline">
             <li>Join waitlist </li>
         </ul>
@@ -433,7 +447,9 @@ ul.timeline, ul.features {
         <ul class="features">
             <li> 15 Dec - 17 Dec </li>
         </ul>
-        <a href="https://www.artofliving.org/in-en/program/934573" class="button" target="_blank"> 7:30 PM to 10:00 PM </a>
+        <a href="https://www.artofliving.org/in-en/program/934573" class="button" target="_blank">
+            <span class="button-content">🎅🏻 7:30 PM to 10:00 PM</span>
+        </a>
     </section>
 
     <section class="logistics-contact">
@@ -470,7 +486,9 @@ ul.timeline, ul.features {
         <ul class="timeline">
             <li>6:30 AM to 8:30 AM</li>
         </ul>
-        <a href="https://www.artofliving.org/in-en/program/929292" class="button" target="_blank">Book here ♡ </a>
+        <a href="https://www.artofliving.org/in-en/program/929292" class="button" target="_blank">
+            <span class="button-content">🎅🏻 Book here ♡</span>
+        </a>
     </section>
 
     <section class="logistics-contact">
@@ -510,8 +528,12 @@ ul.timeline, ul.features {
     <section class="schedule-booking">
         <div class="tap-in-row">
             <h4>Tap in:</h4>
-            <a href="https://www.youtube.com/watch?v=j2cNxo8VemQ" class="button" target="_blank">Watch the Why’s</a>
-            <a href="https://aolt.in/919547" class="button" target="_blank">Peep the invite</a>
+            <a href="https://www.youtube.com/watch?v=j2cNxo8VemQ" class="button" target="_blank">
+                <span class="button-content">🎅🏻 Watch the Why’s</span>
+            </a>
+            <a href="https://aolt.in/919547" class="button" target="_blank">
+                <span class="button-content">🎅🏻 Peep the invite</span>
+            </a>
         </div>
     </section>
 
@@ -537,12 +559,12 @@ ul.timeline, ul.features {
         <div class="card-title-group">
             <h1>Personalised Sessions</h1>
             <h2>Scanning (KaalGyaan) & L&B Pain Management</h2>
-            <p class="subtitle">with Vishal Merani</p>
+            <p class="subtitle">With Vishal Merani</p>
         </div>
     </header>
 
     <section class="course-details">
-        <h3>Decoding your next step / Finding relief</h3>
+        <h4>Two Distinct Offerings:</h4>
         <ul class="features">
             <li>**Scanning (KaalGyaan):** Answers from a different dimension.</li>
             <li>**L&B Sessions:** Focused pain management and relief.</li>
@@ -550,17 +572,19 @@ ul.timeline, ul.features {
     </section>
 
     <section class="schedule-booking">
-        <h4>Booking Distinction:</h4>
+        <h4>Booking Options:</h4>
         <ul class="timeline">
-            <li>Scanning Sessions can be booked online via the link below.</li>
-            <li>For L&B or personal Scanning requests, kindly DM.</li>
+            <li>**Immediate Scanning:** Avail the same session from **other certified practioners** (due to Vishal Merani's long wait time).</li>
+            <li>**Vishal Merani's Sessions:** Scanning (wait time is months) and L&B are **only available via personal DM**.</li>
         </ul>
-        <span class="location-text">📍 Online (Zoom) for Scanning | In-person (Bangalore Ashram) for L&B</span>
-        <a href="https://kaalgyan.artofliving.org/sessions" class="button" target="_blank">Book Online Scanning Sessions</a>
+        <span class="location-text">📍 Scanning: Online (Zoom) | L&B: In-person (Bangalore Ashram)</span>
+        <a href="https://kaalgyan.artofliving.org/sessions" class="button" target="_blank">
+            <span class="button-content">🎅🏻 Immediate Online Scanning Booking</span>
+        </a>
     </section>
 
     <section class="logistics-contact">
-        <h4 class="queries-text">Personal DM/Queries: +91 9818503888 (kindly message first)</h4>
+        <h4 class="queries-text">Personal DM/Queries for Vishal Merani's Sessions: +91 9818503888 (kindly message first)</h4>
     </section>
 
     <footer>
@@ -584,7 +608,9 @@ ul.timeline, ul.features {
     </header>
 
     <section class="content-link">
-        <a href="https://www.youtube.com/watch?v=2lgWqTEZRjk" class="button" target="_blank"> Watch ❤</a>
+        <a href="https://www.youtube.com/watch?v=2lgWqTEZRjk" class="button" target="_blank">
+            <span class="button-content">🎅🏻 Watch ❤</span>
+        </a>
         <h3 style="margin-top: 1.5rem;">Next we resume with -> MEDITATIONS </h3>
         <p class = "subtitle">at Kashyapa hall for Ashramites</p>
     </section>
@@ -597,37 +623,6 @@ ul.timeline, ul.features {
 <div class="iphone-frame subtle-card-with-text no-padding">
     <img src="UandUniverse.png" alt="U and Universe" style="width: 100%; border-radius: 17px;" />
     <div class="overlay-text"> 𓆩𓆪 Screened in VM, 2025 </div>
-</div>
-
-<div class="iphone-frame">
-    <header>
-        <div class="card-title-group">
-            <h1>Join waitlist</h1>
-            <h2>Waitlist Entry</h2>
-            <p class="subtitle">for upcoming sessions</p>
-        </div>
-    </header>
-
-    <section class="waitlist-details">
-        <a href="https://waitlist.vishalmerani.com//" class="button" target="_blank"> Waitlist Entry</a>
-        <ul class="features" style="margin-top: 0.7rem;">
-            <li>Sahaj Meditation Batches</li>
-            <li>Deep Sleep & Anxiety Relief sessions</li>
-            <li>offline Ashram Happiness Courses</li>
-            <li>offline Happiness Courses in City</li>
-            <li>Online Breath and Meditation Workshops</li>
-        </ul>
-    </section>
-
-    <section class="contact-info">
-        <h4 class="queries-text"> Queries & help @ 9818503888 </h4>
-    </section>
-
-    <footer>
-        <div class="footer">🦦🤌🏻 Starts soon again | Bangalore ♡ Ashram <br>
-        ॐ Jai Guru Dev ॐ
-        </div>
-    </footer>
 </div>
 
 <div class="iphone-frame">
@@ -650,7 +645,9 @@ ul.timeline, ul.features {
     </ul>
 
     <section class="volunteer-action">
-        <a href="https://vol.vishalmerani.com/" class="button" target="_blank">Join in ♡ (vol.vishalmerani.com)</a>
+        <a href="https://vol.vishalmerani.com/" class="button" target="_blank">
+            <span class="button-content">🎅🏻 Join in ♡ (vol.vishalmerani.com)</span>
+        </a>
     </section>
     
     <footer>
@@ -670,7 +667,9 @@ ul.timeline, ul.features {
         </div>
     </header>
     <section>
-        <a href="https://podcasts.vishalmerani.com/" class="button" target="_blank">🎧 Listen Now</a>
+        <a href="https://podcasts.vishalmerani.com/" class="button" target="_blank">
+            <span class="button-content">🎅🏻 🎧 Listen Now</span>
+        </a>
     </section>
     <footer>
         <div class="footer"> ॐ Jai Guru Dev ॐ </div>
@@ -686,7 +685,9 @@ ul.timeline, ul.features {
         </div>
     </header>
     <section>
-        <a href="https://www.artofliving.org/node/1302793" class="button" target="_blank">Check here ♡ </a>
+        <a href="https://www.artofliving.org/node/1302793" class="button" target="_blank">
+            <span class="button-content">🎅🏻 Check here ♡</span>
+        </a>
     </section>
     <footer>
         <div class="footer"> ॐ Jai Guru Dev ॐ </div>
@@ -696,7 +697,7 @@ ul.timeline, ul.features {
 <div class="iphone-frame social-icons-frame">
     <div class="social-icons-list">
         <a href="https://www.instagram.com/meranivishal/" target="_blank" aria-label="Instagram">
-            <svg class="icon" viewBox="0 0 24 24"><path d="M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5H7zm10 2c1.7 0 3 1.3 3 3v10c0 1.7-1.3 3-3 3H7c-1.7 0-3-1.3-3-3V7c0-1.7 1.3-3 3-3h10zM12 7c-2.8 0-5 2.2-5 5s2.2 5 5 5 5-2.2 5-5-2.2-5-5-5zm0 2c1.7 0 3 1.3 3 3s-1.3 3-3 3-3-1.3-3-3 1.3-3 3-3zm4.5-3c-.3 0-.5.2-.5.5s.2.5.5.5.5-.2.5-.5S16.8 6 16.5 6z"/></svg>
+            <svg class="icon" viewBox="0 0 24 24"><path d="M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5H7zm10 4c1.7 0 3 1.3 3 3v10c0 1.7-1.3 3-3 3H7c-1.7 0-3-1.3-3-3V7c0-1.7 1.3-3 3-3h10zM12 7c-2.8 0-5 2.2-5 5s2.2 5 5 5 5-2.2 5-5-2.2-5-5-5zm0 2c1.7 0 3 1.3 3 3s-1.3 3-3 3-3-1.3-3-3 1.3-3 3-3zm4.5-3c-.3 0-.5.2-.5.5s.2.5.5.5.5-.2.5-.5S16.8 6 16.5 6z"/></svg>
         </a>
         <a href="https://x.com/meranivishal" target="_blank" aria-label="Twitter">
             <svg class="icon" viewBox="0 0 24 24"><path d="M22.46 6c-.77.35-1.6.59-2.46.7a4.18 4.18 0 001.84-2.3 8.1 8.1 0 01-2.6 1A4.1 4.1 0 0012 8.13v.5C8.23 8.3 5.1 6.47 3.1 3.8c-.9 1.55-.4 3.5 1.1 4.5-.7 0-1.4-.2-2-.5v.05c0 2 1.4 3.8 3.3 4.2-.4.1-.9.2-1.3.2-.3 0-.6 0-.8-.05.6 1.8 2.3 3 4.3 3.1A8.3 8.3 0 012 19c1.5 1 3.3 1.5 5.2 1.5 6.3 0 9.7-5.2 9.7-9.7v-.4A7.1 7.1 0 0022.46 6z"/></svg>
