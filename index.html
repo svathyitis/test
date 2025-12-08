@@ -7,14 +7,14 @@
 <title>Vishal Merani </title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
 <style>
-/* --- 1. MINIMALIST COLOR PALETTE --- */
+/* --- 1. MINIMALIST COLOR PALETTE (LIGHTER SHADES) --- */
 :root {
     --bg: #ffffff;
     --text: #1f1f1f; /* Standard Dark Text */
     --muted: #777;
-    --border: #c62828; /* Deep Christmas Red (STRICTLY FOR BORDER) */
-    --accent: #004d40; /* Deep Christmas Green for buttons only */
-    --accent-hover: #006652;
+    --border: #d32f2f; /* Lighter Red for Border */
+    --accent: #2e7d32; /* Lighter Green for buttons/icons */
+    --accent-hover: #388e3c;
     --box-bg: #ffffff;
 }
 
@@ -31,7 +31,7 @@ body {
     padding: 22px 14px;
 }
 
-/* --- 2. SLEEK STRUCTURE AND MINIMAL STYLES --- */
+/* --- 2. SLEEK STRUCTURE AND UNIFORM STYLES --- */
 .iphone-frame {
     background: var(--box-bg);
     border-radius: 20px;
@@ -85,7 +85,7 @@ h2 {
 h3 {
     font-size: 1.0rem;
     font-weight: 600;
-    margin: 0.7rem 0 0.2rem; /* Reduced vertical margin */
+    margin: 0.7rem 0 0.2rem;
     color: var(--text);
 }
 
@@ -126,22 +126,23 @@ ul.timeline, ul.features {
 }
 
 .timeline li, .features li {
-    font-size: 0.875rem; /* Standardized for chat-like legibility (14px) */
-    padding: 1px 0; /* Reduced padding for a tighter list */
+    /* Keep at standard size as requested for uniformity */
+    font-size: 0.875rem; 
+    padding: 1px 0;
 }
 
-/* --- 3. MINIMALIST LOCATION/QUERIES TEXT (Smaller, Not Bold) --- */
+/* --- 3. MINIMALIST LOCATION/QUERIES TEXT (Small, Not Bold) --- */
 .location-text, .queries-text {
     color: var(--text);
     font-weight: 400; /* Not bold */
     margin-top: 0.4rem;
     display: block;
-    font-size: 0.8rem; /* Reduced font size as requested */
+    font-size: 0.8rem; /* Reduced font size */
     line-height: 1.3;
 }
 .location-text strong {
     color: var(--text);
-    font-weight: 400; /* Ensure internal strong tags are also not bold */
+    font-weight: 400; 
 }
 
 .queries-text {
@@ -159,7 +160,24 @@ ul.timeline, ul.features {
     border-top: 1px dashed rgba(0, 0, 0, 0.1);
 }
 
-/* --- 4. SOCIAL ICONS MINIMAL REDESIGN (already sleek) --- */
+/* --- XMAS TREE STYLING --- */
+.xmas-tree-container {
+    width: 30px; 
+    height: 30px;
+    margin-left: 10px;
+    flex-shrink: 0;
+    position: relative;
+    top: 0px;
+}
+.xmas-tree {
+    width: 100%;
+    height: 100%;
+}
+.tree-layer-1, .tree-layer-2, .tree-layer-3, .trunk, .star {
+    transition: fill 0.3s ease;
+}
+
+/* --- 4. SOCIAL ICONS MINIMAL REDESIGN --- */
 .social-icons-frame {
     padding: 18px 0 10px;
     text-align: center;
@@ -181,6 +199,46 @@ ul.timeline, ul.features {
 
 .icon:hover {
     fill: var(--accent-hover);
+}
+
+/* --- DARK MODE STYLES --- */
+body.dark {
+    /* Defined via script, but styles here are useful for complex transitions */
+}
+
+/* Copy box styles */
+.copy-box {
+    display: flex;
+    margin-top: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.copy-input {
+    flex-grow: 1;
+    border: none;
+    padding: 0.5rem 0.8rem;
+    font-size: 0.8rem;
+    background-color: #f9fafc;
+    color: var(--text);
+    outline: none;
+    pointer-events: none; /* Make text unselectable by pointer */
+}
+
+.copy-btn {
+    background-color: var(--accent);
+    color: white;
+    border: none;
+    padding: 0 1rem;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    flex-shrink: 0;
+}
+
+.copy-btn:hover {
+    background-color: var(--accent-hover);
 }
 </style>
 
@@ -206,8 +264,8 @@ ul.timeline, ul.features {
     justify-content: flex-end;
     padding: 16px 22px 0;
 ">
-    <svg id="moon-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="#c62828" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon" style="cursor: pointer; transition: transform 0.3s ease;">
-        <path d="M21 12.79A9 9 0 0112.21 3a7 7 0 100 14.58A9 9 0 0021 12.79z"/>
+    <svg id="snowflake-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#d32f2f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="cursor: pointer; transition: transform 0.3s ease, stroke 0.3s ease;">
+        <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41M15.46 12l-3.46 3.46L8.54 12l3.46-3.46z"/>
     </svg>
 </div>
 
@@ -215,16 +273,16 @@ ul.timeline, ul.features {
 <div class="iphone-frame">
     <header>
         <div class="card-title-group">
-            <h1>🎁 Merry Xmas! 🎅</h1>
+            <h1>Dec Sahaj,</h1>
             <h2>Lapse into meditation in minutes</h2>
             <p class="subtitle">with Vishal Merani/ Team</p>
         </div>
         <div class="xmas-tree-container">
             <svg class="xmas-tree" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
                 <path class="star" d="M50 0 L61 35 L95 35 L68 57 L79 92 L50 70 L21 92 L32 57 L5 35 L39 35 Z" fill="#FFD700" transform="scale(0.2) translate(150, 10)" />
-                <path class="tree-layer-1" d="M50 0 L0 100 L100 100 Z" fill="#006652" transform="translate(0, 5) scale(0.65)"/>
-                <path class="tree-layer-2" d="M50 0 L0 100 L100 100 Z" fill="#008066" transform="translate(0, 30) scale(0.85)"/>
-                <path class="tree-layer-3" d="M50 0 L0 100 L100 100 Z" fill="#004d40" transform="translate(0, 55) scale(1)"/>
+                <path class="tree-layer-1" d="M50 0 L0 100 L100 100 Z" fill="#388e3c" transform="translate(0, 5) scale(0.65)"/>
+                <path class="tree-layer-2" d="M50 0 L0 100 L100 100 Z" fill="#4caf50" transform="translate(0, 30) scale(0.85)"/>
+                <path class="tree-layer-3" d="M50 0 L0 100 L100 100 Z" fill="#2e7d32" transform="translate(0, 55) scale(1)"/>
                 <rect class="trunk" x="45" y="88" width="10" height="12" fill="#a0522d"/>
             </svg>
         </div>
@@ -745,24 +803,42 @@ ul.timeline, ul.features {
 </script>
 
 <script>
-    const moonIcon = document.getElementById("moon-icon");
+    const snowflakeIcon = document.getElementById("snowflake-icon");
     let darkMode = false;
 
-    moonIcon.addEventListener("click", () => {
+    snowflakeIcon.addEventListener("click", () => {
         darkMode = !darkMode;
         document.body.classList.toggle("dark", darkMode);
 
         // --- UPDATED DARK MODE COLORS ---
-        document.documentElement.style.setProperty('--bg', darkMode ? '#1a1a1a' : '#ffffff');
-        document.documentElement.style.setProperty('--text', darkMode ? '#f5f5dc' : '#1f1f1f');
-        document.documentElement.style.setProperty('--muted', darkMode ? '#aaa' : '#777');
-        document.documentElement.style.setProperty('--border', darkMode ? '#880000' : '#c62828');
-        document.documentElement.style.setProperty('--accent', darkMode ? '#5cb85c' : '#004d40');
-        document.documentElement.style.setProperty('--accent-hover', darkMode ? '#4cae4c' : '#006652');
-        document.documentElement.style.setProperty('--box-bg', darkMode ? '#2d2d2d' : '#ffffff');
+        const darkBg = '#1a1a1a';
+        const darkText = '#f5f5dc';
+        const darkMuted = '#aaa';
+        const darkBorder = '#a52a2a'; // Darker subtle red
+        const darkAccent = '#5cb85c'; // Dark mode accent green
+        const darkAccentHover = '#4cae4c';
+        const darkBoxBg = '#2d2d2d';
 
-        // Update moon icon stroke color
-        moonIcon.style.stroke = darkMode ? '#f5f5dc' : '#c62828';
+        // Light mode colors (as defined in :root)
+        const lightBg = '#ffffff';
+        const lightText = '#1f1f1f';
+        const lightMuted = '#777';
+        const lightBorder = '#d32f2f';
+        const lightAccent = '#2e7d32';
+        const lightAccentHover = '#388e3c';
+        const lightBoxBg = '#ffffff';
+
+
+        document.documentElement.style.setProperty('--bg', darkMode ? darkBg : lightBg);
+        document.documentElement.style.setProperty('--text', darkMode ? darkText : lightText);
+        document.documentElement.style.setProperty('--muted', darkMode ? darkMuted : lightMuted);
+        document.documentElement.style.setProperty('--border', darkMode ? darkBorder : lightBorder);
+        document.documentElement.style.setProperty('--accent', darkMode ? darkAccent : lightAccent);
+        document.documentElement.style.setProperty('--accent-hover', darkMode ? darkAccentHover : lightAccentHover);
+        document.documentElement.style.setProperty('--box-bg', darkMode ? darkBoxBg : lightBoxBg);
+
+        // Update snowflake icon stroke color
+        snowflakeIcon.style.stroke = darkMode ? darkText : lightBorder;
 
         // Update input backgrounds
         document.querySelectorAll('.copy-input').forEach(input => {
@@ -776,11 +852,13 @@ ul.timeline, ul.features {
             btn.style.color = 'white';
         });
 
+        // Update social icons in dark mode
         document.querySelectorAll('.social-icons-list .icon').forEach(icon => {
-            icon.style.fill = darkMode ? '#5cb85c' : 'var(--accent)';
+            icon.style.fill = 'var(--accent)';
         });
 
-        moonIcon.style.transform = darkMode ? "rotate(180deg)" : "rotate(0deg)";
+        // Optional: rotate the snowflake icon on toggle
+        snowflakeIcon.style.transform = darkMode ? "rotate(180deg)" : "rotate(0deg)";
     });
 
 </script>
