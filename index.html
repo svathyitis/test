@@ -121,7 +121,7 @@ h4 {
     margin-bottom: 0;
 }
 
-.button {
+.button, input[type="submit"] {
     display: inline-block;
     background-color: var(--accent);
     color: white;
@@ -135,16 +135,18 @@ h4 {
     text-decoration: none;
     position: relative; 
     overflow: visible; 
+    border: none; /* Remove default button border */
+    cursor: pointer;
 }
 
-.button:hover {
+.button:hover, input[type="submit"]:hover {
     background-color: var(--accent-hover);
 }
 
 /* --- NEW, IMPROVED CHRISTMAS HAT effect (Removed for now, keeping only buttons) --- */
 
 /* Hat Cone/Tip */
-.button::before {
+.button::before, input[type="submit"]::before {
     content: '';
     position: absolute;
     top: -12px; 
@@ -161,7 +163,7 @@ h4 {
 }
 
 /* Hat Pompom */
-.button::after {
+.button::after, input[type="submit"]::after {
     content: '';
     position: absolute;
     top: -15px; 
@@ -298,6 +300,31 @@ ul.timeline, ul.features {
 
 .icon:hover {
     fill: var(--accent-hover);
+}
+
+/* --- NEW FORM STYLES --- */
+.seva-form input[type="text"], .seva-form textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 0.81em;
+    font-family: 'Inter', sans-serif;
+    color: var(--text);
+    background-color: var(--box-bg);
+    box-sizing: border-box;
+}
+.seva-form textarea {
+    resize: vertical;
+    min-height: 60px;
+}
+.seva-form label {
+    display: block;
+    font-size: 0.7rem;
+    font-weight: 500;
+    color: var(--h4-color);
+    margin-bottom: 2px;
 }
 </style>
 
@@ -697,7 +724,21 @@ ul.timeline, ul.features {
     </ul>
 
     <section class="volunteer-action">
-        <a href="mailto:vishal.merani@artofliving.org?subject=Seva%20Interest%20-%20Small%20Note%20from%20Linktree&body=I%20am%20interested%20in%20Seva%20and%20would%20like%20to%20drop%20a%20note.%0D%0APlease%20contact%20me%20at:%0D%0AName:%20%0D%0AContact%20Number:%20%0D%0A" class="button" target="_blank">Drop a small note 📧 ♡</a>
+        <form class="seva-form" action="https://formsubmit.co/vishal.merani@artofliving.org" method="POST">
+            
+            <label for="name">Your Name</label>
+            <input type="text" name="Name" id="name" required>
+            
+            <label for="number">Contact Number</label>
+            <input type="text" name="Contact Number" id="number" required>
+
+            <label for="note">Small Note / Interest</label>
+            <textarea name="Note" id="note" required placeholder="I am interested in Seva and would like to help..."></textarea>
+            
+            <input type="hidden" name="_subject" value="New Seva Interest from Linktree Page">
+            
+            <input type="submit" value="Drop a small note and Send 📧 ♡">
+        </form>
     </section>
     
     <footer>
