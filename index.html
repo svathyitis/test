@@ -16,7 +16,7 @@
     --accent: #2e7d32; /* Lighter Green for buttons/icons */
     --accent-hover: #388e3c;
     --box-bg: #ffffff;
-    /* Xmas Red for Hat */
+    /* Xmas Colors */
     --xmas-red: #cc0000;
     --xmas-white: #ffffff;
 }
@@ -123,27 +123,32 @@ h4 {
     margin: 0.4rem 0.2rem 0.5rem 0;
     transition: background 0.2s ease;
     text-decoration: none;
-    position: relative; /* Essential for pseudo-elements */
-    overflow: visible; /* Allows the hat to stick out */
+    position: relative; 
+    overflow: visible; 
 }
 
 .button:hover {
     background-color: var(--accent-hover);
 }
 
-/* --- NEW CSS for the CHRISTMAS HAT effect --- */
-/* Hat Cone */
+/* --- NEW, IMPROVED CHRISTMAS HAT effect --- */
+
+/* Hat Cone/Tip */
 .button::before {
     content: '';
     position: absolute;
-    top: -10px; /* Adjust to move hat up */
-    right: 5px; /* Adjust to move hat left/right */
+    /* Positioning on the top right corner */
+    top: -12px; 
+    right: -2px; 
     width: 0;
     height: 0;
     border-style: solid;
-    border-width: 0 7px 10px 0; /* Creates a red triangle */
+    /* Creates a wide red triangular shape for the hat */
+    border-width: 0 10px 15px 0; 
     border-color: transparent var(--xmas-red) transparent transparent;
-    transform: rotate(15deg); /* Slight tilt for aesthetic */
+    transform: rotate(25deg); /* Tilt */
+    border-radius: 0 5px 0 5px; /* Slight rounding on the edge */
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
     z-index: 10;
 }
 
@@ -151,18 +156,22 @@ h4 {
 .button::after {
     content: '';
     position: absolute;
-    top: -13px; /* Position above the cone tip */
-    right: 3px; /* Aligned with the cone tip */
-    width: 5px;
-    height: 5px;
+    /* Positioned at the tip of the cone */
+    top: -15px; 
+    right: 0px; 
+    width: 6px;
+    height: 6px;
     background-color: var(--xmas-white); /* White pompom */
     border-radius: 50%;
-    box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.4);
     z-index: 11;
 }
-/* For buttons in a row (like in Silence card), adjust right margin */
-.tap-in-row .button::before, .tap-in-row .button::after {
-    right: 5px; 
+
+/* Helper class for reduced font in Do Dec card */
+.small-h2 {
+    font-size: 1rem; /* Reduced from 1.1rem */
+    font-weight: 500;
+    margin-bottom: 0.1rem;
 }
 
 
@@ -501,9 +510,9 @@ ul.timeline, ul.features {
 
     <section class="schedule-booking">
         <h4>Dec 6 - 9:</h4>
-        <h2>Registrations closed, join next </h2>
+        <h2 class="small-h2">Registrations closed, join next</h2>
         <h4>Dec 11 - 14:</h4>
-        <h2>Join in </h2>
+        <h2 class="small-h2">Join in</h2>
         <ul class="timeline">
             <li>6:30 AM to 8:30 AM</li>
         </ul>
@@ -572,54 +581,57 @@ ul.timeline, ul.features {
 <div class="iphone-frame">
     <header>
         <div class="card-title-group">
-            <h1>Scanning (KaalGyaan)</h1>
-            <h2>Immediate Booking Available</h2>
+            <h1>Scanning,</h1>
+            <h2>KaalGyaan Sessions</h2>
+            <p class="subtitle">with Vishal Merani</p>
         </div>
     </header>
 
     <section class="course-details">
-        <h3>Guidance and answers through intuitive scanning.</h3>
+        <h3>Get to know now, like never before</h3>
+        <p class="subtitle">from different dimension for better decisions in life</p>
         <ul class="features">
-            <li>Available Online via Zoom.</li>
-            <li>**Vishal Merani's wait time is months.**</li>
-            <li>**For instant session access,** book with other certified practitioners now.</li>
-        </ul>
-    </section>
-
-    <section class="schedule-booking">
-        <span class="location-text">📍 Book with certified practitioners (immediate slot)</span>
-        <a href="https://kaalgyan.artofliving.org/sessions" class="button" target="_blank">Book Online Scanning Session</a>
-    </section>
-
-    <footer>
-        <div class="footer">🌀🔮 Online Sessions Only <br> ॐ Jai Guru Dev ॐ</div>
-    </footer>
-</div>
-
-
-<div class="iphone-frame">
-    <header>
-        <div class="card-title-group">
-            <h1>L&B Pain Management</h1>
-            <h2>Personal Sessions with Vishal Merani</h2>
-        </div>
-    </header>
-
-    <section class="course-details">
-        <h3>Focused on lower-back and body pain relief.</h3>
-        <ul class="features">
-            <li>**Hands-on healing:** Available in-person only.</li>
-            <li>**Scanning:** Also available from Vishal Merani (via DM/Waitlist).</li>
+            <li>⤷ Answers about you</li>
+            <li>⤷ Knowing about you</li>
+            <li>⤷ Guiding your next step</li>
         </ul>
     </section>
 
     <section class="logistics-contact">
-        <span class="location-text">📍 L&B: In-person at Bangalore Ashram</span>
-        <h4 class="queries-text">To book any session directly with Vishal (L&B or Scanning), kindly message first: **+91 9818503888** </h4>
+        <ul class="timeline">
+            <li>Leave a note, few days in advance</li>
+        </ul>
+        <span class="location-text">📍 Zoom | Online</span>
     </section>
 
     <footer>
-        <div class="footer">🩹⚡ Personal DM/Waitlist Required <br> ॐ Jai Guru Dev ॐ</div>
+        <div class="footer">🌀🔮 Online Sessions <br> ॐ Jai Guru Dev ॐ</div>
+    </footer>
+</div>
+
+<div class="iphone-frame">
+    <header>
+        <div class="card-title-group">
+            <h1>Pain Management,</h1>
+            <h2>L&B Sessions</h2>
+            <p class="subtitle">with Vishal Merani</p>
+        </div>
+    </header>
+
+    <section class="course-details">
+        <h3>Get relief in an hour or so</h3>
+    </section>
+
+    <section class="logistics-contact">
+        <ul class="timeline">
+            <li>Leave a note, few days in advance</li>
+        </ul>
+        <span class="location-text">📍 In-person, Bangalore Ashram</span>
+        <h4 class="queries-text">For Bookings, reach out via team +91 9818503888</h4>
+    </section>
+
+    <footer>
+        <div class="footer">🩹⚡ In-person Sessions <br> ॐ Jai Guru Dev ॐ</div>
     </footer>
 </div>
 <div class="iphone-frame subtle-card-with-text no-padding">
