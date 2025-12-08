@@ -2,23 +2,22 @@
 <html lang="en">
 <head>
 <link rel="icon" href="assets/favicon.ico" type="image/x-icon" />
-<link rel="icon" href="favicon.ico" type="image/x-icon" />
-
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Vishal Merani </title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
 <style>
+/* --- 1. CHRISTMAS COLOR PALETTE UPDATE --- */
 :root {
---bg: #f4f6f9;
---text: #1c1c1e;
+--bg: #f0f8ff; /* Snow White / AliceBlue */
+--text: #004d40; /* Deep Christmas Green */
 --muted: #777;
---border: #d9e1ec;
---accent: #6a5799;
---accent-hover: #8473c6;
+--border: #ffd70044; /* Light Gold/Yellow for border accent */
+--accent: #c62828; /* Deep Christmas Red */
+--accent-hover: #e53935; /* Brighter Christmas Red */
 --box-bg: #ffffff;
 }
-
+  
 * {
 margin: 0;
 padding: 0;
@@ -28,8 +27,10 @@ box-sizing: border-box;
 body {
 font-family: 'Inter', sans-serif;
 background: var(--bg);
-color: var(--text); 
+color: var(--text); 
 padding: 22px 14px;
+/* Add a subtle green gradient for a festive look */
+background: linear-gradient(to bottom, var(--bg), #ccffcc33);
 }
 
 .iphone-frame {
@@ -44,32 +45,36 @@ border: 1px solid var(--border);
 }
 
 h1 {
-font-size: 1.4rem;
-font-weight: 600;
+font-size: 1.375rem;
+font-weight: 550;
 margin-bottom: 0.25rem;
 }
 
 h2 {
-font-size: 1.2rem;
-font-weight: 470;
+font-size: 1.1rem;
+font-weight: 440;
 margin-bottom: 0.4rem;
 }
 
 h3 {
-font-size: 1.0rem;
-font-weight: 390;
+font-size: 0.9rem;
+font-weight: 370;
 margin: 1rem 0 0.3rem;
+}
+
+h3 + h3 {
+  margin-top: 0; /* remove top margin of second h3 */
 }
 
 h4 {
 font-size: 0.65rem;
-font-weight: 400;
+font-weight: 380;
 margin: 0.5rem 0;
 }
 
 h5 {
 font-size: 0.5rem;
-font-weight: 600;
+font-weight: 500;
 margin: 0.8rem 0 0.3rem;
 }
 
@@ -139,18 +144,18 @@ font-family: monospace;
 
 .copy-btn {
 padding: 8px 12px;
-background-color: #6a5799;
-color: #333;
+background-color: var(--accent);
+color: white;
 font-size: 0.7rem;
 font-weight: 600;
 border: none;
 border-radius: 10px;
 cursor: pointer;
+transition: background 0.3s, color 0.3s;
 }
 
 .copy-btn:hover {
-background-color: #6a5795;
-color: white;
+background-color: var(--accent-hover);
 }
 
 .wa-icon {
@@ -166,9 +171,9 @@ cursor: pointer;
 font-size: 0.65rem;
 color: var(--muted);
 text-align: center;
-margin-top: 0.8rem;      /* reduced from 1.8rem */
-margin-bottom: 0.5rem;   /* add this line if not present */
-line-height: 1.2;  
+margin-top: 0.8rem;      
+margin-bottom: 0.5rem;   
+line-height: 1.2;  
 }
 
 .iphone-frame {
@@ -177,7 +182,7 @@ z-index: 1;
 border-radius: 36px;
 overflow: hidden;
 border: 1px solid var(--border); /* keep existing border */
-box-shadow: 0 0 0.5px rgba(144, 137, 245, 0.5);
+box-shadow: 0 0 0.5px rgba(198, 40, 40, 0.5); /* Use Red shadow for festive feel */
 }
 
 .iphone-frame::after {
@@ -191,12 +196,13 @@ border-radius: 32px;
 pointer-events: none;
 z-index: -1;
 border: 1.5px solid transparent;
-background: linear-gradient(135deg, #9089f5, #f093fb, #9089f5) border-box;
-mask: 
-linear-gradient(#fff 0 0) padding-box, 
+/* --- 2. FESTIVE GRADIENT UPDATE --- */
+background: linear-gradient(135deg, #c62828, #004d40, #ffd700) border-box; /* Red, Green, Gold */
+mask: 
+linear-gradient(#fff 0 0) padding-box, 
 linear-gradient(#fff 0 0);
--webkit-mask: 
-linear-gradient(#fff 0 0) padding-box, 
+-webkit-mask: 
+linear-gradient(#fff 0 0) padding-box, 
 linear-gradient(#fff 0 0);
 mask-composite: exclude;
 -webkit-mask-composite: destination-out;
@@ -205,10 +211,10 @@ animation: subtlePulse 6s ease-in-out infinite;
 
 @keyframes subtlePulse {
 0%, 100% {
-opacity: 0.2;
+opacity: 0.5; /* Increased opacity for more color */
 }
 50% {
-opacity: 0.4;
+opacity: 0.8;
 }
 }
 
@@ -220,10 +226,11 @@ transition: background 0.3s, color 0.3s;
 color: var(--location-color);
 }
 
+/* Dark mode colors are handled in the script for dynamic variable update */
 body.dark h1,
 body.dark h2,
 body.dark h3 {
-color: #b69ad4;
+color: #ffcc00; /* Gold in dark mode */
 }
 
 .social-icons {
@@ -241,7 +248,7 @@ transition: fill 0.3s ease;
 }
 
 body.dark .icon {
-fill: #b69ad4;
+fill: #ffcc00; /* Gold in dark mode */
 }
 
 .icon:hover {
@@ -268,7 +275,7 @@ transform: translateY(10px);
 /* Hover effects */
 .subtle-card-with-text:hover img {
 transform: scale(1.03);
-box-shadow: 0 0 25px rgba(180, 120, 255, 0.3);
+box-shadow: 0 0 25px rgba(198, 40, 40, 0.5); /* Red shadow */
 }
 
 /* Optional glowing animation */
@@ -296,11 +303,42 @@ transition: opacity 0.4s ease;
 .subtle-card-with-text:hover .overlay-text {
 opacity: 1;
 }
+.tap-in-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap; /* Optional: allow wrapping on small screens */
+  margin-top: 0.6rem;
+  margin-bottom: 0.6rem;
+}
 
+.tap-in-row h4 {
+  margin: 0;
+  font-size: 0.65rem;
+  font-weight: 380;
+}
 
+/* --- 3. CHRISTMAS SNOWFALL STYLE --- */
+.snowflake {
+  color: #fff;
+  font-size: 1.2em;
+  font-family: Arial, sans-serif;
+  text-shadow: 0 0 5px rgba(0,0,0,0.1);
+  position: fixed;
+  top: -20px;
+  z-index: 10000;
+  pointer-events: none;
+  opacity: 0.8;
+  animation: fall 10s linear infinite;
+}
+
+@keyframes fall {
+  0% { transform: translateY(0) translateX(0); }
+  100% { transform: translateY(100vh) translateX(0); }
+}
+/* --- END CHRISTMAS SNOWFALL STYLE --- */
 </style>
 
-<!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-QL72FZ9YZ2"></script>
 <script>
 window.dataLayer = window.dataLayer || [];
@@ -314,112 +352,214 @@ gtag('config', 'G-QL72FZ9YZ2');
 
 <body>
 
-<!-- Moon Toggle (Vector style) -->
 <div id="mode-toggle" style="
- position: relative;
- width: 100%;
- max-width: 390px;
- margin: 0 auto;
- display: flex;
- justify-content: flex-end;
- padding: 16px 22px;
+ position: relative;
+ width: 100%;
+ max-width: 390px;
+ margin: 0 auto;
+ display: flex;
+ justify-content: flex-end;
+ padding: 16px 22px;
 ">
-<svg id="moon-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="#6a5799" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon" style="cursor: pointer; transition: transform 0.3s ease;">
+<svg id="moon-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="#c62828" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon" style="cursor: pointer; transition: transform 0.3s ease;">
 <path d="M21 12.79A9 9 0 0112.21 3a7 7 0 100 14.58A9 9 0 0021 12.79z"/>
 </svg>
 </div>
 
-<!-- Sahaj Meditation Card -->
+ 
 <div class="iphone-frame">
-<h1>Sahaj Meditation,</h1>
-<p class="subtitle">with Vishal Merani</p>
+<h1>🎁 Merry Xmas! 🎅</h1>
+<p class="subtitle">with Vishal Merani/ Team</p>
 <h3>Lapse into meditation in minutes</h3>
 <p class="subtitle">Feel Good 😌 Live Light 🪶</p>
 <ul class="features">
 <li>⤷ Personal</li>
 <li>⤷ Customized</li>
 <li>⤷ Yours</li> </ul>
+<h4>Pick your preference  </h4>
 <ul class="features">
-<li>⤷ 19 – 21 Aug </li>
-<a href="aolt.in/900785" class="button" target="_blank"> 7 AM – 8:30 AM</a>  </ul>
-<ul class="features">
-<li>⤷ 26 – 28 Aug </li> 
-<a href="https://www.artofliving.org/in-en/program/902149" class="button" target="_blank"> 7 AM – 8:30 AM</a> </ul>
+ <li> 12 Dec - 14 Dec </li>
+<a href="https://www.artofliving.org/in-en/program/928247" class="button" target="_blank"> 7:00 AM – 9:00 AM </a> 
+  </ul> 
+  
+ <ul class="features">
 <ul class="timeline">
 <li>Happening monthly-ish, tops</li>
-<li>We'll touch base regularly, join whatsapp 💬 </li> 
+<li>We'll touch base regularly, join whatsapp 💬 </li> 
 <li class="location-text"><strong>📍 Zoom | Online</strong></li>
 </ul>
+<h4 class="queries-text">Queries & help @  7406198666, 9818503888</h4>
+<div class="footer"> 😌 3 days, 2 hours a day | ♡ Online Sessions <br>
+ॐ  Jai Guru Dev ॐ
+</div>
+</div>
+
+  <div class="iphone-frame">
+<h1>Dec </h1>
+<h2>HP</h2>
+<p class="subtitle">with Vishal Merani </p>
+<h3>Hyper Detox with Sudarshan Kriya</h3>
+<p class="subtitle">In person | English, Hindi</p>
+<a href="https://www.artofliving.org/in-en/program/926625"  class="button" target="_blank">11 Dec - 13 Dec</a> 
+<ul class="features">
+<li> Weekday: 6:30a-9:30a <br>
+Weekend: 8a-12p </li>
+</ul>
+ <a href="https://www.artofliving.org/in-en/program/926629"  class="button" target="_blank">11 Dec - 13 Dec</a> 
+<ul class="features">
+<li> Weekday: 6:30p-9:30p <br>
+Weekend: 8a-12p </li>
+</ul> 
+<ul class="features"> <li> Queries - 9611718201 </li> </ul>
+<ul class="features">
+<li>Regular follow-ups</li>
+<li>Free repeats outside ashram</li>
+</ul>
+
+<ul class="timeline">
+<li>📍Bhartiya City, RK Hegde Nagar, Bangalore </li>
+</ul>
+<div class="footer">🦦🤌🏻 Starts soon| this n♡vember <br>
+ॐ  Jai Guru Dev ॐ
+</div>
+</div>
+
+
+   <div class="iphone-frame">
+<h1>Pune 2025</h1>
+<h2>HP</h2>
+<p class="subtitle">with Vishal Merani </p>
+<h3>Hyper Detox with Sudarshan Kriya</h3>
+<p class="subtitle">In person | English, Hindi</p>
+<a href="https://www.artofliving.org/in-en/program/932187"  class="button" target="_blank">22 Dec - 24 Dec</a> 
+<ul class="timeline">
+<li> Timings: 6:00p-9:00p </li>
+</ul>
+<ul class="features"> <li> Queries - 7875757507 </li> </ul>
+<ul class="features">
+<li>Regular follow-ups</li>
+<li>Free repeats outside ashram</li>
+</ul>
+
+<ul class="timeline">
+<li>📍Indian model international school 🛝 <br> opp. Nyati Equinox Bavdhan <br> Pune MH</li>
+</ul>
+<div class="footer">🦦🤌🏻 Starts soon| December♡ <br>
+ॐ  Jai Guru Dev ॐ
+</div>
+</div> 
+  
+ <div class="iphone-frame">
+<h1>YES+</h1>
+<h2>Join waitlist</h2>
+<p class="subtitle">Youth Special</p>
+<h3>Hyper Detox with Sudarshan Kriya</h3>
+<p class="subtitle"> with Vishal Merani</p>
+<h4>In-person | EN, HI</h4>
+
+<a href="https://programs.vvmvp.org/events/783/" class="button" target="_blank">Booked for this season</a> 
+<ul class="timeline">
+<li>Join waitlist </li>
+</ul>
+
+<h5>Complimentary at Ashram</h5>
+<ul class="features">
+<li>Rudra pooja meditation on Mondays</li>
+<li>Regular follow-ups</li>
+<li>Sattvic food</li>
+<li>Free repeats outside ashram</li>
+</ul>
+
+<div class="footer">🦦🤌🏻 Starts Nov again| Bangalore ♡ Ashram <br>
+ॐ  Jai Guru Dev ॐ
+</div>
+</div>
+ 
+<div class="iphone-frame">
+<h1>Discover DSAR</h1>
+<h2>This Dec </h2>
+<p class="subtitle">with Vishal Merani</p>
+<h3>Deep Sleep, Anxiety Relief</h3>
+<p class="subtitle">Stop struggling! Decode and conquer</p>
+<ul class="features">
+ <li> 15 Dec - 17 Dec </li>
+<a href="https://www.artofliving.org/in-en/program/934573" class="button" target="_blank"> 7:30 PM to 10:00 PM </a> </ul> 
+  
+<ul class="features">
+<li>To calm anxiety</li>
+<li>For better sleep</li>
+<li>Activate relaxation</li>
+</ul>
+
+<ul class="timeline">
+<li>Dec 15 - Dec 17 </li>
+<li class="location-text"><strong>📍 Zoom | Online</strong></li>
+</ul>
+
 <h4 class="queries-text">Queries & help @ 9818503888</h4>
 
-<div class="footer"> 😌 3 days, 2 hours a day | ♡ Online Sessions <br>
-ॐ  Jai Guru Dev ॐ
+<div class="footer">💤 15–17 Dec 2025 | Late Evening ♡ Online Friendly Sessions <br>
+ॐ  Jai Guru Dev ॐ
 </div>
 </div>
 
-
-
-
-<!-- Oneline Meditation & Breath Card -->
 <div class="iphone-frame">
-<h1> Workshop,</h1>
-<h2> Meditation and Breath </h2></h2>
+<h1> Do Dec,</h1>
+<h2> Meditation and Breath Workshop </h2>
 <p class="subtitle">with Vishal Merani</p>
 <h3> learn well-being online </h3>
 <p class="subtitle">Just you, your breath, and a better you.</p>
-<h4> Pick your preference </h4>
+<h4>Dec 6 - 9 </h4><h2> Registrations closed, join next </h2>
+<h4>Dec 11 - 14 </h4><h2> Join in </h2>
 <ul class="timeline">
-<li>7 AM to 9 AM </li> </ul>
-<a href="https://aolt.in/895332" class="button" target="_blank">Book here ♡ </a>
- <ul class="timeline">
-<li>11 AM to 1 PM </li> </ul>
-<a href="https://aolt.in/872073" class="button" target="_blank">Book here ♡ </a>
- <ul class="timeline">
-<li>7 PM to 9 PM </li> </ul>
-<a href="https://aolt.in/905293" class="button" target="_blank">Book here ♡ </a>
- 
+<li>6:30 AM to 8:30 AM</li> </ul>
+<a href="https://www.artofliving.org/in-en/program/929292" class="button" target="_blank">Book here ♡ </a> 
 <ul class="timeline">
 <li>See you soon </li>
 <li><strong>📍 Online, Zoom </strong></li>
 </ul>
 
 <h4>For Bookings, reach out via team +91 9818503888 </h4>
-
-
-<div class="footer"> 🫁💨🖥️🧘‍♂️ ♡  Online Sessions Only <br>
-ॐ  Jai Guru Dev ॐ
+<div class="footer"> 🫁💨🖥️🧘‍♂️ ♡  Online Sessions Only <br>
+ॐ  Jai Guru Dev ॐ
 </div>
 </div>
- 
- <!-- Waitlist Card -->
-  <div class="iphone-frame">
-    <h1>Join waitlist</h1>
-      <p class="subtitle">for upcoming sessions</p>
-  <a href="https://waitlist.vishalmerani.com//" class="button" target="_blank"> Waitlist Entry</a>
 
-    <h4>Sahaj Meditation Batches</h4>
-    <h4>Deep Sleep & Anxiety Relief sessions</h4>
-    <h4>offline Ashram Happiness Courses</h4>
-    <h4> offline Happiness Courses in City</h4>
-    <h4>Online Breath and Meditation Workshops</h4>
-    <br>
-   <p class="subtitle"> Queries & help @ 9818503888 </p>
+  <div class="iphone-frame">
+<h1> Silence Retreat </h1>
+<p class="subtitle"> Join waitlist </p>
+<h3> Join waitlist for 2026 </h3>
+<h3>3 days of inner fireworks</h3>
+<p class="subtitle">With the blessings of Gurudev</p>
+<ul class="features">
+<li>⤷ Silence</li>
+<li>⤷ Mudras</li>
+<li>⤷ Online</li>
+<li>⤷ Meditations</li> </ul>
+<div class="tap-in-row">
+  <h4>Tap in</h4>
+  <a href="https://www.youtube.com/watch?v=j2cNxo8VemQ" class="button" target="_blank">Watch the Why’s</a>
+  <a href="https://aolt.in/919547" class="button" target="_blank">Peep the invite</a>
+</div>
+<ul class="features">
+<ul class="timeline"> 
+<li> 100% – cozy & online</li>
+<li> For HP, YES!+, YLTP & OMBW grads </li>
+<li> 6:30 AM – 8 PM + breaks </li> 
+<li class="location-text">📍 your space </li>
+</ul>
+<h4 class="queries-text"> Call/WhatsApp: 9818503888 </h4>
+<div class="footer"> 🤫⃤ 3 days ♡ Online Sessions <br>
+ॐ  Jai Guru Dev ॐ
+</div>
+</div>
 
-    <div class="footer">
-ॐ  Jai Guru Dev ॐ
-    <div class="footer">🦦🤌🏻 Starts soon again | Bangalore ♡ Ashram <br>
-  </div>
-    </div>
-  </div>
-
-
-<!-- Scanning Card  -->
 <div class="iphone-frame">
 <h1>Scanning,</h1>
 <h2>KaalGyaan Sessions</h2>
 <p class="subtitle">with Vishal Merani</p>
 <h3>Get to know now, like never before</h3>
-<p class="subtitle">  from different dimension for better decisions in life</p>
+<p class="subtitle">  from different dimension for better decisions in life</p>
 
 <ul class="features">
 <li>⤷ Answers about you</li>
@@ -441,12 +581,11 @@ gtag('config', 'G-QL72FZ9YZ2');
 </div>
 
 <div class="footer"> 🌀🔮🌌 ♡ Online & Offline Sessions <br>
-ॐ  Jai Guru Dev ॐ
+ॐ  Jai Guru Dev ॐ
 </div>
 </div>
 
 
-<!-- L & B Session Card -->
 <div class="iphone-frame">
 <h1>Pain Management,</h1>
 <h2>L&B Sessions</h2>
@@ -461,169 +600,75 @@ gtag('config', 'G-QL72FZ9YZ2');
 <h4>For Bookings, reach out via team +91 9818503888 </h4>
 
 <div class="copy-box">
-<input class="copy-input" type="text" value="L&B Session Scheduling, In person  Help: 9818503888" id="copyText5" readonly>
+<input class="copy-input" type="text" value="L&B Session Scheduling, In person  Help: 9818503888" id="copyText5" readonly>
 <button class="copy-btn" onclick="copyToClipboard('copyText5', this)">Copy</button>
 <a class="wa-icon" target="_blank" id="waLink3" title="Share on WhatsApp"></a>
 </div>
 
-<div class="footer"> 🩹⚡ ♡  Offline Sessions Only <br>
-ॐ  Jai Guru Dev ॐ
+<div class="footer"> 🩹⚡ ♡  Offline Sessions Only <br>
+ॐ  Jai Guru Dev ॐ
 </div>
 </div>
 
-
-<!-- Serets of the Subtle Image Only -->
 <div class="iphone-frame subtle-card-with-text" style="padding: 0; border: none; box-shadow: none;">
 <img src="SecretsoftheSubtle.png" alt="Secrets of the Subtle" style="width: 100%; border-radius: 20px;" />
 <div class="overlay-text"> 𓆩𓆪 Screening over </div>
 </div>
 
-<!-- Secrets of the Subtle Card -->
- <div class="iphone-frame">
-  <h1>Join us,</h1>
-  <h2>we recently aired </h2> 
-  <h4>Secrets of the Subtle</h4>
-  <h4>You can also  <a href="https://www.youtube.com/watch?v=2lgWqTEZRjk" class="button" target="_blank"> Watch ❤</a> here or in AOL app </h4>
-  <h3>Next we resume with -> MEDITATIONS </h3>
-    <p class = "subtitle">at Kashyapa hall for Ashramites</p>
+ <div class="iphone-frame">
+  <h1>Join us,</h1>
+  <h2>we recently aired </h2> 
+  <h4>Secrets of the Subtle</h4>
+  <h4>You can also  <a href="https://www.youtube.com/watch?v=2lgWqTEZRjk" class="button" target="_blank"> Watch ❤</a> here or in AOL app </h4>
+  <h3>Next we resume with -> MEDITATIONS </h3>
+    <p class = "subtitle">at Kashyapa hall for Ashramites</p>
+</div>
+
+   <div class="iphone-frame subtle-card-with-text" style="padding: 0; border: none; box-shadow: none;">
+<img src="UandUniverse.png" alt="U and Universe" style="width: 100%; border-radius: 20px;" />
+<div class="overlay-text"> 𓆩𓆪 Screened in VM, 2025 </div>
+</div>
+    <div class="iphone-frame">
+    <h1>Join waitlist</h1>
+      <p class="subtitle">for upcoming sessions</p>
+  <a href="https://waitlist.vishalmerani.com//" class="button" target="_blank"> Waitlist Entry</a>
+
+    <h4>Sahaj Meditation Batches</h4>
+    <h4>Deep Sleep & Anxiety Relief sessions</h4>
+    <h4>offline Ashram Happiness Courses</h4>
+    <h4> offline Happiness Courses in City</h4>
+    <h4>Online Breath and Meditation Workshops</h4>
+    <br>
+   <p class="subtitle"> Queries & help @ 9818503888 </p>
+
+    <div class="footer">
+ॐ  Jai Guru Dev ॐ
+    <div class="footer">🦦🤌🏻 Starts soon again | Bangalore ♡ Ashram <br>
+  </div>
+    </div>
+  </div>
+
+
+ <div class="iphone-frame subtle-card-with-text" style="padding: 0; border: none; box-shadow: none;">
+  <img src="vmvol.png" alt="Volunteer" style="width: 100%; border-radius: 20px;" />
+<a href="https://vol.vishalmerani.com/" class="overlay-text" style="text-decoration: none; color: inherit;" target="_blank" rel="noopener noreferrer">
+  𓆩Join in𓆪
+</a> 
+</div>
+
+  <div class="iphone-frame">
+    <h1>Seva सेवा  </h1>
+    <p>to serve, to attend to, to honor </p>
+    <ul class="features">
+      <li>Uplift consciousness</li>
+      <li>Meet & Greet versions of you</li>
+      <li>Dwell in awe and awareness </li>
+      <li>Diverse paths yet One place</li>
+    </ul>
+  </div>
 </div>
 
 
-<!-- DSAR Card -->
-<div class="iphone-frame">
-<h1>Join Waitlist</h1>
-<h2>Discover DSAR</h2>
-<p class="subtitle">with Vishal Merani & Shweta Vyas</p>
-<h3>Stress, Sleep, Anxiety</h3>
-<p class="subtitle">Stop struggling! Decode and conquer</p>
-
-<a  class="button" target="_blank">Booked for this season, see you in next</a> 
-<ul class="features">
-<li>To calm anxiety</li>
-<li>For better sleep</li>
-<li>Activate relaxation</li>
-</ul>
-
-<ul class="timeline">
-<li>DM to join in next season</li>
-<li class="location-text"><strong>📍 Zoom | Online</strong></li>
-
-</ul>
-
-<h4 class="queries-text">Queries & help @ 9818503888</h4>
-
-<div class="copy-box">
-<input class="copy-input" type="text" value="Deep Sleep & Anxiety Relief  | Help: 9818503888" id="copyText1" readonly>
-<button class="copy-btn" onclick="copyToClipboard('copyText1', this)">Copy</button>
-<a class="wa-icon" target="_blank" id="waLink1" title="Share on WhatsApp"></a>
-</div>
-
-<div class="footer">💤 22–24 Jul 2025 | Evening ♡ Online Sessions <br>
-ॐ  Jai Guru Dev ॐ
-</div>
-</div>
-
-
-<!-- Happiness Program in Ashram Card -->
-<div class="iphone-frame">
-<h1>Join Waitlist</h1>
-<h2>Happiness Program</h2>
-<p class="subtitle">Chartered Accountants Special</p>
-<h3>Hyper Detox with Sudarshan Kriya</h3>
-<p class="subtitle"> with Vishal Merani, In person | English, Hindi</p>
-
-<a  class="button" target="_blank">Booked for this season, see you in next</a> 
-<ul class="timeline">
-<li>Join waitlist for next season</li>
-</ul>
-
-<h5>Complimentary at Ashram</h5>
-<ul class="features">
-<li>Rudra pooja meditation on Mondays</li>
-<li>Regular follow-ups</li>
-<li>Sattvic food</li>
-<li>Free repeats outside ashram</li>
-</ul>
-
-<ul class="timeline">
-<li><strong>📍 Art of Living International Center</strong><br>Bengaluru, Karnataka</li>
-</ul>
-
-<a href="https://maps.google.com/?q=Art+of+Living+International+Center+Bengaluru" class="button" target="_blank">On Maps</a>
-
-<h4 class="queries-text">Queries & help @ 9818503888</h4>
-
-<div class="copy-box">
-<input class="copy-input" type="text" value="Happiness Program  | Help: 9818503888" id="copyText2" readonly>
-<button class="copy-btn" onclick="copyToClipboard('copyText2', this)">Copy</button>
-<a class="wa-icon" target="_blank" id="waLink2" title="Share on WhatsApp"></a>
-</div>
-
-<div class="footer">🦦🤌🏻 Starts soon again | Bangalore ♡ Ashram <br>
-ॐ  Jai Guru Dev ॐ
-</div>
-</div>
-
-<!-- Happiness Program in City Card -->
-<div class="iphone-frame">
-<h1>Join Waitlist </h1>
-<h2>Happiness Program</h2>
-<p class="subtitle">with Vishal Merani  </p>
-<h3>Hyper Detox with Sudarshan Kriya</h3>
-<p class="subtitle">In person | English, Hindi</p>
-
-<a  class="button" target="_blank">Booked for this season, see you in next</a> 
-<ul class="timeline">
-<li><strong> Join waitlist </strong> </li>
-</ul>
-
-<ul class="features">
-<li>Regular follow-ups</li>
-<li>Free repeats outside ashram</li>
-</ul>
-
-<ul class="timeline">
-<li><strong>📍See you soon</strong><br>Bengaluru, Karnataka</li>
-</ul>
-
-<a href="https://maps.app.goo.gl/Z1NnMr2MvozvDgBm7" class="button" target="_blank">On Maps</a>
-
-<h4 class="queries-text">Queries & help @ +917507180332, +919158888206 </h4>
-
-<div class="copy-box">
-<input class="copy-input" type="text" value="Happiness Program | | Help: 9818503888" id="copyText22" readonly>
-<button class="copy-btn" onclick="copyToClipboard('copyText22', this)">Copy</button>
-<a class="wa-icon" target="_blank" id="waLink2" title="Share on WhatsApp"></a>
-</div>
-
-<div class="footer">🦦🤌🏻 Starts soon| Bangalore ♡ JP Nagar <br>
-ॐ  Jai Guru Dev ॐ
-</div>
-</div>
-
-
- <!-- Seva Image Only -->
-<div class="iphone-frame subtle-card-with-text" style="padding: 0; border: none; box-shadow: none;">
-  <img src="vmvol.png" alt="Volunteer" style="width: 100%; border-radius: 20px;" />
-  <div class="overlay-text"> 𓆩Join in𓆪 </div>
-</div>
-
-  <!-- Seva Card -->
-
-<div class="iphone-frame">
-    <h1>Seva सेवा  </h1>
-    <p>to serve, to attend to, to honor </p>
-    <ul class="features">
-      <li>Uplift consciousness</li>
-      <li>Meet & Greet versions of you</li>
-      <li>Dwell in awe and awareness </li>
-      <li>Diverse paths yet One place</li>
-    </ul>
-  </div>
-</div>
-
-
-<!-- VM themed Image Card -->
 <div class="iphone-frame" style="padding: 0; border: none; box-shadow: none;">
 <img src="zenvm.png" alt="Meditation Image" style="width: 100%; border-radius: 20px;"/>
 
@@ -631,31 +676,28 @@ gtag('config', 'G-QL72FZ9YZ2');
 </div>
 
 
-<!-- Podcast -  Card  -->
 <div class="iphone-frame">
-  <h2>Podcasts</h2>
+  <h2>Podcasts</h2>
 <a href="https://podcasts.vishalmerani.com/" class="button" target="_blank">🎧 Listen Now</a>
 <p class="subtitle">Curated talks & insights</p>
 <div class="footer"> <br>
-ॐ  Jai Guru Dev ॐ
-</div>  
+ॐ  Jai Guru Dev ॐ
+</div>  
 </div>
 
 
-<!-- All Programs Card  -->
 <div class="iphone-frame">
 <h2>Programs</h2>
 <h3>List</h3>
 <a href="https://www.artofliving.org/node/1302793" class="button" target="_blank">Check here ♡ </a>
 <p class="subtitle">Next up, Lined up 🎺</p>
 <div class="footer">
-ॐ  Jai Guru Dev ॐ
-</div>  
+ॐ  Jai Guru Dev ॐ
+</div>  
 </div>
 
 
 
-<!-- Social - Card  -->
 <div class="iphone-frame" style="text-align: center; padding-top: 24px;">
 <h1>To stay connected,</h1>
 <h2>@MeraniVishal</h2>
@@ -713,38 +755,71 @@ let darkMode = false;
 moonIcon.addEventListener("click", () => {
 darkMode = !darkMode;
 document.body.classList.toggle("dark", darkMode);
-document.documentElement.style.setProperty('--bg', darkMode ? '#1c1c1e' : '#f4f6f9');
-document.documentElement.style.setProperty('--text', darkMode ? '#e0e0e0' : '#1c1c1e');
-document.documentElement.style.setProperty('--location-color', darkMode ? '#b69ad4' : '#555');
+
+// --- 4. UPDATED DARK MODE COLORS FOR CHRISTMAS ---
+document.documentElement.style.setProperty('--bg', darkMode ? '#1a1a1a' : '#f0f8ff'); // Dark Greenish-Black or Snow White
+document.documentElement.style.setProperty('--text', darkMode ? '#f5f5dc' : '#004d40'); // Cream/White or Deep Green
+document.documentElement.style.setProperty('--location-color', darkMode ? '#ffcc00' : '#c62828'); // Gold or Red
 document.documentElement.style.setProperty('--muted', darkMode ? '#aaa' : '#777');
-document.documentElement.style.setProperty('--border', darkMode ? '#444' : '#d9e1ec');
-document.documentElement.style.setProperty('--box-bg', darkMode ? '#2c2c2e' : '#ffffff');
+document.documentElement.style.setProperty('--border', darkMode ? '#555' : '#ffd70044'); // Dark Grey or Light Gold
+document.documentElement.style.setProperty('--accent', darkMode ? '#880000' : '#c62828'); // Dark Red or Deep Red
+document.documentElement.style.setProperty('--accent-hover', darkMode ? '#b30000' : '#e53935'); // Darker Red or Brighter Red
+document.documentElement.style.setProperty('--box-bg', darkMode ? '#333333' : '#ffffff'); // Dark Grey box or White
 
-// Update accent and button contrast for dark
-document.querySelectorAll('.button').forEach(btn => {
-btn.style.backgroundColor = darkMode ? '#6a5795' : 'var(--accent)';
-btn.style.color = darkMode ? '#1c1c1e' : 'white';
-
-
-});
+// Update moon icon stroke color
+moonIcon.style.stroke = darkMode ? '#f5f5dc' : '#c62828'; // Red/Cream for icon
 
 // Update input backgrounds
 document.querySelectorAll('.copy-input').forEach(input => {
-input.style.backgroundColor = darkMode ? '#3a3a3c' : '#f9fafc';
-input.style.color = darkMode ? '#b69ad4' : '#1c1c1e';
+input.style.backgroundColor = darkMode ? '#444444' : '#f9fafc';
+input.style.color = darkMode ? '#f5f5dc' : '#1c1c1e';
 });
 
 document.querySelectorAll('.copy-btn').forEach(btn => {
-btn.style.backgroundColor = darkMode ? '#3a2e57' : '#E6E6FA'; // Optional: deeper purple bg
-btn.style.color = darkMode ? '#b69ad4' : '#333';
-
-
+btn.style.backgroundColor = darkMode ? 'var(--accent)' : 'var(--accent)';
+btn.style.color = 'white';
 });
 
 // Optional: rotate the moon icon on toggle
 moonIcon.style.transform = darkMode ? "rotate(180deg)" : "rotate(0deg)";
 });
+
 </script>
 
+<script>
+function createSnowflake() {
+  const snowflake = document.createElement('div');
+  snowflake.innerHTML = '❄️'; // Snowflake emoji
+  snowflake.classList.add('snowflake');
+  
+  // Set random starting position, size, and duration
+  const startX = Math.random() * window.innerWidth;
+  const size = Math.random() * 1.5 + 0.8; // between 0.8em and 2.3em
+  const duration = Math.random() * 8 + 6; // between 6s and 14s
+  const delay = Math.random() * 10; // delay between 0s and 10s
+  
+  snowflake.style.left = `${startX}px`;
+  snowflake.style.fontSize = `${size}em`;
+  snowflake.style.animationDuration = `${duration}s`;
+  snowflake.style.animationDelay = `${delay}s`;
+  snowflake.style.opacity = Math.random() * 0.5 + 0.3; // subtle opacity
+
+  document.body.appendChild(snowflake);
+
+  // Clean up element after it falls (1 second after duration ends)
+  setTimeout(() => {
+    snowflake.remove();
+  }, (duration + 1) * 1000);
+}
+
+// Initial burst of snowflakes
+for (let i = 0; i < 30; i++) {
+    setTimeout(createSnowflake, i * 400); // Stagger initial flakes
+}
+
+// Continuous snowflake creation (every 500ms)
+setInterval(createSnowflake, 500);
+</script>
+  
 </body>
 </html>
