@@ -19,6 +19,8 @@
     /* Xmas Colors */
     --xmas-red: #cc0000;
     --xmas-white: #ffffff;
+    --xmas-green: #2e7d32;
+    --xmas-gold: #FFD700;
 }
 
 * {
@@ -42,25 +44,25 @@ body {
 /* --- 3. SLEEK STRUCTURE AND UNIFORM STYLES --- */
 .iphone-frame {
     background: var(--box-bg);
-    border-radius: 18px; /* Slightly reduced border radius */
+    border-radius: 18px; 
     max-width: 390px;
     width: 100%;
-    margin: 0 auto 18px auto; /* Reduced margin */
-    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.04); /* Reduced shadow subtlety */
-    padding: 24px 18px; /* Reduced padding */
-    border: 1px solid var(--border); /* Subtly reduced border thickness */
+    margin: 0 auto 18px auto; 
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.04); 
+    padding: 24px 18px; 
+    border: 1px solid var(--border); 
     position: relative;
     z-index: 1;
+    /* Necessary for absolute positioning of icons and snowflakes */
+    overflow: hidden; 
 }
 
 .iphone-frame.no-padding {
     padding: 0;
-    /* Apply the subtle border to all card types */
     border: 1px solid var(--border); 
     box-shadow: none;
 }
 .iphone-frame.no-padding img {
-    /* Ensure the image respects the border radius */
     border-radius: 17px; 
 }
 
@@ -139,17 +141,15 @@ h4 {
 .button::before {
     content: '';
     position: absolute;
-    /* Positioning on the top right corner */
     top: -12px; 
     right: -2px; 
     width: 0;
     height: 0;
     border-style: solid;
-    /* Creates a wide red triangular shape for the hat */
     border-width: 0 10px 15px 0; 
     border-color: transparent var(--xmas-red) transparent transparent;
-    transform: rotate(25deg); /* Tilt */
-    border-radius: 0 5px 0 5px; /* Slight rounding on the edge */
+    transform: rotate(25deg); 
+    border-radius: 0 5px 0 5px; 
     box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
     z-index: 10;
 }
@@ -158,27 +158,27 @@ h4 {
 .button::after {
     content: '';
     position: absolute;
-    /* Positioned at the tip of the cone */
     top: -15px; 
     right: 0px; 
     width: 6px;
     height: 6px;
-    background-color: var(--xmas-white); /* White pompom */
+    background-color: var(--xmas-white); 
     border-radius: 50%;
     box-shadow: 0 0 3px rgba(0, 0, 0, 0.4);
     z-index: 11;
 }
 
-/* Helper class for reduced font in Do Dec card */
+/* --- FONT REDUCTION (40%) IN DO DEC CARD --- */
 .small-h2 {
-    font-size: 1rem; /* Reduced from 1.1rem */
+    /* Base h2 font size is 1.1rem. Reducing by 40% (1.1 * 0.6 = 0.66rem) */
+    font-size: 0.66rem; 
     font-weight: 500;
     margin-bottom: 0.1rem;
 }
 
 /* Helper class for the corrected feel good line spacing */
 .feel-good-line {
-    font-size: 0.85em; /* Inherits reduced size */
+    font-size: 0.85em; 
     margin-bottom: 0.4rem;
 }
 
@@ -201,7 +201,7 @@ ul.timeline, ul.features {
     margin-top: 0.3rem; 
     display: block;
     font-size: 0.65rem; 
-    line-height: 1.4; /* Increased line height */
+    line-height: 1.4; 
 }
 .location-text strong {
     color: var(--text);
@@ -218,15 +218,16 @@ ul.timeline, ul.features {
     text-align: center;
     margin-top: 0.7rem;
     margin-bottom: 0;
-    line-height: 1.4; /* Increased line height */
+    line-height: 1.4; 
     padding-top: 0.4rem;
     border-top: 1px dashed rgba(0, 0, 0, 0.08);
 }
 
-/* --- XMAS TREE STYLING --- */
+/* --- XMAS TREE STYLING (Thematic Icon 1) --- */
+/* Reduced size by adjusting scale and translate values in SVG */
 .xmas-tree-container {
-    width: 28px; 
-    height: 28px;
+    width: 25px; 
+    height: 25px;
     margin-left: 8px;
     flex-shrink: 0;
     position: relative;
@@ -239,6 +240,54 @@ ul.timeline, ul.features {
 .tree-layer-1, .tree-layer-2, .tree-layer-3, .trunk, .star {
     transition: fill 0.3s ease;
 }
+
+/* --- SNOWFLAKE STYLES (New Horizontal/Flat Animation) --- */
+@keyframes float {
+    0% { transform: translate(0, 0) rotate(0deg); opacity: 0.6; }
+    50% { transform: translate(10px, -5px) rotate(5deg); opacity: 1; }
+    100% { transform: translate(0, 0) rotate(0deg); opacity: 0.6; }
+}
+
+.snowflake {
+    position: absolute;
+    color: #fff; /* White against the card border color */
+    z-index: 100;
+    pointer-events: none;
+    animation: float linear infinite;
+    /* Font size reduced to be much smaller */
+    font-size: 0.7em !important; 
+    text-shadow: 0 0 1px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+}
+
+/* --- CHRISTMAS GIFT STYLES (Thematic Icon 2) --- */
+.gift-icon {
+    position: absolute;
+    bottom: -8px; 
+    right: 5px;
+    /* Reduced size */
+    font-size: 0.8em; 
+    z-index: 10;
+}
+
+.gift-icon::before {
+    content: '🎁';
+}
+
+/* --- REINDEER STYLES (Thematic Icon 3) --- */
+.reindeer-icon {
+    position: absolute;
+    top: 5px; 
+    right: 5px;
+    /* Reduced size */
+    font-size: 0.9em;
+    z-index: 10;
+}
+
+.reindeer-icon::before {
+    content: '🦌';
+}
+
 
 /* --- 5. SOCIAL ICONS --- */
 .social-icons-frame {
@@ -293,7 +342,7 @@ ul.timeline, ul.features {
 </div>
 
 
-<div class="iphone-frame">
+<div class="iphone-frame" id="card-sahaj">
     <header>
         <div class="card-title-group">
             <h1>Dec Sahaj,</h1>
@@ -301,7 +350,7 @@ ul.timeline, ul.features {
         </div>
         <div class="xmas-tree-container">
             <svg class="xmas-tree" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                <path class="star" d="M50 0 L61 35 L95 35 L68 57 L79 92 L50 70 L21 92 L32 57 L5 35 L39 35 Z" fill="#FFD700" transform="scale(0.2) translate(150, 10)" />
+                <path class="star" d="M50 0 L61 35 L95 35 L68 57 L79 92 L50 70 L21 92 L32 57 L5 35 L39 35 Z" fill="#FFD700" transform="scale(0.18) translate(180, 20)" /> 
                 <path class="tree-layer-1" d="M50 0 L0 100 L100 100 Z" fill="#388e3c" transform="translate(0, 5) scale(0.65)"/>
                 <path class="tree-layer-2" d="M50 0 L0 100 L100 100 Z" fill="#4caf50" transform="translate(0, 30) scale(0.85)"/>
                 <path class="tree-layer-3" d="M50 0 L0 100 L100 100 Z" fill="#2e7d32" transform="translate(0, 55) scale(1)"/>
@@ -345,7 +394,7 @@ ul.timeline, ul.features {
 </div>
 
 
-<div class="iphone-frame">
+<div class="iphone-frame" id="card-dec-hp">
     <header>
         <div class="card-title-group">
             <h1>Dec HP</h1>
@@ -353,6 +402,7 @@ ul.timeline, ul.features {
             <p class="subtitle">with Vishal Merani</p>
         </div>
     </header>
+    <div class="reindeer-icon"></div>
 
     <section class="course-details">
         <h3>In person | English, Hindi</h3>
@@ -390,7 +440,7 @@ ul.timeline, ul.features {
 </div>
 
 
-<div class="iphone-frame">
+<div class="iphone-frame" id="card-pune-hp">
     <header>
         <div class="card-title-group">
             <h1>Pune 2025 HP</h1>
@@ -398,6 +448,7 @@ ul.timeline, ul.features {
             <p class="subtitle">with Vishal Merani</p>
         </div>
     </header>
+    <div class="gift-icon"></div>
 
     <section class="course-details">
         <h3>In person | English, Hindi</h3>
@@ -426,7 +477,7 @@ ul.timeline, ul.features {
     </footer>
 </div>
 
-<div class="iphone-frame">
+<div class="iphone-frame" id="card-yes-plus">
     <header>
         <div class="card-title-group">
             <h1>YES+</h1>
@@ -464,7 +515,7 @@ ul.timeline, ul.features {
     </footer>
 </div>
 
-<div class="iphone-frame">
+<div class="iphone-frame" id="card-dsar">
     <header>
         <div class="card-title-group">
             <h1>Discover DSAR</h1>
@@ -502,7 +553,7 @@ ul.timeline, ul.features {
     </footer>
 </div>
 
-<div class="iphone-frame">
+<div class="iphone-frame" id="card-do-dec">
     <header>
         <div class="card-title-group">
             <h1>Do Dec,</h1>
@@ -542,7 +593,7 @@ ul.timeline, ul.features {
     </footer>
 </div>
 
-<div class="iphone-frame">
+<div class="iphone-frame" id="card-silence">
     <header>
         <div class="card-title-group">
             <h1>Silence Retreat</h1>
@@ -586,7 +637,7 @@ ul.timeline, ul.features {
     </footer>
 </div>
 
-<div class="iphone-frame">
+<div class="iphone-frame" id="card-scanning">
     <header>
         <div class="card-title-group">
             <h1>Scanning,</h1>
@@ -594,6 +645,7 @@ ul.timeline, ul.features {
             <p class="subtitle">with Vishal Merani</p>
         </div>
     </header>
+    <div class="gift-icon"></div>
 
     <section class="course-details">
         <h3>Get to know now, like never before</h3>
@@ -617,7 +669,7 @@ ul.timeline, ul.features {
     </footer>
 </div>
 
-<div class="iphone-frame">
+<div class="iphone-frame" id="card-pain-mgmt">
     <header>
         <div class="card-title-group">
             <h1>Pain Management,</h1>
@@ -642,37 +694,12 @@ ul.timeline, ul.features {
         <div class="footer">🩹⚡ In-person Sessions <br> ॐ Jai Guru Dev ॐ</div>
     </footer>
 </div>
-<div class="iphone-frame subtle-card-with-text no-padding">
-    <img src="SecretsoftheSubtle.png" alt="Secrets of the Subtle" style="width: 100%; border-radius: 17px;" />
-    <div class="overlay-text"> 𓆩𓆪 Screening over </div>
-</div>
-
-<div class="iphone-frame">
-    <header>
-        <div class="card-title-group">
-            <h1>Join us,</h1>
-            <h2>we recently aired</h2>
-            <p class="subtitle">Secrets of the Subtle</p>
-        </div>
-    </header>
-
-    <section class="content-link">
-        <a href="https://www.youtube.com/watch?v=2lgWqTEZRjk" class="button" target="_blank"> Watch ❤</a>
-        <h3 style="margin-top: 1.5rem;">Next we resume with -> MEDITATIONS </h3>
-        <p class = "subtitle">at Kashyapa hall for Ashramites</p>
-    </section>
-
-    <footer>
-        <div class="footer"> ॐ Jai Guru Dev ॐ </div>
-    </footer>
-</div>
-
-<div class="iphone-frame subtle-card-with-text no-padding">
+<div class="iphone-frame no-padding">
     <img src="UandUniverse.png" alt="U and Universe" style="width: 100%; border-radius: 17px;" />
     <div class="overlay-text"> 𓆩𓆪 Screened in VM, 2025 </div>
 </div>
 
-<div class="iphone-frame">
+<div class="iphone-frame" id="card-seva">
     <header>
         <div class="card-title-group">
             <h1>Seva सेवा </h1>
@@ -704,13 +731,14 @@ ul.timeline, ul.features {
 </div>
 
 
-<div class="iphone-frame">
+<div class="iphone-frame" id="card-podcasts">
     <header>
         <div class="card-title-group">
             <h1>Podcasts</h1>
             <h2>Curated talks & insights</h2>
         </div>
     </header>
+    <div class="gift-icon"></div>
     <section>
         <a href="https://podcasts.vishalmerani.com/" class="button" target="_blank">🎧 Listen Now</a>
     </section>
@@ -720,7 +748,7 @@ ul.timeline, ul.features {
 </div>
 
 
-<div class="iphone-frame">
+<div class="iphone-frame" id="card-programs">
     <header>
         <div class="card-title-group">
             <h1>Programs</h1>
@@ -809,34 +837,69 @@ ul.timeline, ul.features {
 </script>
 
 <script>
-    function createSnowflake() {
+    // List of card IDs where snowflakes should appear
+    const cardIds = [
+        "card-sahaj", 
+        "card-dec-hp", 
+        "card-pune-hp", 
+        "card-dsar", 
+        "card-do-dec", 
+        "card-silence", 
+        "card-scanning", 
+        "card-pain-mgmt", 
+        "card-yes-plus", 
+        "card-seva", 
+        "card-podcasts", 
+        "card-programs"
+    ];
+
+    function createSnowflake(cardElement) {
         const snowflake = document.createElement('div');
         snowflake.innerHTML = '❄️';
         snowflake.classList.add('snowflake');
 
-        const startX = Math.random() * window.innerWidth;
-        const size = Math.random() * 1.5 + 0.8;
-        const duration = Math.random() * 8 + 6;
-        const delay = Math.random() * 10;
+        // Position the snowflake near the bottom right corner of the card
+        // 70% to 100% of the card width (horizontal range)
+        const startX = Math.random() * 30 + 70; 
+        // 80% to 100% of the card height (vertical range)
+        const startY = Math.random() * 20 + 80;
 
-        snowflake.style.left = `${startX}px`;
-        snowflake.style.fontSize = `${size}em`;
+        const size = Math.random() * 0.4 + 0.6; // Keep the size small (0.6em to 1.0em)
+        const duration = Math.random() * 5 + 3; // Animation duration
+        const delay = Math.random() * 3; // Animation start delay
+
+        snowflake.style.right = `${100 - startX}%`; 
+        snowflake.style.bottom = `${100 - startY}%`;
         snowflake.style.animationDuration = `${duration}s`;
         snowflake.style.animationDelay = `${delay}s`;
-        snowflake.style.opacity = Math.random() * 0.5 + 0.3;
+        snowflake.style.opacity = Math.random() * 0.4 + 0.6; // Opacity 60% to 100%
+        snowflake.style.color = '#f5f5f5'; // Force white/light color
+        snowflake.style.fontSize = `${size}em`;
 
-        document.body.appendChild(snowflake);
+        cardElement.appendChild(snowflake);
 
+        // Clean up the snowflake after the animation duration plus a buffer
         setTimeout(() => {
             snowflake.remove();
         }, (duration + 1) * 1000);
     }
 
-    for (let i = 0; i < 30; i++) {
-        setTimeout(createSnowflake, i * 400);
+    function generateCardSnowflakes(cardElement, count) {
+        for (let i = 0; i < count; i++) {
+            createSnowflake(cardElement);
+        }
     }
 
-    setInterval(createSnowflake, 500);
+    // Initialize snowflakes for a few cards
+    cardIds.forEach(id => {
+        const card = document.getElementById(id);
+        if (card) {
+            // Generate 3 snowflakes per card initially
+            generateCardSnowflakes(card, 3); 
+            // Continuously generate one new snowflake every few seconds
+            setInterval(() => createSnowflake(card), Math.random() * 5000 + 3000); 
+        }
+    });
 </script>
 
 </body>
