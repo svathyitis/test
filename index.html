@@ -21,6 +21,10 @@
     --xmas-white: #ffffff;
     --xmas-green: #2e7d32;
     --xmas-gold: #FFD700;
+
+    /* New Grey Shades for Headings */
+    --h3-color: #4c4c4c; /* Darker Grey */
+    --h4-color: #666666; /* Lighter Grey */
 }
 
 * {
@@ -29,11 +33,11 @@
     box-sizing: border-box;
 }
 
-/* --- 2. GLOBAL FONT DECREASE (Approx -10%) AND LINE HEIGHT INCREASE (Approx +4%) --- */
+/* --- 2. GLOBAL FONT DECREASE (Approx -15%) AND LINE HEIGHT INCREASE (Approx +4%) --- */
 body {
     font-family: 'Inter', sans-serif;
-    /* Base font size decreased globally for all elements (0.95em * 0.9 = 0.855em) */
-    font-size: 0.85em; 
+    /* Base font size reduced by 5% (0.85em * 0.95 = 0.8075em, using 0.81em) */
+    font-size: 0.81em; 
     /* Base line height increased (approx +4%) */
     line-height: 1.4;
     background: var(--bg);
@@ -53,7 +57,6 @@ body {
     border: 1px solid var(--border); 
     position: relative;
     z-index: 1;
-    /* Necessary for absolute positioning of icons and snowflakes */
     overflow: hidden; 
 }
 
@@ -96,18 +99,20 @@ h2 {
     color: var(--text);
 }
 
+/* Updated H3 to new grey color */
 h3 {
     font-size: 0.9rem; 
     font-weight: 600;
     margin: 0.6rem 0 0.2rem;
-    color: var(--text);
+    color: var(--h3-color);
 }
 
+/* Updated H4 to new grey color */
 h4 {
     font-size: 0.8rem; 
     font-weight: 500;
     margin: 0.3rem 0 0.1rem;
-    color: var(--text);
+    color: var(--h4-color);
 }
 
 .subtitle {
@@ -122,7 +127,8 @@ h4 {
     color: white;
     padding: 0.5rem 0.9rem; 
     border-radius: 7px;
-    font-size: 0.75rem; 
+    /* Button font reduced by 20% (0.75rem * 0.8 = 0.6rem) */
+    font-size: 0.6rem; 
     font-weight: 600;
     margin: 0.4rem 0.2rem 0.5rem 0;
     transition: background 0.2s ease;
@@ -135,7 +141,7 @@ h4 {
     background-color: var(--accent-hover);
 }
 
-/* --- NEW, IMPROVED CHRISTMAS HAT effect --- */
+/* --- NEW, IMPROVED CHRISTMAS HAT effect (Removed for now, keeping only buttons) --- */
 
 /* Hat Cone/Tip */
 .button::before {
@@ -170,7 +176,7 @@ h4 {
 
 /* --- FONT REDUCTION (40%) IN DO DEC CARD --- */
 .small-h2 {
-    /* Base h2 font size is 1.1rem. Reducing by 40% (1.1 * 0.6 = 0.66rem) */
+    /* Calculated size is 0.66rem (40% reduction from 1.1rem) */
     font-size: 0.66rem; 
     font-weight: 500;
     margin-bottom: 0.1rem;
@@ -223,23 +229,7 @@ ul.timeline, ul.features {
     border-top: 1px dashed rgba(0, 0, 0, 0.08);
 }
 
-/* --- XMAS TREE STYLING (Thematic Icon 1) --- */
-/* Reduced size by adjusting scale and translate values in SVG */
-.xmas-tree-container {
-    width: 25px; 
-    height: 25px;
-    margin-left: 8px;
-    flex-shrink: 0;
-    position: relative;
-    top: 0px;
-}
-.xmas-tree {
-    width: 100%;
-    height: 100%;
-}
-.tree-layer-1, .tree-layer-2, .tree-layer-3, .trunk, .star {
-    transition: fill 0.3s ease;
-}
+/* --- XMAS TREE STYLING (Removed) --- */
 
 /* --- SNOWFLAKE STYLES (New Horizontal/Flat Animation) --- */
 @keyframes float {
@@ -250,11 +240,10 @@ ul.timeline, ul.features {
 
 .snowflake {
     position: absolute;
-    color: #fff; /* White against the card border color */
+    color: #fff; 
     z-index: 100;
     pointer-events: none;
     animation: float linear infinite;
-    /* Font size reduced to be much smaller */
     font-size: 0.7em !important; 
     text-shadow: 0 0 1px rgba(0, 0, 0, 0.1);
     opacity: 0;
@@ -265,7 +254,6 @@ ul.timeline, ul.features {
     position: absolute;
     bottom: -8px; 
     right: 5px;
-    /* Reduced size */
     font-size: 0.8em; 
     z-index: 10;
 }
@@ -279,7 +267,6 @@ ul.timeline, ul.features {
     position: absolute;
     top: 5px; 
     right: 5px;
-    /* Reduced size */
     font-size: 0.9em;
     z-index: 10;
 }
@@ -348,16 +335,7 @@ ul.timeline, ul.features {
             <h1>Dec Sahaj,</h1>
             <p class="subtitle">with Vishal Merani/ Team</p>
         </div>
-        <div class="xmas-tree-container">
-            <svg class="xmas-tree" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                <path class="star" d="M50 0 L61 35 L95 35 L68 57 L79 92 L50 70 L21 92 L32 57 L5 35 L39 35 Z" fill="#FFD700" transform="scale(0.18) translate(180, 20)" /> 
-                <path class="tree-layer-1" d="M50 0 L0 100 L100 100 Z" fill="#388e3c" transform="translate(0, 5) scale(0.65)"/>
-                <path class="tree-layer-2" d="M50 0 L0 100 L100 100 Z" fill="#4caf50" transform="translate(0, 30) scale(0.85)"/>
-                <path class="tree-layer-3" d="M50 0 L0 100 L100 100 Z" fill="#2e7d32" transform="translate(0, 55) scale(1)"/>
-                <rect class="trunk" x="45" y="88" width="10" height="12" fill="#a0522d"/>
-            </svg>
-        </div>
-    </header>
+        </header>
 
     <section class="course-summary">
         <h2>Lapse into meditation in minutes</h2>
