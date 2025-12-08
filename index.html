@@ -50,13 +50,18 @@ body {
 
 .iphone-frame.no-padding {
     padding: 0;
-    border: none;
+    /* Apply the subtle border to all card types */
+    border: 1px solid var(--border); 
     box-shadow: none;
 }
+.iphone-frame.no-padding img {
+    /* Ensure the image respects the border radius */
+    border-radius: 17px; 
+}
 
-/* Tighter general spacing */
+
 header, section, footer {
-    margin-bottom: 0.6rem; /* Reduced margin */
+    margin-bottom: 0.6rem; 
 }
 
 header {
@@ -71,35 +76,35 @@ header {
 }
 
 h1 {
-    font-size: 1.35rem; /* ~10% decrease */
+    font-size: 1.35rem; 
     font-weight: 600;
     margin-bottom: 0.1rem;
     color: var(--text);
 }
 
 h2 {
-    font-size: 1.1rem; /* ~10% decrease */
+    font-size: 1.1rem; 
     font-weight: 500;
     margin-bottom: 0.3rem;
     color: var(--text);
 }
 
 h3 {
-    font-size: 0.9rem; /* ~10% decrease */
+    font-size: 0.9rem; 
     font-weight: 600;
     margin: 0.6rem 0 0.2rem;
     color: var(--text);
 }
 
 h4 {
-    font-size: 0.8rem; /* ~10% decrease */
+    font-size: 0.8rem; 
     font-weight: 500;
     margin: 0.3rem 0 0.1rem;
     color: var(--text);
 }
 
 .subtitle {
-    font-size: 0.78rem; /* ~10% decrease */
+    font-size: 0.78rem; 
     color: var(--muted);
     margin-bottom: 0;
 }
@@ -108,9 +113,9 @@ h4 {
     display: inline-block;
     background-color: var(--accent);
     color: white;
-    padding: 0.5rem 0.9rem; /* Reduced padding */
+    padding: 0.5rem 0.9rem; 
     border-radius: 7px;
-    font-size: 0.75rem; /* ~10% decrease */
+    font-size: 0.75rem; 
     font-weight: 600;
     margin: 0.4rem 0.2rem 0.5rem 0;
     transition: background 0.2s ease;
@@ -128,17 +133,17 @@ ul.timeline, ul.features {
 }
 
 .timeline li, .features li {
-    font-size: 0.78rem; /* ~10% decrease */
+    font-size: 0.78rem; 
     padding: 1px 0;
 }
 
-/* --- 4. MINIMALIST LOCATION/QUERIES TEXT (Approx -20% decrease from last) --- */
+/* --- 4. LOCATION/QUERIES TEXT (Very Small) --- */
 .location-text, .queries-text {
     color: var(--text);
     font-weight: 400;
-    margin-top: 0.3rem; /* Reduced margin */
+    margin-top: 0.3rem; 
     display: block;
-    font-size: 0.65rem; /* Significantly reduced font size */
+    font-size: 0.65rem; 
     line-height: 1.3;
 }
 .location-text strong {
@@ -151,7 +156,7 @@ ul.timeline, ul.features {
 }
 
 .footer {
-    font-size: 0.55rem; /* ~10% decrease */
+    font-size: 0.55rem; 
     color: var(--muted);
     text-align: center;
     margin-top: 0.7rem;
@@ -178,7 +183,7 @@ ul.timeline, ul.features {
     transition: fill 0.3s ease;
 }
 
-/* --- 5. SOCIAL ICONS (Slightly reduced size) --- */
+/* --- 5. SOCIAL ICONS --- */
 .social-icons-frame {
     padding: 16px 0 8px;
     text-align: center;
@@ -192,7 +197,7 @@ ul.timeline, ul.features {
 }
 
 .icon {
-    width: 25px; /* Reduced size */
+    width: 25px; 
     height: 25px;
     fill: var(--accent);
     transition: fill 0.3s ease;
@@ -202,40 +207,8 @@ ul.timeline, ul.features {
     fill: var(--accent-hover);
 }
 
-/* Copy box styles */
-.copy-box {
-    display: flex;
-    margin-top: 8px;
-    border: 1px solid #ddd;
-    border-radius: 6px;
-    overflow: hidden;
-}
-
-.copy-input {
-    flex-grow: 1;
-    border: none;
-    padding: 0.4rem 0.7rem;
-    font-size: 0.7rem;
-    background-color: #f9fafc;
-    color: var(--text);
-    outline: none;
-    pointer-events: none;
-}
-
-.copy-btn {
-    background-color: var(--accent);
-    color: white;
-    border: none;
-    padding: 0 0.8rem;
-    font-size: 0.7rem;
-    cursor: pointer;
-    transition: background-color 0.2s;
-    flex-shrink: 0;
-}
-
-.copy-btn:hover {
-    background-color: var(--accent-hover);
-}
+/* --- COPY BOX STYLES (Removed from main flow, keeping in case needed) --- */
+/* .copy-box, .copy-input, .copy-btn are removed from HTML structure */
 </style>
 
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-QL72FZ9YZ2"></script>
@@ -562,84 +535,42 @@ ul.timeline, ul.features {
 <div class="iphone-frame">
     <header>
         <div class="card-title-group">
-            <h1>Scanning,</h1>
-            <h2>KaalGyaan Sessions</h2>
+            <h1>Personalised Sessions</h1>
+            <h2>Scanning (KaalGyaan) & L&B Pain Management</h2>
             <p class="subtitle">with Vishal Merani</p>
         </div>
     </header>
 
     <section class="course-details">
-        <h3>Get to know now, like never before</h3>
-        <p class="subtitle"> from different dimension for better decisions in life</p>
+        <h3>Decoding your next step / Finding relief</h3>
         <ul class="features">
-            <li>⤷ Answers about you</li>
-            <li>⤷ Knowing about you</li>
-            <li>⤷ Guiding your next step</li>
+            <li>**Scanning (KaalGyaan):** Answers from a different dimension.</li>
+            <li>**L&B Sessions:** Focused pain management and relief.</li>
         </ul>
     </section>
 
     <section class="schedule-booking">
+        <h4>Booking Distinction:</h4>
         <ul class="timeline">
-            <li> Leave a note, few days in advance </li>
+            <li>Scanning Sessions can be booked online via the link below.</li>
+            <li>For L&B or personal Scanning requests, kindly DM.</li>
         </ul>
-        <span class="location-text">📍 Zoom | Online</span>
-        <a href="https://kaalgyan.artofliving.org/sessions" class="button" target="_blank">Immediate Scanning Sessions, check here</a>
+        <span class="location-text">📍 Online (Zoom) for Scanning | In-person (Bangalore Ashram) for L&B</span>
+        <a href="https://kaalgyan.artofliving.org/sessions" class="button" target="_blank">Book Online Scanning Sessions</a>
     </section>
 
     <section class="logistics-contact">
-        <div class="copy-box">
-            <input class="copy-input" type="text" value="Scanning sessions at your convenience 9818503888" id="copyText4" readonly>
-            <button class="copy-btn" onclick="copyToClipboard('copyText4', this)">Copy</button>
-            <a class="wa-icon" target="_blank" id="waLink4" title="Share on WhatsApp"></a>
-        </div>
+        <h4 class="queries-text">Personal DM/Queries: +91 9818503888 (kindly message first)</h4>
     </section>
 
     <footer>
-        <div class="footer"> 🌀🔮🌌 ♡ Online & Offline Sessions <br>
+        <div class="footer"> 🌀🔮🩹⚡ ♡ Online & Offline Sessions <br>
         ॐ Jai Guru Dev ॐ
         </div>
     </footer>
 </div>
-
-
-<div class="iphone-frame">
-    <header>
-        <div class="card-title-group">
-            <h1>Pain Management,</h1>
-            <h2>L&B Sessions</h2>
-            <p class="subtitle">with Vishal Merani</p>
-        </div>
-    </header>
-
-    <section class="course-details">
-        <h3>Get relief in an hour or so</h3>
-    </section>
-
-    <section class="schedule-booking">
-        <ul class="timeline">
-            <li> Leave a note, few days in advance </li>
-        </ul>
-        <span class="location-text">📍 In-person, Bangalore Ashram </span>
-    </section>
-
-    <section class="logistics-contact">
-        <h4 class="queries-text">For Bookings, reach out via team +91 9818503888 </h4>
-        <div class="copy-box">
-            <input class="copy-input" type="text" value="L&B Session Scheduling, In person Help: 9818503888" id="copyText5" readonly>
-            <button class="copy-btn" onclick="copyToClipboard('copyText5', this)">Copy</button>
-            <a class="wa-icon" target="_blank" id="waLink5" title="Share on WhatsApp"></a>
-        </div>
-    </section>
-
-    <footer>
-        <div class="footer"> 🩹⚡ ♡ Offline Sessions Only <br>
-        ॐ Jai Guru Dev ॐ
-        </div>
-    </footer>
-</div>
-
 <div class="iphone-frame subtle-card-with-text no-padding">
-    <img src="SecretsoftheSubtle.png" alt="Secrets of the Subtle" style="width: 100%; border-radius: 18px;" />
+    <img src="SecretsoftheSubtle.png" alt="Secrets of the Subtle" style="width: 100%; border-radius: 17px;" />
     <div class="overlay-text"> 𓆩𓆪 Screening over </div>
 </div>
 
@@ -664,7 +595,7 @@ ul.timeline, ul.features {
 </div>
 
 <div class="iphone-frame subtle-card-with-text no-padding">
-    <img src="UandUniverse.png" alt="U and Universe" style="width: 100%; border-radius: 18px;" />
+    <img src="UandUniverse.png" alt="U and Universe" style="width: 100%; border-radius: 17px;" />
     <div class="overlay-text"> 𓆩𓆪 Screened in VM, 2025 </div>
 </div>
 
@@ -699,14 +630,6 @@ ul.timeline, ul.features {
     </footer>
 </div>
 
-
-<div class="iphone-frame subtle-card-with-text no-padding">
-    <img src="vmvol.png" alt="Volunteer" style="width: 100%; border-radius: 18px;" />
-    <a href="https://vol.vishalmerani.com/" class="overlay-text" style="text-decoration: none; color: inherit;" target="_blank" rel="noopener noreferrer">
-        𓆩Join in𓆪
-    </a>
-</div>
-
 <div class="iphone-frame">
     <header>
         <div class="card-title-group">
@@ -714,17 +637,28 @@ ul.timeline, ul.features {
             <h2>To serve, to attend to, to honor</h2>
         </div>
     </header>
+    
+    <section class="volunteer-image-link">
+        <img src="vmvol.png" alt="Volunteer" style="width: 100%; border-radius: 17px; margin-bottom: 0.7rem;" />
+    </section>
+
     <ul class="features">
         <li>Uplift consciousness</li>
         <li>Meet & Greet versions of you</li>
         <li>Dwell in awe and awareness </li>
         <li>Diverse paths yet One place</li>
     </ul>
+
+    <section class="volunteer-action">
+        <a href="https://vol.vishalmerani.com/" class="button" target="_blank">Join in ♡ (vol.vishalmerani.com)</a>
+    </section>
+    
+    <footer>
+        <div class="footer">Seva | The path of selfless service.</div>
+    </footer>
 </div>
-
-
 <div class="iphone-frame no-padding">
-    <img src="zenvm.png" alt="Meditation Image" style="width: 100%; border-radius: 18px;"/>
+    <img src="zenvm.png" alt="Meditation Image" style="width: 100%; border-radius: 17px;"/>
 </div>
 
 
@@ -784,21 +718,6 @@ ul.timeline, ul.features {
 </div>
 
 <script>
-    function copyToClipboard(id, btn) {
-        const input = document.getElementById(id);
-        input.select();
-        input.setSelectionRange(0, 99999);
-        navigator.clipboard.writeText(input.value);
-        btn.innerText = "Copied!";
-        setTimeout(() => btn.innerText = "Copy", 1500);
-
-        const waLink = document.querySelector(`#waLink${id.slice(-1)}`);
-        const msg = encodeURIComponent(input.value);
-        waLink.href = `https://wa.me/?text=${msg}`;
-    }
-</script>
-
-<script>
     const snowflakeIcon = document.getElementById("snowflake-icon");
     let darkMode = false;
 
@@ -810,7 +729,7 @@ ul.timeline, ul.features {
         const darkBg = '#1a1a1a';
         const darkText = '#f5f5dc';
         const darkMuted = '#aaa';
-        const darkBorder = '#333'; // Subtle border in dark mode
+        const darkBorder = '#333'; 
         const darkAccent = '#5cb85c'; 
         const darkAccentHover = '#4cae4c';
         const darkBoxBg = '#2d2d2d';
@@ -819,7 +738,7 @@ ul.timeline, ul.features {
         const lightBg = '#ffffff';
         const lightText = '#1f1f1f';
         const lightMuted = '#777';
-        const lightBorder = '#f0aaaa'; // Very subtle red
+        const lightBorder = '#f0aaaa'; 
         const lightAccent = '#2e7d32';
         const lightAccentHover = '#388e3c';
         const lightBoxBg = '#ffffff';
@@ -835,18 +754,6 @@ ul.timeline, ul.features {
 
         // Update snowflake icon stroke color
         snowflakeIcon.style.stroke = darkMode ? darkText : lightBorder;
-
-        // Update input backgrounds
-        document.querySelectorAll('.copy-input').forEach(input => {
-            input.style.backgroundColor = darkMode ? '#3e3e3e' : '#f9fafc';
-            input.style.color = 'var(--text)';
-            input.style.borderColor = darkMode ? '#555' : 'var(--border)';
-        });
-
-        document.querySelectorAll('.copy-btn').forEach(btn => {
-            btn.style.backgroundColor = 'var(--accent)';
-            btn.style.color = 'white';
-        });
 
         // Update social icons in dark mode
         document.querySelectorAll('.social-icons-list .icon').forEach(icon => {
