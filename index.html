@@ -7,16 +7,15 @@
 <title>Vishal Merani </title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
 <style>
-/* --- 1. NEW LEGIBLE CHRISTMAS COLOR PALETTE --- */
+/* --- 1. MINIMALIST COLOR PALETTE --- */
 :root {
-    --bg: #ffffff; /* Plain White */
-    --text: #1f1f1f; /* Standard Dark Text for legibility */
+    --bg: #ffffff;
+    --text: #1f1f1f; /* Standard Dark Text */
     --muted: #777;
-    --border: #c62828; /* Deep Christmas Red (ONLY FOR BORDER) */
-    --accent: #004d40; /* Deep Christmas Green for buttons/keywords */
-    --accent-hover: #006652; /* Darker Green for hover */
+    --border: #c62828; /* Deep Christmas Red (STRICTLY FOR BORDER) */
+    --accent: #004d40; /* Deep Christmas Green for buttons only */
+    --accent-hover: #006652;
     --box-bg: #ffffff;
-    --text-accent: #004d40; /* Using green for highlighted text/locations */
 }
 
 * {
@@ -32,13 +31,12 @@ body {
     padding: 22px 14px;
 }
 
-/* --- 2. ENHANCED STRUCTURE AND MOBILE FRAME STYLES --- */
+/* --- 2. ENHANCED STRUCTURE AND MINIMAL STYLES --- */
 .iphone-frame {
     background: var(--box-bg);
     border-radius: 20px;
     max-width: 390px;
     width: 100%;
-    /* Reduced margin bottom for less gap between cards */
     margin: 0 auto 20px auto;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
     padding: 26px 20px;
@@ -59,7 +57,6 @@ header, section, footer {
     margin-bottom: 0.8rem;
 }
 
-/* Reduced header margin for tighter flow */
 header {
     display: flex;
     justify-content: space-between;
@@ -74,7 +71,7 @@ header {
 h1 {
     font-size: 1.5rem;
     font-weight: 600;
-    margin-bottom: 0.1rem; /* Reduced gap */
+    margin-bottom: 0.1rem;
     color: var(--text);
 }
 
@@ -88,14 +85,14 @@ h2 {
 h3 {
     font-size: 1.0rem;
     font-weight: 600;
-    margin: 0.8rem 0 0.3rem; /* Reduced top margin */
+    margin: 0.8rem 0 0.3rem;
     color: var(--text);
 }
 
 h4 {
-    font-size: 0.85rem;
+    font-size: 0.9rem; /* Slightly larger for better heading hierarchy */
     font-weight: 500;
-    margin: 0.5rem 0 0.2rem; /* Reduced margin */
+    margin: 0.5rem 0 0.2rem;
     color: var(--text);
 }
 
@@ -111,11 +108,11 @@ h4 {
     color: white;
     padding: 0.55rem 1.0rem;
     border-radius: 8px;
-    text-decoration: none;
-    font-size: 0.8rem; /* Slightly larger button text for prominence */
+    font-size: 0.8rem;
     font-weight: 600;
-    margin: 0.4rem 0.2rem 0.6rem 0; /* Tight spacing around button */
+    margin: 0.4rem 0.2rem 0.6rem 0;
     transition: background 0.2s ease;
+    text-decoration: none;
 }
 
 .button:hover {
@@ -125,36 +122,28 @@ h4 {
 ul.timeline, ul.features {
     list-style: none;
     padding-left: 0;
-    margin: 0.3rem 0 0.8rem; /* Reduced top margin for lists */
+    margin: 0.3rem 0 0.8rem;
 }
 
 .timeline li, .features li {
-    font-size: 0.8rem;
-    padding: 2px 0; /* Reduced padding for tighter line height */
+    font-size: 0.875rem; /* Standardized for chat-like legibility (14px) */
+    padding: 2px 0;
 }
 
-/* --- 3. KEYWORD COLOR UPDATE (NO RED TEXT) --- */
-/* Location text and queries now use the accent color */
+/* --- 3. KEYWORD COLOR UPDATE (NO GREEN, NO RED TEXT) --- */
 .location-text, .queries-text {
-    color: var(--text-accent); /* Deep Green for important info */
+    color: var(--text); /* Standard Dark Text */
     font-weight: 600;
     margin-top: 0.5rem;
     display: block;
+    font-size: 0.875rem; /* Standardized text size */
 }
-/* Ensure location text retains the 📍 icon if present */
 .location-text strong {
-    color: var(--text-accent);
+    color: var(--text);
 }
 
 .queries-text {
     margin-top: 0.8rem;
-}
-
-.copy-box {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin-top: 1rem; /* Reduced margin */
 }
 
 .footer {
@@ -164,39 +153,32 @@ ul.timeline, ul.features {
     margin-top: 0.8rem;
     margin-bottom: 0;
     line-height: 1.2;
-    padding-top: 0.5rem; /* Small internal pad for separation */
+    padding-top: 0.5rem;
     border-top: 1px dashed rgba(0, 0, 0, 0.1);
 }
-/* Ensure footer in the last section is not double-spaced */
-.iphone-frame:last-of-type footer {
-    margin-bottom: 0;
+
+/* --- 4. SOCIAL ICONS MINIMAL REDESIGN --- */
+.social-icons-frame {
+    padding: 18px 0 10px;
+    text-align: center;
 }
 
-/* --- Other styles remain optimized for mobile and consistency --- */
-.xmas-tree-container {
-    width: 50px;
-    height: 50px;
-    flex-shrink: 0;
-    margin-left: 15px;
-}
-.xmas-tree .star { fill: #FFD700; }
-.xmas-tree .tree-layer-1 { fill: #006652; }
-.xmas-tree .tree-layer-2 { fill: #008066; }
-.xmas-tree .tree-layer-3 { fill: #004d40; }
-.xmas-tree .trunk { fill: #a0522d; }
-
-.tap-in-row {
+.social-icons-list {
     display: flex;
-    align-items: center;
-    gap: 10px;
-    flex-wrap: wrap;
-    margin-top: 0.6rem;
-    margin-bottom: 0.6rem;
+    justify-content: center;
+    gap: 18px;
+    margin: 0 auto;
 }
-.tap-in-row h4 {
-    margin: 0;
-    font-size: 0.85rem;
-    font-weight: 500;
+
+.icon {
+    width: 28px;
+    height: 28px;
+    fill: var(--accent); /* Green icon (Visual accent allowed here) */
+    transition: fill 0.3s ease;
+}
+
+.icon:hover {
+    fill: var(--accent-hover);
 }
 </style>
 
@@ -220,7 +202,7 @@ ul.timeline, ul.features {
     margin: 0 auto;
     display: flex;
     justify-content: flex-end;
-    padding: 16px 22px 0; /* Reduced bottom padding */
+    padding: 16px 22px 0;
 ">
     <svg id="moon-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="#c62828" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon" style="cursor: pointer; transition: transform 0.3s ease;">
         <path d="M21 12.79A9 9 0 0112.21 3a7 7 0 100 14.58A9 9 0 0021 12.79z"/>
@@ -721,16 +703,8 @@ ul.timeline, ul.features {
     </footer>
 </div>
 
-
-
-<div class="iphone-frame" style="text-align: center; padding-top: 24px;">
-    <header style="justify-content: center; align-items: center; flex-direction: column; margin-bottom: 0.5rem;">
-        <h1>To stay connected,</h1>
-        <h2 style="margin-bottom: 0.5rem;">@MeraniVishal</h2>
-        <p class="subtitle">Explore insights, updates & posts</p>
-    </header>
-
-    <div class="social-icons" style="margin: 18px auto;">
+<div class="iphone-frame social-icons-frame">
+    <div class="social-icons-list">
         <a href="https://www.instagram.com/meranivishal/" target="_blank" aria-label="Instagram">
             <svg class="icon" viewBox="0 0 24 24"><path d="M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5H7zm10 2c1.7 0 3 1.3 3 3v10c0 1.7-1.3 3-3 3H7c-1.7 0-3-1.3-3-3V7c0-1.7 1.3-3 3-3h10zM12 7c-2.8 0-5 2.2-5 5s2.2 5 5 5 5-2.2 5-5-2.2-5-5-5zm0 2c1.7 0 3 1.3 3 3s-1.3 3-3 3-3-1.3-3-3 1.3-3 3-3zm4.5-3c-.3 0-.5.2-.5.5s.2.5.5.5.5-.2.5-.5S16.8 6 16.5 6z"/></svg>
         </a>
@@ -751,12 +725,7 @@ ul.timeline, ul.features {
             <svg class="icon" viewBox="0 0 24 24"><path d="M12.01 2C6.48 2 2 6.48 2 12c0 5.08 3.82 9.25 8.76 9.9.19-.63.45-1.34.8-1.95-2.68-.38-4.45-1.83-5.07-4.24 1.14.54 2.13.72 3.09.73-2.3-1.29-3.2-3.49-2.9-5.71.53-4.12 5.16-5.42 8.02-3.37 1.59 1.15 2.4 2.78 2.34 5.09-.07 2.46-1.19 4.24-3.11 4.86-.68.22-1.32.19-2.02.1.49.59.88 1.27 1.14 2.13 4.86-1.01 8.25-5.08 8.25-9.91 0-5.52-4.48-10-9.99-10z"/></svg>
         </a>
     </div>
-
-    <footer>
-        <div class="footer">♡ Let's pray, chant, meditate, sing, dance, share, help one another - one post at a time.<br>ॐ Jai Guru Dev ॐ</div>
-    </footer>
 </div>
-
 
 <script>
     function copyToClipboard(id, btn) {
@@ -790,8 +759,6 @@ ul.timeline, ul.features {
         document.documentElement.style.setProperty('--accent', darkMode ? '#5cb85c' : '#004d40');
         document.documentElement.style.setProperty('--accent-hover', darkMode ? '#4cae4c' : '#006652');
         document.documentElement.style.setProperty('--box-bg', darkMode ? '#2d2d2d' : '#ffffff');
-        document.documentElement.style.setProperty('--text-accent', darkMode ? '#5cb85c' : '#004d40');
-
 
         // Update moon icon stroke color
         moonIcon.style.stroke = darkMode ? '#f5f5dc' : '#c62828';
@@ -806,6 +773,11 @@ ul.timeline, ul.features {
         document.querySelectorAll('.copy-btn').forEach(btn => {
             btn.style.backgroundColor = 'var(--accent)';
             btn.style.color = 'white';
+        });
+
+        // Update social icons in dark mode
+        document.querySelectorAll('.social-icons-list .icon').forEach(icon => {
+            icon.style.fill = darkMode ? '#5cb85c' : 'var(--accent)';
         });
 
         // Optional: rotate the moon icon on toggle
