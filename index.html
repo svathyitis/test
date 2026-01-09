@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>it is raining cats</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
 <style>
     :root {
         --bg: #ffffff;
@@ -12,124 +12,131 @@
         --muted: #888888;
         --border: #f0f0f0;
         --accent: #1a1a1a;
-        --card-shadow: 0 2px 15px rgba(0,0,0,0.03);
+        --cat-gold: #d4af37;
     }
 
     body.dark {
-        --bg: #0a0a0a;
-        --text: #e5e5e5;
-        --muted: #555;
+        --bg: #0f0f0f;
+        --text: #e0e0e0;
+        --muted: #666;
         --border: #222;
-        --accent: #ffffff;
+        --accent: #f7e7ce; /* Champagne Gold */
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
         font-family: 'Inter', sans-serif;
-        font-size: 0.85em; 
+        font-size: 0.82em; 
+        line-height: 1.5;
         background: var(--bg);
         color: var(--text);
-        padding: 60px 20px;
-        transition: background 0.5s ease;
+        padding: 40px 20px;
+        transition: all 0.4s ease;
         overflow-x: hidden;
     }
 
-    h1 { font-size: 1.2rem; font-weight: 400; letter-spacing: 0.1em; text-transform: lowercase; text-align: center; margin-bottom: 50px; }
-    h2 { font-size: 0.95rem; font-weight: 600; margin-bottom: 8px; }
+    header.main-head { text-align: center; margin-bottom: 40px; }
+    h1 { font-size: 1.3rem; font-weight: 600; text-transform: lowercase; letter-spacing: -0.01em; }
+    .tagline { font-size: 0.8rem; opacity: 0.6; font-style: italic; }
     
     .iphone-frame {
         background: var(--bg);
-        border-radius: 12px; 
-        max-width: 360px;
+        border-radius: 20px; 
+        max-width: 370px;
         width: 100%;
-        margin: 0 auto 30px auto; 
-        padding: 25px; 
+        margin: 0 auto 24px auto; 
+        padding: 28px; 
         border: 1px solid var(--border); 
         position: relative;
         z-index: 2;
-        box-shadow: var(--card-shadow);
     }
+
+    h2 { font-size: 0.9rem; font-weight: 600; margin-bottom: 4px; color: var(--text); }
+    .subtitle { font-size: 0.75rem; color: var(--muted); margin-bottom: 12px; display: block; }
 
     .button {
         display: inline-block;
         background-color: var(--accent);
         color: var(--bg);
-        padding: 10px 20px; 
-        border-radius: 4px;
+        padding: 10px 18px; 
+        border-radius: 8px;
         font-size: 0.7rem; 
         font-weight: 600;
         text-decoration: none;
         margin-top: 15px;
-        letter-spacing: 0.05em;
+        transition: transform 0.2s;
     }
 
-    .features { list-style: none; padding: 0; margin: 15px 0; }
-    .features li { font-size: 0.75rem; margin-bottom: 6px; opacity: 0.7; }
+    .features { list-style: none; padding: 0; margin: 12px 0; }
+    .features li { font-size: 0.78rem; margin-bottom: 5px; opacity: 0.8; display: flex; align-items: center; }
+    .features li::before { content: "⊹"; margin-right: 8px; color: var(--cat-gold); }
 
-    /* Extra Small Cat Particles */
+    /* Tiny Cat Rain */
     .cat-particle {
         position: fixed;
-        font-size: 8px; 
+        font-size: 9px; 
         pointer-events: none;
         z-index: 1;
         opacity: 0.4;
-        animation: rain linear infinite;
+        animation: fall linear infinite;
     }
 
-    @keyframes rain {
-        0% { transform: translateY(-10vh); }
-        100% { transform: translateY(110vh); }
+    @keyframes fall {
+        0% { transform: translateY(-10vh) rotate(0deg); }
+        100% { transform: translateY(110vh) rotate(20deg); }
     }
 
     .footer {
         font-size: 0.6rem; 
         color: var(--muted);
-        margin-top: 15px;
-        border-top: 1px solid var(--border);
+        text-align: center;
+        margin-top: 12px;
         padding-top: 10px;
-        text-transform: uppercase;
-        letter-spacing: 1px;
+        border-top: 1px dashed var(--border);
     }
 
-    #mode-toggle { text-align: center; margin-bottom: 30px; cursor: pointer; opacity: 0.5; }
+    #mode-toggle { text-align: center; margin-bottom: 20px; cursor: pointer; font-size: 1.2rem; }
 </style>
 </head>
 <body>
 
-<div id="mode-toggle">✧</div>
+<div id="mode-toggle">🐾</div>
 
-<h1>it is raining cats</h1>
-
-<div class="iphone-frame">
-    <h2>(lately in love with cats)</h2>
-    <p style="font-size: 0.75rem; opacity: 0.6;">the theology of the gentle paw.</p>
-    <ul class="features">
-        <li>minimal effort, maximum grace</li>
-        <li>finding the warm spot</li>
-    </ul>
-</div>
+<header class="main-head">
+    <h1>it is raining cats</h1>
+    <p class="tagline">(lately in love with cats)</p>
+</header>
 
 <div class="iphone-frame">
-    <h2>quiet meows & deep naps</h2>
-    <p style="font-size: 0.7rem; color: var(--muted)">decode the midnight zoomies</p>
+    <h2>the deep purr</h2>
+    <span class="subtitle">vocalizing peace & night vision clarity</span>
+    
+    <p style="font-size: 0.75rem;">quiet the meow and lapse into a nap in minutes.</p>
+    
     <ul class="features">
         <li>29 - 31 Jan</li>
         <li>8:00 pm - 10:30 pm</li>
+        <li>restoring the coat</li>
     </ul>
+
     <a href="https://aolt.in/944244" class="button" target="_blank">pick a nap time</a>
-    <div class="footer">silence is the loudest purr</div>
+    <div class="footer">3 days of curiosity</div>
 </div>
 
 <div class="iphone-frame">
-    <h2>the sunbeam session</h2>
-    <p style="font-size: 0.7rem; color: var(--muted)">morning stretches for the soul</p>
+    <h2>soft stretches</h2>
+    <span class="subtitle">with the collective</span>
+    
     <ul class="features">
         <li>26 Feb - 1 Mar</li>
         <li>6:00 am - 8:00 am</li>
+        <li>personal pace</li>
+        <li>customized whiskers</li>
     </ul>
+
     <a href="https://aolt.in/944076" class="button" target="_blank">enter the garden</a>
-    <div class="footer">happiness is a warm feline</div>
+    <div class="footer">yours truly</div>
 </div>
 
 <script>
@@ -137,20 +144,21 @@
     const toggle = document.getElementById('mode-toggle');
     toggle.addEventListener('click', () => {
         document.body.classList.toggle('dark');
+        toggle.innerText = document.body.classList.contains('dark') ? '🐈‍⬛' : '🐾';
     });
 
-    // Extra Small Cat Rain
-    const cats = ['🐾', '🐈', '🐱', '🧶', '✨', '🐾'];
-    function rain() {
-        const div = document.createElement('div');
-        div.className = 'cat-particle';
-        div.innerText = cats[Math.floor(Math.random() * cats.length)];
-        div.style.left = Math.random() * 100 + 'vw';
-        div.style.animationDuration = (Math.random() * 2 + 3) + 's';
-        document.body.appendChild(div);
-        setTimeout(() => div.remove(), 5000);
+    // Minimalist Cat Rain
+    const items = ['🐾', '🐈', '🐱', '🧶', '✨'];
+    function makeRain() {
+        const p = document.createElement('div');
+        p.className = 'cat-particle';
+        p.innerText = items[Math.floor(Math.random() * items.length)];
+        p.style.left = Math.random() * 100 + 'vw';
+        p.style.animationDuration = (Math.random() * 3 + 4) + 's';
+        document.body.appendChild(p);
+        setTimeout(() => p.remove(), 7000);
     }
-    setInterval(rain, 300);
+    setInterval(makeRain, 400);
 </script>
 
 </body>
