@@ -3,26 +3,24 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>It is raining cats</title>
+<title>it is raining cats</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
 <style>
     :root {
         --bg: #ffffff;
-        --text: #2d2d2d;
-        --muted: #a0a0a0;
-        --box-bg: #ffffff;
-        --border: #eeeeee;
+        --text: #1a1a1a;
+        --muted: #888888;
+        --border: #f0f0f0;
         --accent: #1a1a1a;
-        --cat-gold: #f4ebd0;
+        --card-shadow: 0 2px 15px rgba(0,0,0,0.03);
     }
 
     body.dark {
-        --bg: #121212;
-        --text: #e0e0e0;
-        --muted: #666;
-        --box-bg: #1a1a1a;
-        --border: #333;
-        --accent: #f4ebd0;
+        --bg: #0a0a0a;
+        --text: #e5e5e5;
+        --muted: #555;
+        --border: #222;
+        --accent: #ffffff;
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -30,122 +28,108 @@
     body {
         font-family: 'Inter', sans-serif;
         font-size: 0.85em; 
-        line-height: 1.6;
         background: var(--bg);
         color: var(--text);
-        padding: 40px 20px;
-        transition: all 0.3s ease;
-        position: relative;
+        padding: 60px 20px;
+        transition: background 0.5s ease;
         overflow-x: hidden;
     }
 
-    h1 { font-size: 1.4rem; font-weight: 600; letter-spacing: -0.02em; margin-bottom: 0.5rem; text-align: center; }
-    h2 { font-size: 1rem; font-weight: 500; margin-bottom: 0.5rem; opacity: 0.9; }
+    h1 { font-size: 1.2rem; font-weight: 400; letter-spacing: 0.1em; text-transform: lowercase; text-align: center; margin-bottom: 50px; }
+    h2 { font-size: 0.95rem; font-weight: 600; margin-bottom: 8px; }
     
     .iphone-frame {
-        background: var(--box-bg);
-        border-radius: 24px; 
-        max-width: 380px;
+        background: var(--bg);
+        border-radius: 12px; 
+        max-width: 360px;
         width: 100%;
-        margin: 0 auto 24px auto; 
-        padding: 30px; 
+        margin: 0 auto 30px auto; 
+        padding: 25px; 
         border: 1px solid var(--border); 
         position: relative;
         z-index: 2;
+        box-shadow: var(--card-shadow);
     }
 
     .button {
         display: inline-block;
         background-color: var(--accent);
         color: var(--bg);
-        padding: 0.6rem 1.2rem; 
-        border-radius: 50px;
+        padding: 10px 20px; 
+        border-radius: 4px;
         font-size: 0.7rem; 
         font-weight: 600;
         text-decoration: none;
-        transition: opacity 0.2s;
+        margin-top: 15px;
+        letter-spacing: 0.05em;
     }
 
-    .features { list-style: none; padding: 0; margin: 1rem 0; }
-    .features li { font-size: 0.8rem; margin-bottom: 4px; opacity: 0.8; }
-    .features li::before { content: "•"; margin-right: 8px; color: var(--muted); }
+    .features { list-style: none; padding: 0; margin: 15px 0; }
+    .features li { font-size: 0.75rem; margin-bottom: 6px; opacity: 0.7; }
 
-    /* Cat Animation Styling */
+    /* Extra Small Cat Particles */
     .cat-particle {
         position: fixed;
-        font-size: 10px; /* Extra small */
+        font-size: 8px; 
         pointer-events: none;
         z-index: 1;
-        opacity: 0.5;
-        animation: floatDown linear infinite;
+        opacity: 0.4;
+        animation: rain linear infinite;
     }
 
-    @keyframes floatDown {
-        0% { transform: translateY(-10vh) rotate(0deg); }
-        100% { transform: translateY(110vh) rotate(360deg); }
+    @keyframes rain {
+        0% { transform: translateY(-10vh); }
+        100% { transform: translateY(110vh); }
     }
 
     .footer {
         font-size: 0.6rem; 
         color: var(--muted);
-        text-align: center;
-        margin-top: 1rem;
-        letter-spacing: 0.05em;
+        margin-top: 15px;
+        border-top: 1px solid var(--border);
+        padding-top: 10px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
     }
 
-    #mode-toggle { text-align: center; margin-bottom: 20px; cursor: pointer; font-size: 1.2rem; }
+    #mode-toggle { text-align: center; margin-bottom: 30px; cursor: pointer; opacity: 0.5; }
 </style>
 </head>
 <body>
 
-<div id="mode-toggle">🐾</div>
+<div id="mode-toggle">✧</div>
 
 <h1>it is raining cats</h1>
 
 <div class="iphone-frame">
-    <header>
-        <h2>(lately in love with cats)</h2>
-        <p style="font-size: 0.8rem; opacity: 0.7;">feline grace & soft focus</p>
-    </header>
+    <h2>(lately in love with cats)</h2>
+    <p style="font-size: 0.75rem; opacity: 0.6;">the theology of the gentle paw.</p>
     <ul class="features">
-        <li>gentle observation</li>
-        <li>the art of the landing</li>
-        <li>quiet presence</li>
+        <li>minimal effort, maximum grace</li>
+        <li>finding the warm spot</li>
     </ul>
-    <div class="footer">purring in silence</div>
 </div>
 
 <div class="iphone-frame">
-    <header>
-        <h2>soft stretches</h2>
-        <p style="font-size: 0.7rem; color: var(--muted)">with the collective</p>
-    </header>
-    <section>
-        <p style="margin-top:10px">lapse into a nap in minutes</p>
-        <ul class="features">
-            <li>personal pace</li>
-            <li>customized whiskers</li>
-            <li>yours truly</li>
-        </ul>
-        <a href="#" class="button">pick a nap time</a>
-    </section>
-    <div class="footer">3 days of curiosity</div>
+    <h2>quiet meows & deep naps</h2>
+    <p style="font-size: 0.7rem; color: var(--muted)">decode the midnight zoomies</p>
+    <ul class="features">
+        <li>29 - 31 Jan</li>
+        <li>8:00 pm - 10:30 pm</li>
+    </ul>
+    <a href="https://aolt.in/944244" class="button" target="_blank">pick a nap time</a>
+    <div class="footer">silence is the loudest purr</div>
 </div>
 
 <div class="iphone-frame">
-    <header>
-        <h2>the deep purr</h2>
-        <p style="font-size: 0.7rem; color: var(--muted)">vocalizing peace</p>
-    </header>
-    <section>
-        <ul class="features">
-            <li>quiet the meow</li>
-            <li>restoring the coat</li>
-            <li>night vision clarity</li>
-        </ul>
-        <a href="#" class="button">enter the garden</a>
-    </section>
-    <div class="footer">available at dawn and dusk</div>
+    <h2>the sunbeam session</h2>
+    <p style="font-size: 0.7rem; color: var(--muted)">morning stretches for the soul</p>
+    <ul class="features">
+        <li>26 Feb - 1 Mar</li>
+        <li>6:00 am - 8:00 am</li>
+    </ul>
+    <a href="https://aolt.in/944076" class="button" target="_blank">enter the garden</a>
+    <div class="footer">happiness is a warm feline</div>
 </div>
 
 <script>
@@ -153,22 +137,20 @@
     const toggle = document.getElementById('mode-toggle');
     toggle.addEventListener('click', () => {
         document.body.classList.toggle('dark');
-        toggle.innerText = document.body.classList.contains('dark') ? '🐈‍⬛' : '🐾';
     });
 
-    // Cat Rain Generator
-    const catEmojis = ['🐱', '🐈', '🐾', '😽', '🧶', '🐟', '🐈‍⬛'];
-    function createCat() {
-        const cat = document.createElement('div');
-        cat.className = 'cat-particle';
-        cat.innerText = catEmojis[Math.floor(Math.random() * catEmojis.length)];
-        cat.style.left = Math.random() * 100 + 'vw';
-        cat.style.animationDuration = (Math.random() * 3 + 4) + 's';
-        document.body.appendChild(cat);
-        
-        setTimeout(() => { cat.remove(); }, 7000);
+    // Extra Small Cat Rain
+    const cats = ['🐾', '🐈', '🐱', '🧶', '✨', '🐾'];
+    function rain() {
+        const div = document.createElement('div');
+        div.className = 'cat-particle';
+        div.innerText = cats[Math.floor(Math.random() * cats.length)];
+        div.style.left = Math.random() * 100 + 'vw';
+        div.style.animationDuration = (Math.random() * 2 + 3) + 's';
+        document.body.appendChild(div);
+        setTimeout(() => div.remove(), 5000);
     }
-    setInterval(createCat, 400);
+    setInterval(rain, 300);
 </script>
 
 </body>
