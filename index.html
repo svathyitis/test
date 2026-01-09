@@ -4,127 +4,112 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>it is raining cats</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Orbitron:wght@500&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Monoton&family=Orbitron:wght@500&display=swap" rel="stylesheet" />
 <style>
     :root {
-        --bg: #e0e0e0;
-        --card-bg: #f5f5f5;
+        --bg: #f2f2f2;
+        --card-bg: #ffffff;
         --text: #333333;
-        --neon: #ffffff;
-        --glow: rgba(255, 255, 255, 0.8);
-        --border: #d0d0d0;
+        --muted: #777777;
+        --border: #e0e0e0;
+        --accent: #1a1a1a; /* Old theme button color */
+        --neon-text: #444444;
+        --neon-glow: rgba(0,0,0,0.1);
     }
 
     body.dark {
-        --bg: #1a1a1a;
-        --card-bg: #222222;
-        --text: #cccccc;
-        --neon: #00ffcc; /* Mint Neon Glow */
-        --glow: rgba(0, 255, 204, 0.5);
-        --border: #333333;
+        --bg: #121212;
+        --card-bg: #1a1a1a;
+        --text: #dddddd;
+        --muted: #666666;
+        --border: #2a2a2a;
+        --accent: #f5f5f5;
+        --neon-text: #00ffcc; /* Neon Mint glow font */
+        --neon-glow: rgba(0, 255, 204, 0.6);
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
         font-family: 'Inter', sans-serif;
+        font-size: 0.82em; 
         background: var(--bg);
         color: var(--text);
-        padding: 60px 20px;
-        transition: all 0.5s ease;
-        overflow-x: hidden;
+        padding: 50px 20px;
+        transition: all 0.4s ease;
     }
 
-    header { text-align: center; margin-bottom: 50px; }
-    
-    h1 { 
-        font-family: 'Orbitron', sans-serif;
-        font-size: 1.4rem; 
-        text-transform: lowercase; 
-        color: var(--neon);
-        text-shadow: 0 0 10px var(--glow);
-        margin-bottom: 5px;
-    }
-
-    .tagline { 
-        font-size: 0.75rem; 
-        letter-spacing: 2px;
-        opacity: 0.6;
-    }
+    header { text-align: center; margin-bottom: 45px; }
+    h1 { font-size: 1.4rem; font-weight: 600; text-transform: lowercase; letter-spacing: -0.02em; }
+    .tagline { font-size: 0.8rem; opacity: 0.6; font-style: italic; margin-top: 4px; }
     
     .iphone-frame {
         background: var(--card-bg);
-        border-radius: 15px; 
-        max-width: 380px;
+        border-radius: 20px; 
+        max-width: 375px;
         width: 100%;
-        margin: 0 auto 35px auto; 
+        margin: 0 auto 25px auto; 
         padding: 30px; 
         border: 1px solid var(--border); 
         position: relative;
         z-index: 2;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.05);
     }
 
-    .neon-title {
-        font-family: 'Orbitron', sans-serif;
+    .glow-title {
+        font-family: 'Orbitron', sans-serif; /* Neon-style font */
         font-size: 0.85rem;
-        color: var(--neon);
-        text-shadow: 0 0 5px var(--glow);
+        color: var(--neon-text);
+        text-shadow: 0 0 8px var(--neon-glow);
         margin-bottom: 15px;
         display: block;
-        text-transform: uppercase;
-        letter-spacing: 1px;
+        line-height: 1.4;
     }
 
-    .features { list-style: none; padding: 0; margin: 20px 0; }
-    .features li { 
-        font-size: 0.78rem; 
-        margin-bottom: 8px; 
-        opacity: 0.7; 
-        border-bottom: 1px solid var(--border);
-        padding-bottom: 4px;
-    }
+    .features { list-style: none; padding: 0; margin: 15px 0; }
+    .features li { font-size: 0.78rem; margin-bottom: 6px; opacity: 0.8; }
+    .features li::before { content: "🐾"; font-size: 0.6rem; margin-right: 8px; opacity: 0.5; }
 
+    /* Old Theme Button Style */
     .button {
         display: inline-block;
-        border: 1px solid var(--neon);
-        color: var(--neon);
-        background: transparent;
-        padding: 12px 20px; 
-        border-radius: 2px;
+        background-color: var(--accent);
+        color: var(--bg);
+        padding: 12px 22px; 
+        border-radius: 8px;
         font-size: 0.7rem; 
         font-weight: 600;
         text-decoration: none;
-        text-transform: uppercase;
-        letter-spacing: 2px;
-        box-shadow: 0 0 5px var(--glow);
         margin-top: 10px;
+        transition: opacity 0.2s ease;
     }
 
+    .button:hover { opacity: 0.9; }
+
+    /* Tiny Background Cats */
     .cat-particle {
         position: fixed;
-        font-size: 8px; 
+        font-size: 10px; 
         pointer-events: none;
         z-index: 1;
-        opacity: 0.3;
-        animation: rain linear infinite;
+        opacity: 0.4;
+        animation: fall linear infinite;
     }
 
-    @keyframes rain {
+    @keyframes fall {
         0% { transform: translateY(-10vh); }
         100% { transform: translateY(110vh); }
     }
 
-    .footer-note {
+    .footer-text {
         font-size: 0.6rem; 
         color: var(--muted);
         text-align: center;
         margin-top: 15px;
-        opacity: 0.5;
-        text-transform: lowercase;
+        border-top: 1px solid var(--border);
+        padding-top: 10px;
     }
 
-    #mode-toggle { text-align: center; margin-bottom: 20px; cursor: pointer; font-size: 1.5rem; }
+    #mode-toggle { text-align: center; margin-bottom: 25px; cursor: pointer; font-size: 1.3rem; }
 </style>
 </head>
 <body>
@@ -137,33 +122,33 @@
 </header>
 
 <div class="iphone-frame">
-    <span class="neon-title">Deep Sleep and Anxiety Relief</span>
-    <p style="font-size: 0.8rem; font-style: italic;">the deep purr: vocalizing peace.</p>
+    <span class="glow-title">Deep Sleep and Anxiety Relief</span>
+    <p style="font-size: 0.75rem; color: var(--muted); margin-bottom: 10px;">the deep purr | vocalizing peace</p>
     
     <ul class="features">
         <li>quiet the meow</li>
         <li>night vision clarity</li>
         <li>lapse into a nap in minutes</li>
-        <li>29 - 31 Jan | 8 - 10:30 pm</li>
+        <li>29 - 31 Jan • 8 - 10:30 pm</li>
     </ul>
 
     <a href="https://aolt.in/944244" class="button" target="_blank">pick a nap time</a>
-    <p class="footer-note">3 days of curiosity</p>
+    <div class="footer-text">3 days of curiosity</div>
 </div>
 
 <div class="iphone-frame">
-    <span class="neon-title">Online Meditation and Breath Workshop</span>
-    <p style="font-size: 0.8rem; font-style: italic;">soft stretches with the collective.</p>
+    <span class="glow-title">Online Meditation and Breath Workshop</span>
+    <p style="font-size: 0.75rem; color: var(--muted); margin-bottom: 10px;">soft stretches with the collective</p>
     
     <ul class="features">
         <li>restoring the coat</li>
         <li>personal pace</li>
         <li>customized whiskers</li>
-        <li>26 Feb - 1 Mar | 6 - 8 am</li>
+        <li>26 Feb - 1 Mar • 6 - 8 am</li>
     </ul>
 
     <a href="https://aolt.in/944076" class="button" target="_blank">enter the garden</a>
-    <p class="footer-note">yours truly</p>
+    <div class="footer-text">yours truly</div>
 </div>
 
 <script>
@@ -173,17 +158,17 @@
         toggle.innerText = document.body.classList.contains('dark') ? '🐈‍⬛' : '🐾';
     });
 
-    const items = ['🐾', '🐈', '🐱', '✨'];
-    function createRain() {
-        const p = document.createElement('div');
-        p.className = 'cat-particle';
-        p.innerText = items[Math.floor(Math.random() * items.length)];
-        p.style.left = Math.random() * 100 + 'vw';
-        p.style.animationDuration = (Math.random() * 2 + 3) + 's';
-        document.body.appendChild(p);
-        setTimeout(() => p.remove(), 5000);
+    const cats = ['🐾', '🐈', '🐱', '✨'];
+    function rain() {
+        const div = document.createElement('div');
+        div.className = 'cat-particle';
+        div.innerText = cats[Math.floor(Math.random() * cats.length)];
+        div.style.left = Math.random() * 100 + 'vw';
+        div.style.animationDuration = (Math.random() * 2 + 4) + 's';
+        document.body.appendChild(div);
+        setTimeout(() => div.remove(), 6000);
     }
-    setInterval(createRain, 350);
+    setInterval(rain, 400);
 </script>
 
 </body>
