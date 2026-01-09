@@ -7,57 +7,55 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Orbitron:wght@500&display=swap" rel="stylesheet" />
 <style>
     :root {
-        --bg: #f7f7f7;
+        --bg: #e5e5e5;
         --card-bg: #ffffff;
-        --text: #222222;
-        --muted: #999999;
-        --border: #eeeeee;
+        --text: #1a1a1a;
+        --muted: #777777;
+        --border: #d1d1d1;
         --accent: #111111;
-        --neon-text: #555555;
-        --neon-glow: rgba(0, 0, 0, 0.1);
+        --neon-text: #444444;
+        --neon-glow: rgba(0, 0, 0, 0.2);
     }
 
     body.dark {
-        --bg: #0a0a0a;
-        --card-bg: #141414;
-        --text: #e0e0e0;
-        --muted: #555555;
-        --border: #222222;
+        --bg: #0d0d0d;
+        --card-bg: #1a1a1a;
+        --text: #f0f0f0;
+        --muted: #666666;
+        --border: #333333;
         --accent: #ffffff;
         --neon-text: #ffffff;
-        --neon-glow: rgba(255, 255, 255, 0.3);
+        --neon-glow: rgba(255, 255, 255, 0.5);
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
         font-family: 'Inter', sans-serif;
-        background: var(--bg);
+        background-color: var(--bg);
         color: var(--text);
-        padding: 60px 20px;
-        transition: background 0.5s ease;
+        padding: 40px 20px;
+        transition: background-color 0.3s ease;
         min-height: 100vh;
         overflow-x: hidden;
     }
 
-    /* Header & Signature */
-    header { text-align: center; margin-bottom: 50px; position: relative; z-index: 10; }
-    h1 { font-size: 1.4rem; font-weight: 400; text-transform: lowercase; margin-bottom: 4px; }
-    .tagline { font-size: 0.8rem; opacity: 0.5; font-style: italic; }
-    .signature { font-size: 0.7rem; opacity: 0.4; letter-spacing: 1px; margin-top: 8px; display: block; }
+    header { text-align: center; margin-bottom: 40px; position: relative; z-index: 10; }
+    h1 { font-size: 1.4rem; font-weight: 400; text-transform: lowercase; }
+    .tagline { font-size: 0.8rem; opacity: 0.6; font-style: italic; margin-top: 4px; }
+    .signature { font-size: 0.65rem; opacity: 0.5; letter-spacing: 1px; margin-top: 10px; display: block; }
     
-    /* Cards */
     .iphone-frame {
         background: var(--card-bg);
-        border-radius: 24px; 
-        max-width: 380px;
+        border-radius: 20px; 
+        max-width: 360px;
         width: 100%;
-        margin: 0 auto 30px auto; 
-        padding: 35px; 
+        margin: 0 auto 25px auto; 
+        padding: 30px; 
         border: 1px solid var(--border); 
         position: relative;
         z-index: 10;
-        box-shadow: 0 10px 40px rgba(0,0,0,0.03);
+        box-shadow: 0 4px 15px rgba(0,0,0,0.05);
     }
 
     .glow-title {
@@ -65,55 +63,42 @@
         font-size: 0.85rem;
         color: var(--neon-text);
         text-shadow: 0 0 12px var(--neon-glow);
-        margin-bottom: 12px;
+        margin-bottom: 15px;
         display: block;
-        letter-spacing: 0.5px;
     }
 
-    .features { list-style: none; padding: 0; margin: 20px 0; }
-    .features li { font-size: 0.78rem; margin-bottom: 8px; opacity: 0.7; }
-    .features li::before { content: "•"; margin-right: 10px; color: var(--muted); }
+    .features { list-style: none; padding: 0; margin: 15px 0; }
+    .features li { font-size: 0.78rem; margin-bottom: 6px; opacity: 0.8; }
+    .features li::before { content: "•"; margin-right: 8px; color: var(--muted); }
 
     .button {
         display: inline-block;
         background-color: var(--accent);
-        color: var(--bg);
-        padding: 12px 26px; 
-        border-radius: 10px;
+        color: var(--card-bg); /* Contrast text */
+        padding: 12px 24px; 
+        border-radius: 8px;
         font-size: 0.72rem; 
         font-weight: 600;
         text-decoration: none;
         margin-top: 10px;
-        transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
-    .button:hover { transform: scale(1.02); }
 
-    /* Extra Small Background Cats */
+    /* Cat Particles Fix */
     .cat-particle {
         position: fixed;
-        font-size: 10px; 
+        font-size: 12px; 
         pointer-events: none;
-        z-index: 1; 
-        opacity: 0.35;
-        animation: rainFall linear infinite;
+        z-index: 1; /* Strictly behind cards */
+        opacity: 0.5;
+        animation: fall linear infinite;
+        top: -20px;
     }
 
-    @keyframes rainFall {
-        0% { transform: translateY(-15vh) rotate(0deg); }
-        100% { transform: translateY(115vh) rotate(360deg); }
+    @keyframes fall {
+        to { transform: translateY(105vh) rotate(360deg); }
     }
 
-    .footer-note {
-        font-size: 0.6rem; 
-        color: var(--muted);
-        text-align: center;
-        margin-top: 20px;
-        padding-top: 15px;
-        border-top: 1px solid var(--border);
-        text-transform: lowercase;
-    }
-
-    #mode-toggle { text-align: center; margin-bottom: 30px; cursor: pointer; font-size: 1.5rem; position: relative; z-index: 10; }
+    #mode-toggle { text-align: center; margin-bottom: 20px; cursor: pointer; font-size: 1.5rem; position: relative; z-index: 20; }
 </style>
 </head>
 <body>
@@ -128,7 +113,7 @@
 
 <div class="iphone-frame">
     <span class="glow-title">Deep Sleep and Anxiety Relief</span>
-    <p style="font-size: 0.75rem; color: var(--muted); margin-bottom: 8px;">the deep purr | vocalizing peace</p>
+    <p style="font-size: 0.72rem; color: var(--muted); margin-bottom: 10px;">the deep purr | vocalizing peace</p>
     <ul class="features">
         <li>quiet the meow</li>
         <li>night vision clarity</li>
@@ -136,12 +121,11 @@
         <li>29 - 31 Jan • 8:00 pm</li>
     </ul>
     <a href="https://aolt.in/944244" class="button" target="_blank">pick a nap time</a>
-    <div class="footer-note">3 days of curiosity</div>
 </div>
 
 <div class="iphone-frame">
     <span class="glow-title">Online Meditation and Breath Workshop</span>
-    <p style="font-size: 0.75rem; color: var(--muted); margin-bottom: 8px;">soft stretches with the collective</p>
+    <p style="font-size: 0.72rem; color: var(--muted); margin-bottom: 10px;">soft stretches with the collective</p>
     <ul class="features">
         <li>restoring the coat</li>
         <li>personal pace</li>
@@ -149,38 +133,42 @@
         <li>26 Feb - 1 Mar • 6:00 am</li>
     </ul>
     <a href="https://aolt.in/944076" class="button" target="_blank">enter the garden</a>
-    <div class="footer-note">yours truly</div>
 </div>
 
 <script>
-    // Theme Switcher
     const toggle = document.getElementById('mode-toggle');
     toggle.addEventListener('click', () => {
         document.body.classList.toggle('dark');
         toggle.innerText = document.body.classList.contains('dark') ? '🐈‍⬛' : '🐾';
     });
 
-    // Background Cat Rain Generator
-    const catIcons = ['🐾', '🐈', '🐱', '🐈‍⬛', '🧶', '✨'];
-    function createCat() {
+    const catIcons = ['🐾', '🐈', '🐱', '🧶'];
+    
+    function spawnCat(initialY = -20) {
         const cat = document.createElement('div');
         cat.className = 'cat-particle';
         cat.innerText = catIcons[Math.floor(Math.random() * catIcons.length)];
+        cat.style.left = Math.random() * 95 + 'vw';
         
-        // Ensure they cover the whole width
-        cat.style.left = Math.random() * 100 + 'vw';
-        
-        // organic variation
-        const duration = Math.random() * 4 + 4;
+        // Use initialY for the spread on load
+        if(initialY !== -20) {
+            cat.style.top = initialY + 'px';
+        }
+
+        const duration = Math.random() * 3 + 5;
         cat.style.animationDuration = duration + 's';
-        cat.style.opacity = Math.random() * 0.4 + 0.2;
         
         document.body.appendChild(cat);
         setTimeout(() => cat.remove(), duration * 1000);
     }
 
-    // High frequency interval to ensure "all over" coverage
-    setInterval(createCat, 150);
+    // Populate screen immediately on load
+    for(let i=0; i < 20; i++) {
+        spawnCat(Math.random() * window.innerHeight);
+    }
+
+    // Continuous rain
+    setInterval(() => spawnCat(), 300);
 </script>
 
 </body>
