@@ -80,4 +80,108 @@
         color: var(--bg);
         padding: 12px 26px; 
         border-radius: 10px;
-        font-size: 0.7
+        font-size: 0.72rem; 
+        font-weight: 600;
+        text-decoration: none;
+        margin-top: 10px;
+        transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    .button:hover { transform: scale(1.02); }
+
+    /* Extra Small Background Cats */
+    .cat-particle {
+        position: fixed;
+        font-size: 10px; 
+        pointer-events: none;
+        z-index: 1; 
+        opacity: 0.35;
+        animation: rainFall linear infinite;
+    }
+
+    @keyframes rainFall {
+        0% { transform: translateY(-15vh) rotate(0deg); }
+        100% { transform: translateY(115vh) rotate(360deg); }
+    }
+
+    .footer-note {
+        font-size: 0.6rem; 
+        color: var(--muted);
+        text-align: center;
+        margin-top: 20px;
+        padding-top: 15px;
+        border-top: 1px solid var(--border);
+        text-transform: lowercase;
+    }
+
+    #mode-toggle { text-align: center; margin-bottom: 30px; cursor: pointer; font-size: 1.5rem; position: relative; z-index: 10; }
+</style>
+</head>
+<body>
+
+<div id="mode-toggle">🐾</div>
+
+<header>
+    <h1>it is raining cats</h1>
+    <p class="tagline">(lately in love with cats)</p>
+    <span class="signature">~ all new meowrani</span>
+</header>
+
+<div class="iphone-frame">
+    <span class="glow-title">Deep Sleep and Anxiety Relief</span>
+    <p style="font-size: 0.75rem; color: var(--muted); margin-bottom: 8px;">the deep purr | vocalizing peace</p>
+    <ul class="features">
+        <li>quiet the meow</li>
+        <li>night vision clarity</li>
+        <li>lapse into a nap in minutes</li>
+        <li>29 - 31 Jan • 8:00 pm</li>
+    </ul>
+    <a href="https://aolt.in/944244" class="button" target="_blank">pick a nap time</a>
+    <div class="footer-note">3 days of curiosity</div>
+</div>
+
+<div class="iphone-frame">
+    <span class="glow-title">Online Meditation and Breath Workshop</span>
+    <p style="font-size: 0.75rem; color: var(--muted); margin-bottom: 8px;">soft stretches with the collective</p>
+    <ul class="features">
+        <li>restoring the coat</li>
+        <li>personal pace</li>
+        <li>customized whiskers</li>
+        <li>26 Feb - 1 Mar • 6:00 am</li>
+    </ul>
+    <a href="https://aolt.in/944076" class="button" target="_blank">enter the garden</a>
+    <div class="footer-note">yours truly</div>
+</div>
+
+<script>
+    // Theme Switcher
+    const toggle = document.getElementById('mode-toggle');
+    toggle.addEventListener('click', () => {
+        document.body.classList.toggle('dark');
+        toggle.innerText = document.body.classList.contains('dark') ? '🐈‍⬛' : '🐾';
+    });
+
+    // Background Cat Rain Generator
+    const catIcons = ['🐾', '🐈', '🐱', '🐈‍⬛', '🧶', '✨'];
+    function createCat() {
+        const cat = document.createElement('div');
+        cat.className = 'cat-particle';
+        cat.innerText = catIcons[Math.floor(Math.random() * catIcons.length)];
+        
+        // Ensure they cover the whole width
+        cat.style.left = Math.random() * 100 + 'vw';
+        
+        // organic variation
+        const duration = Math.random() * 4 + 4;
+        cat.style.animationDuration = duration + 's';
+        cat.style.opacity = Math.random() * 0.4 + 0.2;
+        
+        document.body.appendChild(cat);
+        setTimeout(() => cat.remove(), duration * 1000);
+    }
+
+    // High frequency interval to ensure "all over" coverage
+    setInterval(createCat, 150);
+</script>
+
+</body>
+</html>
