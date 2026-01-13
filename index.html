@@ -1,100 +1,162 @@
 <style>
-    /* Timeline Container */
-    .timeline-wrapper {
+    /* 1. TIMELINE LAYOUT OVERRIDES */
+    body {
+        padding: 0;
+        overflow-x: hidden;
+    }
+
+    /* Container for the side-scroll effect */
+    .timeline-container {
         display: flex;
         overflow-x: auto;
-        padding: 40px 20px;
+        overflow-y: hidden;
+        padding: 60px 20px 40px;
         gap: 30px;
         scroll-snap-type: x mandatory;
         -webkit-overflow-scrolling: touch;
+        min-height: 100vh;
+        align-items: flex-start;
         position: relative;
-        background: var(--bg);
     }
 
-    /* The Central Line */
-    .timeline-wrapper::before {
+    /* The central connecting line (Gold) */
+    .timeline-container::before {
         content: '';
         position: absolute;
-        top: 60px; /* Aligned with the dots */
+        top: 140px; /* Adjust based on where you want the dots */
         left: 0;
         right: 0;
         height: 2px;
         background: var(--ny-gold);
-        opacity: 0.3;
+        opacity: 0.4;
         z-index: 0;
     }
 
-    /* Individual Timeline Card */
-    .timeline-item {
-        flex: 0 0 300px; /* Card width */
-        scroll-snap-align: start;
-        position: relative;
+    /* Each segment containing Year, Dot, and Card */
+    .timeline-milestone {
+        flex: 0 0 350px; /* Width of each card section */
+        scroll-snap-align: center;
         display: flex;
         flex-direction: column;
         align-items: center;
+        position: relative;
     }
 
-    /* The Connecting Dot */
-    .timeline-dot {
-        width: 12px;
-        height: 12px;
+    /* The Dot on the line */
+    .milestone-dot {
+        width: 14px;
+        height: 14px;
         background: var(--ny-gold);
         border-radius: 50%;
-        margin-bottom: 20px;
-        z-index: 1;
+        margin: 15px 0 25px;
+        z-index: 2;
         box-shadow: 0 0 10px var(--ny-gold);
-        transition: transform 0.3s ease;
+        transition: transform 0.3s ease, background-color 0.3s ease;
     }
 
-    .timeline-item:hover .timeline-dot {
+    .timeline-milestone:hover .milestone-dot {
         transform: scale(1.5);
         background: var(--live-lime);
     }
 
-    /* Styling the Card inside the timeline */
-    .timeline-content.iphone-frame {
+    /* Ensure cards look good in horizontal flow */
+    .iphone-frame {
+        margin: 0 !important; /* Override your auto margin */
         width: 100%;
-        margin: 0; /* Remove auto margin to stay in flex row */
-        text-align: left;
+        max-width: 350px;
     }
 
-    /* Hide Scrollbar for clean look */
-    .timeline-wrapper::-webkit-scrollbar {
-        height: 6px;
+    /* Scrollbar Styling for desktop */
+    .timeline-container::-webkit-scrollbar { height: 8px; }
+    .timeline-container::-webkit-scrollbar-track { background: transparent; }
+    .timeline-container::-webkit-scrollbar-thumb { 
+        background: var(--ny-gold); 
+        border-radius: 10px; 
     }
-    .timeline-wrapper::-webkit-scrollbar-thumb {
-        background: var(--ny-gold);
-        border-radius: 10px;
+
+    /* Keep toggle fixed */
+    #mode-toggle {
+        position: fixed !important;
+        top: 10px;
+        right: 20px;
+        z-index: 1000;
     }
 </style>
 
-<div class="timeline-wrapper">
+<body>
 
-    <div class="timeline-item">
-        <div class="neon-year" style="margin-bottom: 10px;">2009</div>
-        <div class="timeline-dot"></div>
-        <div class="iphone-frame timeline-content">
-            <h3>Founding Year</h3>
-            <p class="subtitle">Explored transactions via SMS protocol when internet wasn't mass media.</p>
+<div id="mode-toggle">
+    <svg id="snowflake-icon" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="cursor: pointer;">
+        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+    </svg>
+</div>
+
+<div class="timeline-container">
+
+    <div class="timeline-milestone">
+        <div class="neon-year">DEC 2024</div>
+        <div class="milestone-dot"></div>
+        <div class="iphone-frame" id="card-dec-hp">
+            <header><div class="card-title-group"><h1>Dec HP</h1><h2>Hyper Detox</h2><p class="subtitle">with Vishal Merani</p></div></header>
+            <section class="schedule-booking">
+                <a href="#" class="button">11 Dec - 13 Dec</a>
+                <span class="location-text">📍 Bhartiya City, Bangalore</span>
+            </section>
+            <footer><div class="footer">ॐ Jai Guru Dev ॐ</div></footer>
         </div>
     </div>
 
-    <div class="timeline-item">
-        <div class="neon-year" style="margin-bottom: 10px;">2010</div>
-        <div class="timeline-dot"></div>
-        <div class="iphone-frame timeline-content">
-            <h3>Display Solutions</h3>
-            <p class="subtitle">Created bitmap fonts for Indian languages on small screen devices.</p>
+    <div class="timeline-milestone">
+        <div class="neon-year">JAN 2025</div>
+        <div class="milestone-dot"></div>
+        <div class="iphone-frame live-card" id="card-sahaj">
+            <div class="live-badge">● LIVE</div>
+            <header><div class="card-title-group"><h1>Sahaj</h1><p class="subtitle">with Vishal Merani</p></div></header>
+            <section class="schedule-booking">
+                <ul class="features"><li>17 Jan - 19 Jan</li></ul>
+                <a href="#" class="button">6:00 PM – 7:30 PM</a>
+            </section>
+            <footer><div class="footer">😌 3 days | Online</div></footer>
         </div>
     </div>
 
-    <div class="timeline-item">
-        <div class="neon-year" style="margin-bottom: 10px;">2012</div>
-        <div class="timeline-dot"></div>
-        <div class="iphone-frame timeline-content">
-            <h3>EzPad Launch</h3>
-            <p class="subtitle">Standardized the keypad for Indian languages with 12-key input.</p>
+    <div class="timeline-milestone">
+        <div class="neon-year">FEB 2025</div>
+        <div class="milestone-dot"></div>
+        <div class="iphone-frame live-card" id="card-do-dec">
+            <div class="live-badge">● LIVE</div>
+            <header><div class="card-title-group"><h1>Meditation & Breath</h1><p class="subtitle">with Vishal Merani</p></div></header>
+            <section class="schedule-booking">
+                <h4>Feb 26 - Mar 1</h4>
+                <a href="#" class="button">Book here ♡</a>
+            </section>
+            <footer><div class="footer">🫁 Online Sessions Only</div></footer>
         </div>
     </div>
-    
+
+    <div class="timeline-milestone">
+        <div class="neon-year">2026</div>
+        <div class="milestone-dot"></div>
+        <div class="iphone-frame tour-card" id="card-guru-tour">
+            <div class="live-badge">● GLOBAL TOUR</div>
+            <div class="tour-year-display">2026</div>
+            <header><div class="card-title-group"><h1>Gurudev Sri Sri Ravi Shankar</h1><p class="subtitle">World Tour</p></div></header>
+            <a href="#" class="button">Explore Schedule →</a>
+        </div>
     </div>
+
+    </div>
+
+<script>
+    // Keep your existing JS logic for dark mode and snowflakes
+    const snowflakeIcon = document.getElementById("snowflake-icon");
+    let darkMode = false;
+    snowflakeIcon.addEventListener("click", () => {
+        darkMode = !darkMode;
+        document.body.classList.toggle("dark", darkMode);
+    });
+
+    // The snowflake script will still work as long as you keep your card IDs consistent!
+</script>
+
+</body>
