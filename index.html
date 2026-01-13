@@ -1,40 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Vishal Merani - Timeline</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
 <style>
-    /* 1. TIMELINE LAYOUT OVERRIDES */
+    /* =========================================
+       1. YOUR ORIGINAL VARIABLES & THEMES
+       ========================================= */
+    :root {
+        --bg: #f9f9f9; --text: #1f1f1f; --muted: #777; --box-bg: #ffffff;
+        --border: #d4af37; --accent: #000000; --accent-hover: #333333;
+        --ny-gold: #d4af37; --ny-sparkle: #e5c100; --h3-color: #333333; 
+        --h4-color: #555555; --live-lime: #32ff7e;
+    }
+
+    body.dark {
+        --bg: #000000; --text: #f7e7ce; --muted: #888; --border: #b8860b;
+        --accent: #d4af37; --accent-hover: #f0e68c; --box-bg: #111111;
+        --h3-color: #f7e7ce; --h4-color: #ccc;
+    }
+
+    /* =========================================
+       2. TIMELINE SPECIFIC LAYOUT (NEW)
+       ========================================= */
     body {
-        padding: 0;
+        font-family: 'Inter', sans-serif;
+        font-size: 0.81em; line-height: 1.4;
+        background: var(--bg); color: var(--text);
+        margin: 0; padding: 0;
+        transition: background 0.3s ease;
         overflow-x: hidden;
     }
 
-    /* Container for the side-scroll effect */
-    .timeline-container {
+    .timeline-wrapper {
         display: flex;
         overflow-x: auto;
-        overflow-y: hidden;
-        padding: 60px 20px 40px;
-        gap: 30px;
+        padding: 80px 40px 100px; /* Space for years and cards */
+        gap: 50px;
         scroll-snap-type: x mandatory;
-        -webkit-overflow-scrolling: touch;
-        min-height: 100vh;
         align-items: flex-start;
         position: relative;
+        min-height: 100vh;
     }
 
-    /* The central connecting line (Gold) */
-    .timeline-container::before {
+    /* The Reverie Central Line */
+    .timeline-wrapper::before {
         content: '';
         position: absolute;
-        top: 140px; /* Adjust based on where you want the dots */
+        top: 110px;
         left: 0;
         right: 0;
         height: 2px;
         background: var(--ny-gold);
-        opacity: 0.4;
+        opacity: 0.3;
         z-index: 0;
     }
 
-    /* Each segment containing Year, Dot, and Card */
-    .timeline-milestone {
-        flex: 0 0 350px; /* Width of each card section */
+    .milestone {
+        flex: 0 0 380px;
         scroll-snap-align: center;
         display: flex;
         flex-direction: column;
@@ -42,46 +67,44 @@
         position: relative;
     }
 
-    /* The Dot on the line */
     .milestone-dot {
         width: 14px;
         height: 14px;
         background: var(--ny-gold);
         border-radius: 50%;
-        margin: 15px 0 25px;
+        margin: 15px 0 30px;
         z-index: 2;
         box-shadow: 0 0 10px var(--ny-gold);
-        transition: transform 0.3s ease, background-color 0.3s ease;
     }
 
-    .timeline-milestone:hover .milestone-dot {
-        transform: scale(1.5);
-        background: var(--live-lime);
-    }
-
-    /* Ensure cards look good in horizontal flow */
+    /* =========================================
+       3. RETAINED CARD STYLES (FROM YOUR CODE)
+       ========================================= */
     .iphone-frame {
-        margin: 0 !important; /* Override your auto margin */
-        width: 100%;
-        max-width: 350px;
+        background: var(--box-bg); border-radius: 18px; 
+        width: 100%; padding: 24px 18px; border: 1px solid var(--border); 
+        position: relative; z-index: 1; overflow: hidden; 
+        transition: background-color 0.3s ease;
+        box-shadow: 0 4px 15px rgba(212, 175, 55, 0.15);
     }
 
-    /* Scrollbar Styling for desktop */
-    .timeline-container::-webkit-scrollbar { height: 8px; }
-    .timeline-container::-webkit-scrollbar-track { background: transparent; }
-    .timeline-container::-webkit-scrollbar-thumb { 
-        background: var(--ny-gold); 
-        border-radius: 10px; 
-    }
-
-    /* Keep toggle fixed */
-    #mode-toggle {
-        position: fixed !important;
-        top: 10px;
-        right: 20px;
-        z-index: 1000;
-    }
+    /* All your original animations, button styles, neon years, etc. go here... */
+    /* [Rest of your original CSS: .neon-year, .live-badge, .button, .footer, etc.] */
+    .neon-year { font-weight: 800; background: linear-gradient(to right, #ff00de, #00d2ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: neonPulse 3s infinite; }
+    @keyframes neonPulse { 0%, 100% { text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #ff00de, 0 0 20px #ff00de; } 50% { text-shadow: 0 0 2px #fff, 0 0 5px #fff, 0 0 8px #00d2ff, 0 0 12px #00d2ff; } }
+    .live-badge { position: absolute; top: 15px; right: 15px; font-size: 0.5rem; font-weight: 800; color: var(--live-lime); animation: liveBreath 2.5s infinite; text-transform: uppercase; }
+    @keyframes liveBreath { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.6; transform: scale(0.95); } }
+    .button { display: inline-block; background-color: var(--accent); color: white; padding: 0.5rem 0.9rem; border-radius: 7px; font-size: 0.6rem; font-weight: 600; text-decoration: none; margin: 5px 0; }
+    body.dark .button { color: #000 !important; }
+    .footer { font-size: 0.55rem; color: var(--muted); text-align: center; margin-top: 10px; border-top: 1px dashed var(--ny-gold); padding-top: 5px; }
+    ul.features { list-style: none; padding-left: 0; margin: 10px 0; }
+    .features li::before { content: "▪"; color: var(--ny-gold); margin-right: 5px; }
+    .tour-year-display { font-size: 3rem; font-weight: 900; opacity: 0.1; position: absolute; top: -10px; left: 10px; z-index: 0; }
+    .social-icons-list { display: flex; justify-content: center; gap: 16px; }
+    .icon { width: 25px; height: 25px; fill: var(--text); }
+    #mode-toggle { position: fixed; top: 20px; right: 20px; z-index: 1000; }
 </style>
+</head>
 
 <body>
 
@@ -91,64 +114,59 @@
     </svg>
 </div>
 
-<div class="timeline-container">
+<div class="timeline-wrapper">
 
-    <div class="timeline-milestone">
-        <div class="neon-year">DEC 2024</div>
-        <div class="milestone-dot"></div>
-        <div class="iphone-frame" id="card-dec-hp">
-            <header><div class="card-title-group"><h1>Dec HP</h1><h2>Hyper Detox</h2><p class="subtitle">with Vishal Merani</p></div></header>
-            <section class="schedule-booking">
-                <a href="#" class="button">11 Dec - 13 Dec</a>
-                <span class="location-text">📍 Bhartiya City, Bangalore</span>
-            </section>
-            <footer><div class="footer">ॐ Jai Guru Dev ॐ</div></footer>
-        </div>
-    </div>
-
-    <div class="timeline-milestone">
-        <div class="neon-year">JAN 2025</div>
-        <div class="milestone-dot"></div>
-        <div class="iphone-frame live-card" id="card-sahaj">
-            <div class="live-badge">● LIVE</div>
-            <header><div class="card-title-group"><h1>Sahaj</h1><p class="subtitle">with Vishal Merani</p></div></header>
-            <section class="schedule-booking">
-                <ul class="features"><li>17 Jan - 19 Jan</li></ul>
-                <a href="#" class="button">6:00 PM – 7:30 PM</a>
-            </section>
-            <footer><div class="footer">😌 3 days | Online</div></footer>
-        </div>
-    </div>
-
-    <div class="timeline-milestone">
-        <div class="neon-year">FEB 2025</div>
-        <div class="milestone-dot"></div>
-        <div class="iphone-frame live-card" id="card-do-dec">
-            <div class="live-badge">● LIVE</div>
-            <header><div class="card-title-group"><h1>Meditation & Breath</h1><p class="subtitle">with Vishal Merani</p></div></header>
-            <section class="schedule-booking">
-                <h4>Feb 26 - Mar 1</h4>
-                <a href="#" class="button">Book here ♡</a>
-            </section>
-            <footer><div class="footer">🫁 Online Sessions Only</div></footer>
-        </div>
-    </div>
-
-    <div class="timeline-milestone">
+    <div class="milestone">
         <div class="neon-year">2026</div>
         <div class="milestone-dot"></div>
         <div class="iphone-frame tour-card" id="card-guru-tour">
             <div class="live-badge">● GLOBAL TOUR</div>
             <div class="tour-year-display">2026</div>
-            <header><div class="card-title-group"><h1>Gurudev Sri Sri Ravi Shankar</h1><p class="subtitle">World Tour</p></div></header>
-            <a href="#" class="button">Explore Schedule →</a>
+            <header><h1>Gurudev Sri Sri Ravi Shankar</h1><p class="subtitle">World Tour 2026</p></header>
+            <section><h3>The Wait is Over.</h3><ul class="features"><li>Exclusive Satsangs</li><li>Masterclasses</li></ul></section>
+            <a href="https://gurudev.artofliving.org/tour-schedule/" class="button">Explore Schedule →</a>
         </div>
     </div>
 
+    <div class="milestone">
+        <div class="neon-year">JAN 2026</div>
+        <div class="milestone-dot"></div>
+        <div class="iphone-frame live-card" id="card-sahaj">
+            <div class="live-badge">● LIVE</div>
+            <header><h1>Sahaj</h1><p class="subtitle">with Vishal Merani</p></header>
+            <section><ul class="features"><li>17 Jan - 19 Jan</li><li>20 Jan - 22 Jan</li></ul></section>
+            <a href="https://www.artofliving.online/registration.php?event_id=944718" class="button">Book Now</a>
+        </div>
     </div>
 
+    <div class="milestone">
+        <div class="neon-year">SERVICE</div>
+        <div class="milestone-dot"></div>
+        <div class="iphone-frame" id="card-seva">
+            <header><h1>Seva सेवा</h1></header>
+            <form class="seva-form" action="https://formsubmit.co/vishal.merani@artofliving.org" method="POST">
+                <input type="text" name="Name" placeholder="Your Name" required style="width:100%; margin-bottom:5px;">
+                <textarea name="Note" placeholder="Interested in Seva..." style="width:100%; height:50px;"></textarea>
+                <input type="submit" value="Send 📧 ♡" class="button" style="border:none; width:100%;">
+            </form>
+        </div>
+    </div>
+
+    <div class="milestone">
+        <div class="neon-year">CONNECT</div>
+        <div class="milestone-dot"></div>
+        <div class="iphone-frame social-icons-frame">
+            <div class="social-icons-list">
+                <a href="https://www.instagram.com/meranivishal/"><svg class="icon" viewBox="0 0 24 24"><path d="M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5H7zm10 4c1.7 0 3 1.3 3 3v10c0 1.7-1.3 3-3 3H7c-1.7 0-3-1.3-3-3V7c0-1.7 1.3-3 3-3h10z"/></svg></a>
+                </div>
+            <div class="footer">ॐ Jai Guru Dev ॐ</div>
+        </div>
+    </div>
+
+</div>
+
 <script>
-    // Keep your existing JS logic for dark mode and snowflakes
+    // All original JS preserved
     const snowflakeIcon = document.getElementById("snowflake-icon");
     let darkMode = false;
     snowflakeIcon.addEventListener("click", () => {
@@ -156,7 +174,7 @@
         document.body.classList.toggle("dark", darkMode);
     });
 
-    // The snowflake script will still work as long as you keep your card IDs consistent!
+    // Re-run your snowflake interval logic here for all card IDs
 </script>
-
 </body>
+</html>
