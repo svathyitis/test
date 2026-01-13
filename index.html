@@ -1,200 +1,100 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>it is raining cats</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Orbitron:wght@500&display=swap" rel="stylesheet" />
 <style>
-    :root {
-        --bg: #e5e5e5;
-        --card-bg: #ffffff;
-        --text: #1a1a1a;
-        --muted: #777777;
-        --border: #d1d1d1;
-        --accent: #111111;
-        --neon-text: #444444;
-        --neon-glow: rgba(0, 0, 0, 0.2);
-    }
-
-    body.dark {
-        --bg: #0d0d0d;
-        --card-bg: #1a1a1a;
-        --text: #f0f0f0;
-        --muted: #666666;
-        --border: #333333;
-        --accent: #ffffff;
-        --neon-text: #ffffff;
-        --neon-glow: rgba(255, 255, 255, 0.5);
-    }
-
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-
-    body {
-        font-family: 'Inter', sans-serif;
-        background-color: var(--bg);
-        color: var(--text);
+    /* Timeline Container */
+    .timeline-wrapper {
+        display: flex;
+        overflow-x: auto;
         padding: 40px 20px;
-        transition: background-color 0.3s ease;
-        min-height: 100vh;
-        overflow-x: hidden;
-    }
-
-    header { 
-        text-align: left; 
-        margin: 0 auto 40px auto; 
-        max-width: 360px;
-        position: relative; 
-        z-index: 10; 
-    }
-    
-    h1 { font-size: 1.4rem; font-weight: 400; text-transform: lowercase; }
-    .tagline { font-size: 0.8rem; opacity: 0.6; font-style: italic; margin-top: 4px; }
-    .signature { font-size: 0.65rem; opacity: 0.5; letter-spacing: 1px; margin-top: 10px; display: block; }
-    .fluff-text { font-size: 0.6rem; opacity: 0.4; margin-top: 4px; line-height: 1.3; }
-
-    /* Sticker Styling */
-    .sticker-container {
-        position: absolute;
-        top: 0;
-        right: -20px;
-        width: 80px;
-        height: 80px;
-        border: 4px solid white;
-        background: #eee;
-        border-radius: 12px;
-        box-shadow: 4px 4px 10px rgba(0,0,0,0.1);
-        transform: rotate(12deg);
-        overflow: hidden;
-    }
-    .sticker-container img { width: 100%; height: 100%; object-fit: cover; }
-
-    .iphone-frame {
-        background: var(--card-bg);
-        border-radius: 20px; 
-        max-width: 360px;
-        width: 100%;
-        margin: 0 auto 25px auto; 
-        padding: 30px; 
-        border: 1px solid var(--border); 
+        gap: 30px;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
         position: relative;
-        z-index: 10;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        background: var(--bg);
     }
 
-    .glow-title {
-        font-family: 'Orbitron', sans-serif;
-        font-size: 0.85rem;
-        color: var(--neon-text);
-        text-shadow: 0 0 12px var(--neon-glow);
-        margin-bottom: 15px;
-        display: block;
+    /* The Central Line */
+    .timeline-wrapper::before {
+        content: '';
+        position: absolute;
+        top: 60px; /* Aligned with the dots */
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: var(--ny-gold);
+        opacity: 0.3;
+        z-index: 0;
     }
 
-    .features { list-style: none; padding: 0; margin: 15px 0; }
-    .features li { font-size: 0.78rem; margin-bottom: 6px; opacity: 0.8; }
-    .features li::before { content: "•"; margin-right: 8px; color: var(--muted); }
-
-    .button {
-        display: inline-block;
-        background-color: var(--accent);
-        color: var(--card-bg);
-        padding: 12px 24px; 
-        border-radius: 8px;
-        font-size: 0.72rem; 
-        font-weight: 600;
-        text-decoration: none;
-        margin-top: 10px;
+    /* Individual Timeline Card */
+    .timeline-item {
+        flex: 0 0 300px; /* Card width */
+        scroll-snap-align: start;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 
-    .cat-particle {
-        position: fixed;
-        font-size: 12px; 
-        pointer-events: none;
+    /* The Connecting Dot */
+    .timeline-dot {
+        width: 12px;
+        height: 12px;
+        background: var(--ny-gold);
+        border-radius: 50%;
+        margin-bottom: 20px;
         z-index: 1;
-        opacity: 0.5;
-        animation: fall linear infinite;
-        top: -20px;
+        box-shadow: 0 0 10px var(--ny-gold);
+        transition: transform 0.3s ease;
     }
 
-    @keyframes fall {
-        to { transform: translateY(105vh) rotate(360deg); }
+    .timeline-item:hover .timeline-dot {
+        transform: scale(1.5);
+        background: var(--live-lime);
     }
 
-    #mode-toggle { text-align: center; margin-bottom: 20px; cursor: pointer; font-size: 1.5rem; position: relative; z-index: 20; }
+    /* Styling the Card inside the timeline */
+    .timeline-content.iphone-frame {
+        width: 100%;
+        margin: 0; /* Remove auto margin to stay in flex row */
+        text-align: left;
+    }
+
+    /* Hide Scrollbar for clean look */
+    .timeline-wrapper::-webkit-scrollbar {
+        height: 6px;
+    }
+    .timeline-wrapper::-webkit-scrollbar-thumb {
+        background: var(--ny-gold);
+        border-radius: 10px;
+    }
 </style>
-</head>
-<body>
 
-<div id="mode-toggle">🐾</div>
+<div class="timeline-wrapper">
 
-<header>
-    <h1>it is raining cats</h1>
-    <p class="tagline">(lately in love with cats)</p>
-    <span class="signature">~ all new meowrani</span>
-    <p class="fluff-text">(fluff mode activated, too cute ☺️ to continue in normalcy)</p>
-    
-    <div class="sticker-container">
-        <img src="PASTE_YOUR_IMAGE_LINK_HERE" alt="sticker">
+    <div class="timeline-item">
+        <div class="neon-year" style="margin-bottom: 10px;">2009</div>
+        <div class="timeline-dot"></div>
+        <div class="iphone-frame timeline-content">
+            <h3>Founding Year</h3>
+            <p class="subtitle">Explored transactions via SMS protocol when internet wasn't mass media.</p>
+        </div>
     </div>
-</header>
 
-<div class="iphone-frame">
-    <span class="glow-title">Deep Sleep and Anxiety Relief</span>
-    <p style="font-size: 0.72rem; color: var(--muted); margin-bottom: 10px;">the deep purr | vocalizing peace</p>
-    <ul class="features">
-        <li>quiet the meow</li>
-        <li>night vision clarity</li>
-        <li>lapse into a nap in minutes</li>
-        <li>29 - 31 Jan • 8:00 pm</li>
-    </ul>
-    <a href="https://aolt.in/944244" class="button" target="_blank">pick a nap time</a>
-</div>
+    <div class="timeline-item">
+        <div class="neon-year" style="margin-bottom: 10px;">2010</div>
+        <div class="timeline-dot"></div>
+        <div class="iphone-frame timeline-content">
+            <h3>Display Solutions</h3>
+            <p class="subtitle">Created bitmap fonts for Indian languages on small screen devices.</p>
+        </div>
+    </div>
 
-<div class="iphone-frame">
-    <span class="glow-title">Online Meditation and Breath Workshop</span>
-    <p style="font-size: 0.72rem; color: var(--muted); margin-bottom: 10px;">soft stretches with the collective</p>
-    <ul class="features">
-        <li>restoring the coat</li>
-        <li>personal pace</li>
-        <li>customized whiskers</li>
-        <li>26 Feb - 1 Mar • 6:00 am</li>
-    </ul>
-    <a href="https://aolt.in/944076" class="button" target="_blank">enter the garden</a>
-</div>
-
-<script>
-    const toggle = document.getElementById('mode-toggle');
-    toggle.addEventListener('click', () => {
-        document.body.classList.toggle('dark');
-        toggle.innerText = document.body.classList.contains('dark') ? '🐈‍⬛' : '🐾';
-    });
-
-    const catIcons = ['🐾', '🐈', '🐱', '🧶'];
+    <div class="timeline-item">
+        <div class="neon-year" style="margin-bottom: 10px;">2012</div>
+        <div class="timeline-dot"></div>
+        <div class="iphone-frame timeline-content">
+            <h3>EzPad Launch</h3>
+            <p class="subtitle">Standardized the keypad for Indian languages with 12-key input.</p>
+        </div>
+    </div>
     
-    function spawnCat(initialY = -20) {
-        const cat = document.createElement('div');
-        cat.className = 'cat-particle';
-        cat.innerText = catIcons[Math.floor(Math.random() * catIcons.length)];
-        cat.style.left = Math.random() * 95 + 'vw';
-        
-        if(initialY !== -20) {
-            cat.style.top = initialY + 'px';
-        }
-
-        const duration = Math.random() * 3 + 5;
-        cat.style.animationDuration = duration + 's';
-        
-        document.body.appendChild(cat);
-        setTimeout(() => cat.remove(), duration * 1000);
-    }
-
-    for(let i=0; i < 20; i++) {
-        spawnCat(Math.random() * window.innerHeight);
-    }
-
-    setInterval(() => spawnCat(), 300);
-</script>
-
-</body>
-</html>
+    </div>
