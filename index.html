@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<link rel="icon" href="assets/favicon.ico" type="image/x-icon" />
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Vishal Merani - Timeline</title>
+<title>Vishal Merani - 2026 Timeline</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
 <style>
     /* =========================================
-       1. YOUR ORIGINAL VARIABLES & THEMES
+       1. CORE THEMES (RETAINED EXACTLY)
        ========================================= */
     :root {
         --bg: #f9f9f9; --text: #1f1f1f; --muted: #777; --box-bg: #ffffff;
@@ -23,33 +24,33 @@
     }
 
     /* =========================================
-       2. TIMELINE SPECIFIC LAYOUT (NEW)
+       2. TIMELINE WRAPPER (THE NEW DESIGN)
        ========================================= */
     body {
         font-family: 'Inter', sans-serif;
         font-size: 0.81em; line-height: 1.4;
         background: var(--bg); color: var(--text);
         margin: 0; padding: 0;
-        transition: background 0.3s ease;
+        transition: background 0.3s ease, color 0.3s ease;
         overflow-x: hidden;
     }
 
-    .timeline-wrapper {
+    .timeline-container {
         display: flex;
         overflow-x: auto;
-        padding: 80px 40px 100px; /* Space for years and cards */
-        gap: 50px;
+        padding: 80px 50px 100px;
+        gap: 40px;
         scroll-snap-type: x mandatory;
         align-items: flex-start;
         position: relative;
         min-height: 100vh;
     }
 
-    /* The Reverie Central Line */
-    .timeline-wrapper::before {
+    /* The Central Connecting Line */
+    .timeline-container::before {
         content: '';
         position: absolute;
-        top: 110px;
+        top: 125px;
         left: 0;
         right: 0;
         height: 2px;
@@ -68,41 +69,54 @@
     }
 
     .milestone-dot {
-        width: 14px;
-        height: 14px;
+        width: 12px;
+        height: 12px;
         background: var(--ny-gold);
         border-radius: 50%;
-        margin: 15px 0 30px;
+        margin: 15px 0 25px;
         z-index: 2;
         box-shadow: 0 0 10px var(--ny-gold);
     }
 
     /* =========================================
-       3. RETAINED CARD STYLES (FROM YOUR CODE)
+       3. ORIGINAL CARD STYLING (RETAINED)
        ========================================= */
     .iphone-frame {
         background: var(--box-bg); border-radius: 18px; 
         width: 100%; padding: 24px 18px; border: 1px solid var(--border); 
         position: relative; z-index: 1; overflow: hidden; 
-        transition: background-color 0.3s ease;
+        transition: background-color 0.3s ease, border-color 0.3s ease;
         box-shadow: 0 4px 15px rgba(212, 175, 55, 0.15);
     }
 
-    /* All your original animations, button styles, neon years, etc. go here... */
-    /* [Rest of your original CSS: .neon-year, .live-badge, .button, .footer, etc.] */
-    .neon-year { font-weight: 800; background: linear-gradient(to right, #ff00de, #00d2ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: neonPulse 3s infinite; }
+    /* All original animations and internal card classes */
     @keyframes neonPulse { 0%, 100% { text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #ff00de, 0 0 20px #ff00de; } 50% { text-shadow: 0 0 2px #fff, 0 0 5px #fff, 0 0 8px #00d2ff, 0 0 12px #00d2ff; } }
-    .live-badge { position: absolute; top: 15px; right: 15px; font-size: 0.5rem; font-weight: 800; color: var(--live-lime); animation: liveBreath 2.5s infinite; text-transform: uppercase; }
+    .neon-year { font-weight: 800; background: linear-gradient(to right, #ff00de, #00d2ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: neonPulse 3s infinite; display: inline-block; }
+    .live-badge { position: absolute; top: 15px; right: 15px; font-size: 0.5rem; font-weight: 800; color: var(--live-lime); letter-spacing: 1.5px; animation: liveBreath 2.5s infinite ease-in-out; display: flex; align-items: center; gap: 3px; text-transform: uppercase; }
     @keyframes liveBreath { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.6; transform: scale(0.95); } }
-    .button { display: inline-block; background-color: var(--accent); color: white; padding: 0.5rem 0.9rem; border-radius: 7px; font-size: 0.6rem; font-weight: 600; text-decoration: none; margin: 5px 0; }
+    
+    .live-card::before { content: ''; position: absolute; z-index: -2; left: -50%; top: -50%; width: 200%; height: 200%; background-image: conic-gradient(transparent, var(--live-lime), transparent 25%); animation: borderRotate 6s linear infinite; opacity: 0.4; }
+    .live-card::after { content: ''; position: absolute; z-index: -1; left: 2px; top: 2px; width: calc(100% - 4px); height: calc(100% - 4px); background: var(--box-bg); border-radius: 16px; }
+    @keyframes borderRotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+    h1 { font-size: 1.35rem; font-weight: 600; margin-bottom: 0.1rem; }
+    h2 { font-size: 1.1rem; font-weight: 500; margin-bottom: 0.3rem; }
+    h3 { font-size: 0.9rem; font-weight: 600; margin: 0.6rem 0 0.2rem; color: var(--h3-color); }
+    h4 { font-size: 0.8rem; font-weight: 500; margin: 0.3rem 0 0.1rem; color: var(--h4-color); }
+    .subtitle { font-size: 0.78rem; color: var(--muted); }
+    .button { display: inline-block; background-color: var(--accent); color: white; padding: 0.5rem 0.9rem; border-radius: 7px; font-size: 0.6rem; font-weight: 600; margin: 0.4rem 0.2rem 0.5rem 0; text-decoration: none; cursor: pointer; }
     body.dark .button { color: #000 !important; }
-    .footer { font-size: 0.55rem; color: var(--muted); text-align: center; margin-top: 10px; border-top: 1px dashed var(--ny-gold); padding-top: 5px; }
-    ul.features { list-style: none; padding-left: 0; margin: 10px 0; }
+    
+    .footer { font-size: 0.55rem; color: var(--muted); text-align: center; margin-top: 0.7rem; padding-top: 0.4rem; border-top: 1px dashed var(--ny-gold); }
+    ul.features, ul.timeline { list-style: none; padding-left: 0; margin: 0.3rem 0; }
     .features li::before { content: "▪"; color: var(--ny-gold); margin-right: 5px; }
-    .tour-year-display { font-size: 3rem; font-weight: 900; opacity: 0.1; position: absolute; top: -10px; left: 10px; z-index: 0; }
-    .social-icons-list { display: flex; justify-content: center; gap: 16px; }
-    .icon { width: 25px; height: 25px; fill: var(--text); }
+    .location-text { color: var(--text); font-size: 0.65rem; display: block; margin-top: 0.3rem; }
+    
+    .seva-form input, .seva-form textarea { width: 100%; padding: 8px; margin-bottom: 8px; border: 1px solid #ccc; border-radius: 4px; background: var(--box-bg); color: var(--text); font-family: 'Inter'; }
+    
     #mode-toggle { position: fixed; top: 20px; right: 20px; z-index: 1000; }
+    .tour-year-display { font-size: 3rem; font-weight: 900; opacity: 0.1; position: absolute; top: -10px; left: 10px; z-index: 0; }
+    .icon { width: 25px; height: 25px; fill: var(--text); transition: fill 0.3s; }
 </style>
 </head>
 
@@ -114,17 +128,29 @@
     </svg>
 </div>
 
-<div class="timeline-wrapper">
+<div class="timeline-container">
 
     <div class="milestone">
         <div class="neon-year">2026</div>
         <div class="milestone-dot"></div>
-        <div class="iphone-frame tour-card" id="card-guru-tour">
+        <div class="iphone-frame tour-card" id="card-guru-tour" style="border: 2px solid var(--ny-gold);">
             <div class="live-badge">● GLOBAL TOUR</div>
             <div class="tour-year-display">2026</div>
-            <header><h1>Gurudev Sri Sri Ravi Shankar</h1><p class="subtitle">World Tour 2026</p></header>
-            <section><h3>The Wait is Over.</h3><ul class="features"><li>Exclusive Satsangs</li><li>Masterclasses</li></ul></section>
-            <a href="https://gurudev.artofliving.org/tour-schedule/" class="button">Explore Schedule →</a>
+            <header style="text-align: center;">
+                <h1 style="font-size: 1.6rem;">Gurudev Sri Sri <br> Ravi Shankar</h1>
+                <p class="subtitle" style="font-weight: 600; color: var(--ny-gold);">World Tour 2026</p>
+            </header>
+            <section style="text-align: center;">
+                <h3>The Wait is Over.</h3>
+                <p class="subtitle" style="font-style: italic;">Experience peace, wisdom, and celebration in your city.</p>
+                <ul class="features" style="display: inline-block; text-align: left;">
+                    <li>Exclusive Satsangs</li>
+                    <li>Masterclasses on Meditation</li>
+                    <li>Global Peace Initiative</li>
+                </ul>
+            </section>
+            <a href="https://gurudev.artofliving.org/tour-schedule/" class="button" target="_blank" style="display:block; text-align:center; background: linear-gradient(45deg, var(--ny-gold), #000);">Explore Full Schedule →</a>
+            <footer><div class="footer" style="border:none;">🌍 Spanning Continents | ❤️ One World Family</div></footer>
         </div>
     </div>
 
@@ -133,48 +159,155 @@
         <div class="milestone-dot"></div>
         <div class="iphone-frame live-card" id="card-sahaj">
             <div class="live-badge">● LIVE</div>
-            <header><h1>Sahaj</h1><p class="subtitle">with Vishal Merani</p></header>
-            <section><ul class="features"><li>17 Jan - 19 Jan</li><li>20 Jan - 22 Jan</li></ul></section>
-            <a href="https://www.artofliving.online/registration.php?event_id=944718" class="button">Book Now</a>
+            <header>
+                <h1><span class="neon-year">2026</span> Sahaj,</h1>
+                <p class="subtitle">with Vishal Merani/ Team</p>
+            </header>
+            <section>
+                <h2>Lapse into meditation in minutes</h2>
+                <p class="feel-good-line">Feel Good 😌 Live Light 🪶</p>
+                <ul class="features"><li>Personal</li><li>Customized</li><li>Yours</li></ul>
+                <h4>Pick your preference</h4>
+                <ul class="features"><li>17 Jan - 19 Jan</li></ul>
+                <a href="https://www.artofliving.online/registration.php?event_id=944718" class="button" target="_blank">6:00 PM – 7:30 PM</a>
+                <ul class="features"><li>20 Jan - 22 Jan</li></ul>
+                <a href="https://www.artofliving.org/in-en/program/944719" class="button" target="_blank">7:00 AM – 8:30 AM</a>
+            </section>
+            <footer><div class="footer">😌 3 days, 2 hours a day | ♡ Online Sessions <br> ॐ Jai Guru Dev ॐ</div></footer>
         </div>
     </div>
 
     <div class="milestone">
-        <div class="neon-year">SERVICE</div>
+        <div class="neon-year">FEB 2026</div>
+        <div class="milestone-dot"></div>
+        <div class="iphone-frame live-card" id="card-do-dec">
+            <div class="live-badge">● LIVE</div>
+            <header>
+                <h1>Join Jan,</h1>
+                <h2>Meditation and Breath Workshop</h2>
+                <p class="subtitle">with Vishal Merani</p>
+            </header>
+            <section>
+                <h3>learn well-being online</h3>
+                <p class="subtitle">Just you, your breath, and a better you.</p>
+                <h4>Feb 26 - Mar 1</h4>
+                <a href="https://www.artofliving.org/in-en/program/944076" class="button" target="_blank">Book here ♡</a>
+                <span class="location-text">📍 Online, Zoom</span>
+            </section>
+            <footer><div class="footer">🫁💨🖥️🧘‍♂️ ♡ Online Sessions Only <br> ॐ Jai Guru Dev ॐ</div></footer>
+        </div>
+    </div>
+
+    <div class="milestone">
+        <div class="neon-year">MAR 2026</div>
+        <div class="milestone-dot"></div>
+        <div class="iphone-frame live-card" id="card-dsar">
+            <div class="live-badge">● LIVE</div>
+            <header>
+                <h1>Discover DSAR</h1>
+                <h2>Deep Sleep, Anxiety Relief</h2>
+                <p class="subtitle">with Vishal Merani</p>
+            </header>
+            <section>
+                <h3>Stop struggling! Decode and conquer</h3>
+                <ul class="features"><li>To calm anxiety</li><li>For better sleep</li><li>Activate relaxation</li></ul>
+                <a href="https://www.artofliving.org/in-en/program/944244" class="button" target="_blank">29 Jan - 31 Jan (8:00 PM)</a>
+            </section>
+            <footer><div class="footer">💤 Online Friendly Sessions <br> ॐ Jai Guru Dev ॐ</div></footer>
+        </div>
+    </div>
+
+    <div class="milestone">
+        <div class="neon-year">SEVA</div>
         <div class="milestone-dot"></div>
         <div class="iphone-frame" id="card-seva">
-            <header><h1>Seva सेवा</h1></header>
+            <header><h1>Seva सेवा</h1><h2>To serve, to attend to, to honor</h2></header>
+            <ul class="features"><li>Uplift consciousness</li><li>Dwell in awe</li></ul>
             <form class="seva-form" action="https://formsubmit.co/vishal.merani@artofliving.org" method="POST">
-                <input type="text" name="Name" placeholder="Your Name" required style="width:100%; margin-bottom:5px;">
-                <textarea name="Note" placeholder="Interested in Seva..." style="width:100%; height:50px;"></textarea>
-                <input type="submit" value="Send 📧 ♡" class="button" style="border:none; width:100%;">
+                <input type="text" name="Name" placeholder="Your Name" required>
+                <input type="text" name="Number" placeholder="Contact Number" required>
+                <textarea name="Note" placeholder="I am interested in Seva..."></textarea>
+                <input type="submit" value="Drop a note and Send 📧" class="button" style="width:100%; border:none;">
             </form>
+            <footer><div class="footer">Seva | The path of selfless service.</div></footer>
+        </div>
+    </div>
+
+    <div class="milestone">
+        <div class="neon-year">GUIDANCE</div>
+        <div class="milestone-dot"></div>
+        <div class="iphone-frame" id="card-scanning">
+            <header><h1>Scanning,</h1><h2>KaalGyaan Sessions</h2></header>
+            <section>
+                <h3>Get to know now, like never before</h3>
+                <p class="subtitle">from different dimension for better decisions</p>
+                <ul class="features"><li>⤷ Answers about you</li><li>⤷ Guiding next step</li></ul>
+            </section>
+            <footer><div class="footer">🌀🔮 Online Sessions <br> ॐ Jai Guru Dev ॐ</div></footer>
+        </div>
+    </div>
+
+    <div class="milestone">
+        <div class="neon-year">ZEN</div>
+        <div class="milestone-dot"></div>
+        <div class="iphone-frame" style="padding:0; border:none;">
+            <img src="zenvm.png" alt="Meditation Image" style="width: 100%; border-radius: 17px; display:block;"/>
         </div>
     </div>
 
     <div class="milestone">
         <div class="neon-year">CONNECT</div>
         <div class="milestone-dot"></div>
-        <div class="iphone-frame social-icons-frame">
+        <div class="iphone-frame social-icons-frame" style="text-align:center;">
             <div class="social-icons-list">
-                <a href="https://www.instagram.com/meranivishal/"><svg class="icon" viewBox="0 0 24 24"><path d="M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5H7zm10 4c1.7 0 3 1.3 3 3v10c0 1.7-1.3 3-3 3H7c-1.7 0-3-1.3-3-3V7c0-1.7 1.3-3 3-3h10z"/></svg></a>
-                </div>
-            <div class="footer">ॐ Jai Guru Dev ॐ</div>
+                <a href="https://www.instagram.com/meranivishal/" target="_blank"><svg class="icon" viewBox="0 0 24 24"><path d="M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5H7zm10 4c1.7 0 3 1.3 3 3v10c0 1.7-1.3 3-3 3H7c-1.7 0-3-1.3-3-3V7c0-1.7 1.3-3 3-3h10z"/></svg></a>
+                <a href="https://in.linkedin.com/in/vishal-merani" target="_blank"><svg class="icon" viewBox="0 0 24 24"><path d="M4.98 3.5C4.98 4.88 3.88 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.5 8h4v12h-4V8zm7 0h3.6v1.7h.1c.5-1 1.7-2 3.4-2 3.6 0 4.3 2.3 4.3 5.2V20h-4v-5.3c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9V20h-4V8z"/></svg></a>
+            </div>
+            <footer><div class="footer">🦦 ॐ Jai Guru Dev ॐ</div></footer>
         </div>
     </div>
 
 </div>
 
 <script>
-    // All original JS preserved
+    // Dark Mode Toggle
     const snowflakeIcon = document.getElementById("snowflake-icon");
     let darkMode = false;
     snowflakeIcon.addEventListener("click", () => {
         darkMode = !darkMode;
         document.body.classList.toggle("dark", darkMode);
+        snowflakeIcon.style.transform = darkMode ? "rotate(180deg)" : "rotate(0deg)";
     });
 
-    // Re-run your snowflake interval logic here for all card IDs
+    // Snowflake Animation Logic for the new structure
+    const milestones = document.querySelectorAll('.milestone');
+    function createSnowflake(milestone) {
+        const snowflake = document.createElement('div');
+        snowflake.innerHTML = '✨';
+        snowflake.style.position = 'absolute';
+        snowflake.style.color = '#d4af37';
+        snowflake.style.pointerEvents = 'none';
+        snowflake.style.zIndex = '100';
+        snowflake.style.left = Math.random() * 100 + '%';
+        snowflake.style.bottom = '0px';
+        snowflake.style.fontSize = '12px';
+        
+        const duration = Math.random() * 3 + 2;
+        snowflake.style.transition = `all ${duration}s linear`;
+        milestone.appendChild(snowflake);
+
+        setTimeout(() => {
+            snowflake.style.transform = 'translateY(-100px)';
+            snowflake.style.opacity = '0';
+        }, 100);
+
+        setTimeout(() => snowflake.remove(), duration * 1000);
+    }
+
+    milestones.forEach(m => {
+        setInterval(() => createSnowflake(m), 2000 + Math.random() * 2000);
+    });
 </script>
+
 </body>
 </html>
