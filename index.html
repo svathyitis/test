@@ -1,341 +1,258 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<link rel="icon" href="assets/favicon.ico" type="image/x-icon" />
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Vishal Merani - Timeline</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
-<style>
-    /* =========================================
-       1. COLOR THEMES & VARIABLES (ORIGINAL)
-       ========================================= */
-    :root {
-        --bg: #f9f9f9; --text: #1f1f1f; --muted: #777; --box-bg: #ffffff;
-        --border: #d4af37; --accent: #000000; --ny-gold: #d4af37;
-        --h3-color: #333333; --h4-color: #555555; --live-lime: #32ff7e;
-    }
-    body.dark {
-        --bg: #000000; --text: #f7e7ce; --muted: #888; --border: #b8860b;
-        --accent: #d4af37; --box-bg: #111111; --h3-color: #f7e7ce; --h4-color: #ccc;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chitta Shuddhi — Clear Your Mind</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            user-select: none;
+            -webkit-user-select: none;
+        }
 
-    /* =========================================
-       2. HORIZONTAL TIMELINE LAYOUT
-       ========================================= */
-    body {
-        font-family: 'Inter', sans-serif;
-        font-size: 0.81em; line-height: 1.4;
-        background: var(--bg); color: var(--text);
-        margin: 0; padding: 0;
-        transition: background 0.3s ease;
-        overflow-y: hidden; /* Lock vertical */
-    }
+        body, html {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-color: #0b0f19;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
 
-    .timeline-wrapper {
-        display: flex;
-        overflow-x: auto;
-        padding: 60px 50px 100px;
-        gap: 40px;
-        scroll-snap-type: x mandatory;
-        align-items: flex-start;
-        position: relative;
-        min-height: 100vh;
-        scrollbar-width: thin;
-    }
+        /* The serene sunrise gradient underneath */
+        .background-reveal {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 50% 60%, #ffe6cc 0%, #ffb380 20%, #ff8080 45%, #4a3b5c 70%, #0b0f19 100%);
+            z-index: 1;
+        }
 
-    /* The Golden Connecting Line */
-    .timeline-wrapper::before {
-        content: '';
-        position: absolute;
-        top: 115px;
-        left: 0;
-        right: 0;
-        height: 2px;
-        background: var(--ny-gold);
-        opacity: 0.3;
-        z-index: 0;
-    }
+        /* The interactive canvas where the mist lives */
+        canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+            cursor: pointer;
+        }
 
-    .milestone {
-        flex: 0 0 380px; /* SAME SIZE CARDS */
-        scroll-snap-align: center;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        position: relative;
-    }
+        /* Minimalist UI Layer */
+        .ui-container {
+            position: absolute;
+            z-index: 3;
+            text-align: center;
+            pointer-events: none; /* Let clicks pass through to the canvas */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 90%;
+            max-width: 600px;
+        }
 
-    .static-year {
-        font-weight: 700;
-        font-size: 1.1rem;
-        color: var(--ny-gold);
-        margin-bottom: 10px;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-    }
+        h1 {
+            font-size: 2rem;
+            font-weight: 300;
+            color: #ffffff;
+            letter-spacing: 0.15em;
+            margin-bottom: 1rem;
+            opacity: 0.9;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            transition: opacity 1s ease;
+        }
 
-    .milestone-dot {
-        width: 12px;
-        height: 12px;
-        background: var(--ny-gold);
-        border-radius: 50%;
-        margin-bottom: 25px;
-        z-index: 2;
-        box-shadow: 0 0 8px var(--ny-gold);
-    }
+        p {
+            font-size: 1rem;
+            color: #d1d5db;
+            letter-spacing: 0.05em;
+            font-weight: 300;
+            line-height: 1.6;
+            margin-bottom: 2.5rem;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.4);
+        }
 
-    /* =========================================
-       3. ORIGINAL CARD STYLING (RETAINED)
-       ========================================= */
-    .iphone-frame {
-        background: var(--box-bg); border-radius: 18px; 
-        width: 100%; padding: 24px 18px; border: 1px solid var(--border); 
-        position: relative; z-index: 1; overflow: hidden; 
-        transition: background-color 0.3s ease;
-        box-shadow: 0 4px 15px rgba(212, 175, 55, 0.15);
-    }
+        /* Interactive controls that should be clickable */
+        .interactive-element {
+            pointer-events: auto;
+        }
 
-    .iphone-frame.no-padding { padding: 0; }
-    .iphone-frame.no-padding img { width: 100%; border-radius: 17px; display: block; }
+        .btn-return {
+            background: rgba(255, 255, 255, 0.08);
+            color: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            padding: 0.75rem 2rem;
+            font-size: 0.9rem;
+            letter-spacing: 0.1em;
+            border-radius: 50px;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            transition: all 0.4s ease;
+            text-decoration: none;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+            opacity: 0; /* Starts hidden, fades in as they clear */
+            transform: translateY(10px);
+            pointer-events: none;
+        }
 
-    /* Animation: Live Badge & Border Rotate */
-    @keyframes liveBreath { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.6; transform: scale(0.95); } }
-    .live-badge { position: absolute; top: 15px; right: 15px; font-size: 0.5rem; font-weight: 800; color: var(--live-lime); animation: liveBreath 2.5s infinite; text-transform: uppercase; letter-spacing: 1px; }
-    
-    .live-card::before { content: ''; position: absolute; z-index: -2; left: -50%; top: -50%; width: 200%; height: 200%; background-image: conic-gradient(transparent, var(--live-lime), transparent 25%); animation: borderRotate 6s linear infinite; opacity: 0.3; }
-    .live-card::after { content: ''; position: absolute; z-index: -1; left: 2px; top: 2px; width: calc(100% - 4px); height: calc(100% - 4px); background: var(--box-bg); border-radius: 16px; }
-    @keyframes borderRotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        .btn-return.visible {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
 
-    /* Typography */
-    h1 { font-size: 1.35rem; font-weight: 600; margin-bottom: 0.1rem; }
-    h2 { font-size: 1.1rem; font-weight: 500; margin-bottom: 0.3rem; }
-    h3 { font-size: 0.9rem; font-weight: 600; margin: 0.6rem 0 0.2rem; color: var(--h3-color); }
-    h4 { font-size: 0.8rem; font-weight: 500; margin: 0.3rem 0 0.1rem; color: var(--h4-color); }
-    .subtitle { font-size: 0.78rem; color: var(--muted); }
-    .button { display: inline-block; background-color: var(--accent); color: white; padding: 0.5rem 0.9rem; border-radius: 7px; font-size: 0.6rem; font-weight: 600; text-decoration: none; margin: 5px 2px 5px 0; transition: transform 0.2s; }
-    body.dark .button { color: #000 !important; }
-    .footer { font-size: 0.55rem; color: var(--muted); text-align: center; margin-top: 10px; border-top: 1px dashed var(--ny-gold); padding-top: 5px; }
-    ul.features, ul.timeline { list-style: none; padding-left: 0; margin: 5px 0; }
-    .features li::before { content: "▪"; color: var(--ny-gold); margin-right: 5px; }
-    .location-text { font-size: 0.65rem; display: block; margin-top: 5px; }
+        .btn-return:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.5);
+            box-shadow: 0 4px 25px rgba(255, 230, 204, 0.2);
+        }
 
-    /* Form Styles */
-    .seva-form input, .seva-form textarea { width: 100%; padding: 8px; margin-bottom: 8px; border: 1px solid #ccc; border-radius: 4px; background: var(--box-bg); color: var(--text); font-family: inherit; font-size: 0.8em; }
-    
-    #mode-toggle { position: fixed; top: 20px; right: 20px; z-index: 1000; cursor: pointer; }
-    .tour-year-display { font-size: 3rem; font-weight: 900; opacity: 0.1; position: absolute; top: -10px; left: 10px; z-index: 0; }
-    .snowflake { position: absolute; color: var(--ny-gold); z-index: 100; pointer-events: none; animation: floatUp linear infinite; opacity: 0; }
-    @keyframes floatUp { 0% { transform: translateY(0); opacity: 0; } 20% { opacity: 1; } 100% { transform: translateY(-40px); opacity: 0; } }
-
-    .social-icons-list { display: flex; justify-content: center; gap: 15px; margin-top: 10px; }
-    .icon { width: 22px; height: 22px; fill: var(--text); }
-</style>
+        .hint {
+            position: absolute;
+            bottom: 2rem;
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.4);
+            letter-spacing: 0.05em;
+        }
+    </style>
 </head>
-
 <body>
 
-<div id="mode-toggle">
-    <svg id="snowflake-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-</div>
+    <div class="background-reveal"></div>
 
-<div class="timeline-wrapper">
+    <canvas id="mistCanvas"></canvas>
 
-    <div class="milestone">
-        <div class="static-year">2026</div>
-        <div class="milestone-dot"></div>
-        <div class="iphone-frame tour-card" id="card-guru-tour" style="border: 2px solid var(--ny-gold);">
-            <div class="live-badge">● GLOBAL TOUR</div>
-            <div class="tour-year-display">2026</div>
-            <header style="text-align: center; flex-direction: column;">
-                <h1>Gurudev Sri Sri Ravi Shankar</h1>
-                <p class="subtitle" style="color: var(--ny-gold); font-weight: 600;">World Tour 2026</p>
-            </header>
-            <section style="text-align: center;">
-                <h3>The Wait is Over.</h3>
-                <ul class="features" style="display: inline-block; text-align: left;">
-                    <li>Exclusive Satsangs</li>
-                    <li>Masterclasses on Meditation</li>
-                    <li>Global Peace Initiative</li>
-                </ul>
-                <a href="https://gurudev.artofliving.org/tour-schedule/" class="button" style="background: linear-gradient(45deg, var(--ny-gold), #000); width: 100%;">Explore Full Schedule →</a>
-            </section>
-            <footer><div class="footer" style="border:none;">🌍 Spanning Continents | ❤️ One World Family</div></footer>
-        </div>
+    <div class="ui-container">
+        <h1 id="mainHeading">You've wandered off the path.</h1>
+        <p id="subHeading">Take a deep breath. Gently wipe away the digital noise to reveal the light.</p>
+        <a href="https://vishalmerani.com" class="btn-return interactive-element" id="returnBtn">Return to the Path</a>
+        <div class="hint">Click or drag across the screen to clear the mist</div>
     </div>
 
-    <div class="milestone">
-        <div class="static-year">JAN 2026</div>
-        <div class="milestone-dot"></div>
-        <div class="iphone-frame live-card" id="card-sahaj">
-            <div class="live-badge">● LIVE</div>
-            <h1>2026 Sahaj,</h1>
-            <p class="subtitle">with Vishal Merani/ Team</p>
-            <h3>Lapse into meditation in minutes</h3>
-            <p class="feel-good-line">Feel Good 😌 Live Light 🪶</p>
-            <h4>Pick your preference:</h4>
-            <ul class="features"><li>17 Jan - 19 Jan</li></ul>
-            <a href="https://www.artofliving.online/registration.php?event_id=944718" class="button">6:00 PM – 7:30 PM</a>
-            <ul class="features"><li>20 Jan - 22 Jan</li></ul>
-            <a href="https://www.artofliving.org/in-en/program/944719" class="button">7:00 AM – 8:30 AM</a>
-            <footer><div class="footer">😌 3 days, 2 hours a day | ♡ Online Sessions</div></footer>
-        </div>
-    </div>
+    <script>
+        const canvas = document.getElementById('mistCanvas');
+        const ctx = canvas.getContext('2d');
+        const returnBtn = document.getElementById('returnBtn');
+        const heading = document.getElementById('mainHeading');
 
-    <div class="milestone">
-        <div class="static-year">FEB 2026</div>
-        <div class="milestone-dot"></div>
-        <div class="iphone-frame live-card" id="card-do-dec">
-            <div class="live-badge">● LIVE</div>
-            <h1>Join Jan,</h1>
-            <h2>Meditation and Breath</h2>
-            <p class="subtitle">with Vishal Merani</p>
-            <section>
-                <h4>Feb 26 - Mar 1</h4>
-                <a href="https://www.artofliving.org/in-en/program/944076" class="button">Book here ♡</a>
-                <span class="location-text">📍 Online, Zoom</span>
-            </section>
-            <footer><div class="footer">🫁💨🖥️🧘‍♂️ ॐ Jai Guru Dev ॐ</div></footer>
-        </div>
-    </div>
+        let isDrawing = false;
+        let totalPixels = 0;
+        let clearedPixels = 0;
+        let checkThrottling = false;
 
-    <div class="milestone">
-        <div class="static-year">MAR 2026</div>
-        <div class="milestone-dot"></div>
-        <div class="iphone-frame live-card" id="card-dsar">
-            <div class="live-badge">● LIVE</div>
-            <h1>Discover DSAR</h1>
-            <h2>Deep Sleep, Anxiety Relief</h2>
-            <ul class="features"><li>To calm anxiety</li><li>For better sleep</li></ul>
-            <a href="https://www.artofliving.org/in-en/program/944244" class="button">29 Jan - 31 Jan (8 PM)</a>
-            <footer><div class="footer">💤 Late Evening Online Sessions</div></footer>
-        </div>
-    </div>
+        // Setup canvas size
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            drawInitialMist();
+        }
 
-    <div class="milestone">
-        <div class="static-year">FEB 2026</div>
-        <div class="milestone-dot"></div>
-        <div class="iphone-frame" id="card-yes-plus">
-            <h1>YES+</h1>
-            <h2>Youth Special</h2>
-            <p class="subtitle">with Vishal Merani</p>
-            <section>
-                <a href="https://programs.vvmvp.org/events/783/" class="button">Join Waitlist</a>
-                <ul class="features">
-                    <li>Rudra pooja on Mondays</li>
-                    <li>Sattvic food</li>
-                </ul>
-            </section>
-            <footer><div class="footer">Bangalore ♡ Ashram</div></footer>
-        </div>
-    </div>
+        // Fill canvas with a calm, deep meditative mist (overcast dark blue/grey)
+        function drawInitialMist() {
+            // Base mist layer
+            ctx.fillStyle = '#1e2530';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-    <div class="milestone">
-        <div class="static-year">2026</div>
-        <div class="milestone-dot"></div>
-        <div class="iphone-frame" id="card-silence">
-            <h1>Silence Retreat</h1>
-            <h2>Join waitlist for 2026</h2>
-            <ul class="features"><li>⤷ Silence</li><li>⤷ Meditations</li></ul>
-            <div style="display:flex; gap:5px;">
-                <a href="https://www.youtube.com/watch?v=j2cNxo8VemQ" class="button">Watch Why</a>
-                <a href="https://aolt.in/919547" class="button">Peep Invite</a>
-            </div>
-            <footer><div class="footer">🤫⃤ 3 days ♡ Online</div></footer>
-        </div>
-    </div>
+            // Add subtle noise/texture to make it feel organic
+            for (let i = 0; i < canvas.width; i += 4) {
+                for (let j = 0; j < canvas.height; j += 4) {
+                    if (Math.random() > 0.5) {
+                        ctx.fillStyle = 'rgba(255, 255, 255, 0.015)';
+                        ctx.fillRect(i, j, 4, 4);
+                    }
+                }
+            }
+            
+            // Re-enable blending mode for erasing
+            ctx.globalCompositeOperation = 'destination-out';
+        }
 
-    <div class="milestone">
-        <div class="static-year">GUIDANCE</div>
-        <div class="milestone-dot"></div>
-        <div class="iphone-frame" id="card-scanning">
-            <h1>Scanning,</h1>
-            <h2>KaalGyaan Sessions</h2>
-            <p class="subtitle">from different dimension for decisions</p>
-            <ul class="features">
-                <li>⤷ Answers about you</li>
-                <li>⤷ Guiding next step</li>
-            </ul>
-            <footer><div class="footer">🌀🔮 Online Sessions</div></footer>
-        </div>
-    </div>
+        // Smoothly scratch out the mist
+        function clearMist(e) {
+            if (!isDrawing) return;
 
-    <div class="milestone">
-        <div class="static-year">HEALING</div>
-        <div class="milestone-dot"></div>
-        <div class="iphone-frame" id="card-pain-mgmt">
-            <h1>Pain Management,</h1>
-            <h2>L&B Sessions</h2>
-            <h3>Get relief in an hour or so</h3>
-            <span class="location-text">📍 In-person, Bangalore Ashram</span>
-            <p class="subtitle">Bookings: +91 9818503888</p>
-            <footer><div class="footer">🩹⚡ ॐ Jai Guru Dev ॐ</div></footer>
-        </div>
-    </div>
+            // Handle both touch and mouse positions
+            const x = e.clientX || (e.touches && e.touches[0].clientX);
+            const y = e.clientY || (e.touches && e.touches[0].clientY);
 
-    <div class="milestone">
-        <div class="static-year">SEVA</div>
-        <div class="milestone-dot"></div>
-        <div class="iphone-frame" id="card-seva">
-            <h1>Seva सेवा</h1>
-            <form class="seva-form" action="https://formsubmit.co/vishal.merani@artofliving.org" method="POST">
-                <input type="text" name="Name" placeholder="Your Name" required>
-                <input type="text" name="Contact" placeholder="Contact Number" required>
-                <textarea name="Note" placeholder="I am interested in Seva..."></textarea>
-                <input type="submit" value="Send 📧 ♡" class="button" style="width:100%; border:none;">
-            </form>
-            <footer><div class="footer">The path of selfless service.</div></footer>
-        </div>
-    </div>
+            if (x === undefined || y === undefined) return;
 
-    <div class="milestone">
-        <div class="static-year">MOMENT</div>
-        <div class="milestone-dot"></div>
-        <div class="iphone-frame no-padding"><img src="zenvm.png" alt="Zen"></div>
-    </div>
+            // Feathered soft brush effect using a radial gradient
+            const brushRadius = Math.max(window.innerWidth * 0.06, 60); // Dynamic scale
+            const gradient = ctx.createRadialGradient(x, y, 0, x, y, brushRadius);
+            gradient.addColorStop(0, 'rgba(0, 0, 0, 1)');
+            gradient.addColorStop(0.5, 'rgba(0, 0, 0, 0.4)');
+            gradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
 
-    <div class="milestone">
-        <div class="static-year">CONNECT</div>
-        <div class="milestone-dot"></div>
-        <div class="iphone-frame" id="card-podcasts">
-            <h1>Podcasts & Links</h1>
-            <a href="https://podcasts.vishalmerani.com/" class="button">🎧 Listen Now</a>
-            <div class="social-icons-list">
-                <a href="https://www.instagram.com/meranivishal/"><svg class="icon" viewBox="0 0 24 24"><path d="M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5H7zm10 4c1.7 0 3 1.3 3 3v10c0 1.7-1.3 3-3 3H7c-1.7 0-3-1.3-3-3V7c0-1.7 1.3-3 3-3h10z"/></svg></a>
-                <a href="https://in.linkedin.com/in/vishal-merani"><svg class="icon" viewBox="0 0 24 24"><path d="M4.98 3.5C4.98 4.88 3.88 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.5 8h4v12h-4V8zm7 0h3.6v1.7h.1c.5-1 1.7-2 3.4-2 3.6 0 4.3 2.3 4.3 5.2V20h-4v-5.3c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9V20h-4V8z"/></svg></a>
-            </div>
-            <footer><div class="footer">ॐ Jai Guru Dev ॐ</div></footer>
-        </div>
-    </div>
+            ctx.fillStyle = gradient;
+            
+            // Circle path for clean tracking
+            ctx.beginPath();
+            ctx.arc(x, y, brushRadius, 0, Math.PI * 2);
+            ctx.fill();
 
-</div>
+            // Throttle calculations for buttery smooth frame rates
+            if (!checkThrottling) {
+                checkThrottling = true;
+                setTimeout(evaluateClearness, 300);
+            }
+        }
 
-<script>
-    // Mode Toggle
-    const snowflakeIcon = document.getElementById("snowflake-icon");
-    snowflakeIcon.addEventListener("click", () => {
-        document.body.classList.toggle("dark");
-        snowflakeIcon.style.transform = document.body.classList.contains("dark") ? "rotate(180deg)" : "rotate(0deg)";
-    });
+        // Check how much of the screen has been cleared to trigger the return button
+        function evaluateClearness() {
+            // Sample a downscaled grid to protect performance
+            const sampleSize = 20; 
+            let clearedPoints = 0;
+            let totalPoints = 0;
 
-    // Snowflake Animation
-    const cards = document.querySelectorAll('.iphone-frame');
-    function createSnowflake(card) {
-        const sf = document.createElement('div');
-        sf.innerHTML = '✨';
-        sf.className = 'snowflake';
-        sf.style.left = Math.random() * 90 + '%';
-        sf.style.bottom = '10%';
-        const dur = Math.random() * 3 + 2;
-        sf.style.animationDuration = dur + 's';
-        card.appendChild(sf);
-        setTimeout(() => sf.remove(), dur * 1000);
-    }
+            for (let x = 0; x < canvas.width; x += sampleSize) {
+                for (let y = 0; y < canvas.height; y += sampleSize) {
+                    totalPoints++;
+                    const imgData = ctx.getImageData(x, y, 1, 1).data;
+                    // If the alpha channel is near zero, it's cleared
+                    if (imgData[3] < 50) {
+                        clearedPoints++;
+                    }
+                }
+            }
 
-    cards.forEach(card => {
-        setInterval(() => createSnowflake(card), 3000 + Math.random() * 2000);
-    });
-</script>
+            const percentageCleared = (clearedPoints / totalPoints) * 100;
 
+            // Reveal exit if they clear more than 15% of the screen
+            if (percentageCleared > 15) {
+                returnBtn.classList.add('visible');
+                heading.style.opacity = '1';
+                heading.innerText = "The path is clear.";
+            }
+            
+            checkThrottling = false;
+        }
+
+        // Event Listeners
+        window.addEventListener('resize', resizeCanvas);
+
+        // Mouse Events
+        canvas.addEventListener('mousedown', () => isDrawing = true);
+        window.addEventListener('mouseup', () => isDrawing = false);
+        canvas.addEventListener('mousemove', clearMist);
+
+        // Touch Events (Mobile/Tablet friendly)
+        canvas.addEventListener('touchstart', (e) => { isDrawing = true; clearMist(e); });
+        window.addEventListener('touchend', () => isDrawing = false);
+        canvas.addEventListener('touchmove', clearMist);
+
+        // Initialize on boot
+        resizeCanvas();
+    </script>
 </body>
 </html>
